@@ -10,7 +10,7 @@ public class AccountController {
 
     @GetMapping("/")
     public String viewLogin() {
-        return "login";
+        return "account/login";
     }
 
 
