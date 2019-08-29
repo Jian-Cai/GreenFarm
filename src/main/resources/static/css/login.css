@@ -1,0 +1,56 @@
+body{
+	margin:0;
+	padding:0;
+	background: no-repeat;
+	background-size:100%;
+}
+html{
+	height: 100%;
+}
+form{
+	position:absolute;
+	left:50%;
+	margin-top:10%;
+	width:35%;
+	height:300px;
+	border-radius:25px;
+	color: rgb(0, 0, 0);
+	text-align:center;
+	padding:65px;
+	background-color: rgba(110, 110, 110, 0.37);;
+	box-shadow: 0px 0px 15px #00000096;
+}
+.input_1{
+	outline:none;
+	margin-top:10px;
+	border:0;
+	width:300px;
+	height:50px;
+	border-radius:15px;
+	padding-left:15px;
+	font-size:18px;
+	color: rgba(171, 171, 171, 0.84);
+}
+.input_2{
+	margin:20px 0px;
+	border:0;
+	background:rgba(171, 171, 171, 0.84);
+}
+h1{
+	color: #060606;
+}
+/*单选*/
+.radio_box{ display:inline-block; position:relative;margin:20px 5px;}
+.radio_box label{ width:15px; height:15px; position:absolute; top:0; left:0; border:2px solid #3A5367; border-radius:50%; background:#fff; cursor:pointer;}
+.radio_box input:checked + label:after{ content:''; width:9px; height:9px; position:absolute; top:3px; left:3px; background:#3A5367; border-radius:50%;}
+.check_box em{ margin:0 0 0 5px;}
+.input_3{
+	outline: none;
+	width:50px;
+	height:30px;
+	border:0;
+	padding:5px 7px;
+	background:#fff;
+	border-radius:20px;
+	margin:0px 10px;
+}
