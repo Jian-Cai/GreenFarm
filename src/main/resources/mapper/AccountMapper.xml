@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019
+  ~ User: Duo.y
+  ~ File:AccountMapper.xml
+  ~ Date:2019/08/30 21:46:30
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.AccountMapper">
+    <cache />
+
+    <select id="getAccount" resultType="org.csu.greenfarm.domain.Account">
+        SELECT * FROM users
+    </select>
+    <select id="getAccountByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Account">
+        SELECT * FROM users WHERE account=#{account}
+    </select>
+    <select id="getAccountByMail"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Account">
+        SELECT * FROM users WHERE mail=#{mail}
+    </select>
+    <select id="getAccountByUsername"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Account">
+        SELECT * FROM users WHERE username=#{username}
+    </select>
+
+</mapper>
