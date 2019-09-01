@@ -1,0 +1,115 @@
+<!--
+  ~ Copyright (c) 2019
+  ~ User: Duo.y
+  ~ File: account.html
+  ~ Date: 2019/09/01 09:33:01
+  -->
+
+<!DOCTYPE HTML>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/account.css">
+    <script src="/js/jquery.min.js"></script>
+    <!-- start top_js_button -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<header th:replace="common/template_heads::header"></header>
+<div class="header">
+    <div class="user-info">
+        <div class="w1200">
+            <div class="user-headface">
+                <img src="/images/user_face.jpg">
+            </div>
+            <div class="user-account">
+                <p class="tip">下午好，Tom</p>
+                <p class="account">
+                    <span>帐户名：Tom</span>
+                    <span>用户：tomandjerry</span>
+                </p>
+            </div>
+            <div class="user-modify">
+                <a href="#">修改资料&gt;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main w1200">
+    <div class="left">
+        <ul>
+            <li>
+                <a href="#" class="active">
+                    <i class="icon iconfont icon-lingdang"></i>
+                    消息
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-fangzidichan"></i>
+                    房源管理
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-wenda"></i>
+                    问答
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-icon--"></i>
+                    卖房
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-pinglun"></i>
+                    评论
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-geren"></i>
+                    个人资料
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon iconfont icon-jilu"></i>
+                    看房记录
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <div class="tap">
+            <span>系统消息</span>
+        </div>
+        <div class="container">
+            <div class="no-doc">
+                <img src="/images/no_doc.jpg">
+                <p>您还没有消息哦~</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="common/template_heads::footer"></footer>
+</body>
+
+</html>
