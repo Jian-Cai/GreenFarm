@@ -11,7 +11,7 @@
 <mapper namespace="org.csu.greenfarm.persistence.AccountMapper">
     <cache />
 
-    <select id="getAccount" resultType="org.csu.greenfarm.domain.Account">
+    <select id="getAccounts" resultType="org.csu.greenfarm.domain.Account">
         SELECT * FROM users
     </select>
     <select id="getAccountByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Account">
