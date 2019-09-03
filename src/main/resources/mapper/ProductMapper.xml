@@ -1,0 +1,26 @@
+<!--
+  ~ Copyright (c) 2019
+  ~ User: Duo.y
+  ~ File: ProductMapper.xml
+  ~ Date: 2019/09/03 14:47:03
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenProduct.persistence.ProductMapper">
+    <cache />
+
+    <select id="getAllProducts" resultType="org.csu.greenProduct.domain.Product">
+        SELECT * FROM product
+    </select>
+    <select id="getProductByProductId"  parameterType="java.lang.String" resultType="org.csu.greenProduct.domain.Product">
+        SELECT * FROM product where productid=#{productId}
+    </select>
+    <select id="getProductByProductName"  parameterType="java.lang.String" resultType="org.csu.greenProduct.domain.Product">
+        SELECT * FROM product where product_name LIKE #{product_name}
+    </select>
+    <select id="getProductByProductOrigin"  parameterType="java.lang.String" resultType="org.csu.greenProduct.domain.Product">
+        SELECT * FROM product where product_origin = #{product_origin}
+    </select>
+
+</mapper>

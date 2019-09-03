@@ -34,23 +34,38 @@
         <div class="main">
             <h2 class="style top">采摘园</h2>
             <!-- start grids_of_3 -->
-            <th:block th:each="farmItem,itemStat:${farms}">
-                <div class="grids_of_3">
+            <div class="grids_of_3">
+                <th:block th:each="farmItem1:${farms1}">
                     <div class="grid1_of_3">
-                        <a th:href="@{'/farm/farmItem?farmId=' + ${farmItem.getFarmId()}}">
-                            <img th:src="@{'/images/' + ${farmItem.getFarm_photo()}}" />
-                            <h3 th:text="${farmItem.getFarm_name()}">farm name</h3>
-                            <h5 th:text="${farmItem.getFarm_item()}"></h5>
+                        <a th:href="@{'/farm/farmItem?farmId=' + ${farmItem1.getFarmId()}}" th:title="${farmItem1.getFarm_item()}">
+                            <img th:src="@{'/images/' + ${farmItem1.getFarm_photo()}}" />
+                            <h3 th:text="${farmItem1.getFarm_name()}">farm name</h3>
+                            <h4 th:text="${farmItem1.getFarm_item_short()}"></h4>
                             <div class="price">
-                                <h4 th:text="'$' + ${farmItem.getFarm_price()}">$299<span>立即选择</span></h4>
+                                <h4 th:text="'$' + ${farmItem1.getFarm_price()}">$299<span>立即选择</span></h4>
                             </div>
                             <span class="b_btm"></span>
                         </a>
                     </div>
-                    <div th:if="${itemStat.count % 3== 0 || itemStat.last}" class="clear"></div>
-                </div>
-            </th:block>
-
+                </th:block>
+                <div class="clear"></div>
+            </div>
+            <div class="grids_of_3">
+                <th:block th:each="farmItem2:${farms2}">
+                    <div class="grid1_of_3">
+                        <a th:href="@{'/farm/farmItem?farmId=' + ${farmItem2.getFarmId()}}" th:title="${farmItem2.getFarm_item()}">
+                            <img th:src="@{'/images/' + ${farmItem2.getFarm_photo()}}" />
+                            <h3 th:text="${farmItem2.getFarm_name()}">farm name</h3>
+                            <h4 th:text="${farmItem2.getFarm_item_short()}"></h4>
+                            <div class="price">
+                                <h4 th:text="'$' + ${farmItem2.getFarm_price()}">$299<span>立即选择</span></h4>
+                            </div>
+                            <span class="b_btm"></span>
+                        </a>
+                    </div>
+                </th:block>
+                <div class="clear"></div>
+            </div>
             <!-- end grids_of_3 -->
         </div>
     </div>

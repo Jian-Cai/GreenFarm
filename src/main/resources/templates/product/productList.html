@@ -35,69 +35,33 @@
             <h2 class="style top">featured wallets</h2>
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic1.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299<span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic2.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299 <span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic3.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299<span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
+                <th:block th:each="productItem1:${products1}">
+                    <div class="grid1_of_3">
+                        <a th:href="@{'/product/productItem?productId=' + ${productItem1.getProductId()}}">
+                            <img th:src="@{'/images/' + ${productItem1.getProduct_photo()}}" />
+                            <h3 th:text="${productItem1.getProduct_name()}">product name</h3>
+                            <div class="price">
+                                <h4 th:text="'$' + ${farmItem1.getFarm_price()}">$299<span>立即选择</span></h4>
+                            </div>
+                            <span class="b_btm"></span>
+                        </a>
+                    </div>
+                </th:block>
                 <div class="clear"></div>
             </div>
             <div class="grids_of_3">
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic4.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299<span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic5.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299<span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
-                <div class="grid1_of_3">
-                    <a href="details.html">
-                        <img src="/images/w_pic6.jpg" alt=""/>
-                        <h3>branded handbags</h3>
-                        <div class="price">
-                            <h4>$299<span>indulge</span></h4>
-                        </div>
-                        <span class="b_btm"></span>
-                    </a>
-                </div>
+                <th:block th:each="productItem2:${products2}">
+                    <div class="grid1_of_3">
+                        <a th:href="@{'/product/productItem?productId=' + ${productItem2.getProductId()}}">
+                            <img th:src="@{'/images/' + ${productItem2.getProduct_photo()}}" />
+                            <h3 th:text="${productItem2.getProduct_name()}">product name</h3>
+                            <div class="price">
+                                <h4 th:text="'$' + ${farmItem2.getFarm_price()}">$299<span>立即选择</span></h4>
+                            </div>
+                            <span class="b_btm"></span>
+                        </a>
+                    </div>
+                </th:block>
                 <div class="clear"></div>
             </div>
             <!-- end grids_of_3 -->
