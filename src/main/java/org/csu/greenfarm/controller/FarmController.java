@@ -60,7 +60,9 @@ public class FarmController {
 
     //return farm item by farmId
     @GetMapping("/farm/farmItem")
-    public String showFarmItem(@RequestParam("farmId") String farmId){
+    public String showFarmItem(@RequestParam("farmId") String farmId, Model model){
+        Farm farm = service.getFarmByFarmId(farmId);
+        model.addAttribute("farm", farm);
         return "farm/farmItem";
     }
 

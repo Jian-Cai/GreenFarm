@@ -7,12 +7,15 @@
 
 package org.csu.greenfarm.controller;
 
+import org.csu.greenfarm.domain.Farm;
 import org.csu.greenfarm.domain.Product;
+import org.csu.greenfarm.service.FarmService;
 import org.csu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,9 @@ public class ProductController {
 
     @Autowired
     private ProductService service;
+
+    @Autowired
+    private FarmService farmService;
 
     @GetMapping("/product/productList")
     public String showProductList(Model model){
@@ -46,5 +52,14 @@ public class ProductController {
         model.addAttribute("products1", products1); //model内添加farmList
         model.addAttribute("products2", products2);
         return "product/productList";
+    }
+
+    @GetMapping("/product/productItem")
+    public String showProductItem(@RequestParam("productId") String productId, Model model){
+        Product product = service.getProductByProductId(productId);
+        Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
+        model.addAttribute("origin_farm",farm );
+        model.addAttribute("product", product);
+        return "product/productItem";
     }
 }
