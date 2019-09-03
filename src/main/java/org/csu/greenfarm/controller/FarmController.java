@@ -7,7 +7,10 @@
 
 package org.csu.greenfarm.controller;
 
+import org.csu.greenfarm.service.FarmService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 /*
@@ -17,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FarmController {
 
+    @Autowired
+    FarmService service;
+
     //return farmList
     @GetMapping("/farm/farmList")
-    public String showFarmList(){
+    public String showFarmList(Model model){
+        model.addAttribute("farms", service.getAllFarm()); //model内添加farmList
         return "farm/farmList";
     }
 
