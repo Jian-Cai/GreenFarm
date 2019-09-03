@@ -16,6 +16,15 @@ public class Farm implements java.io.Serializable{
     private String farm_photo; //采摘园预览图
     private String farm_item; //采摘园主营业务
     private String farm_price; //采摘园价格 */人
+    private String farm_item_short; //采摘园主营业务的删减版 字符≤8。
+
+    public String getFarm_item_short() {
+        return farm_item_short;
+    }
+
+    public void setFarm_item_short(String farm_item_short) {
+        this.farm_item_short = farm_item_short;
+    }
 
     public String getFarmId() {
         return farmId;
