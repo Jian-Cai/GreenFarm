@@ -14,53 +14,6 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>-->
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/js/jquery.min.js"></script>
-    <!-- start gallery_sale -->
-    <script type="text/javascript" src="/js/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.mixitup.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-
-            var filterList = {
-
-                init: function () {
-
-                    // MixItUp plugin
-                    // http://mixitup.io
-                    $('#portfoliolist').mixitup({
-                        targetSelector: '.portfolio',
-                        filterSelector: '.filter',
-                        effects: ['fade'],
-                        easing: 'snap',
-                        // call the hover effect
-                        onMixEnd: filterList.hoverEffect()
-                    });
-
-                },
-
-                hoverEffect: function () {
-
-                    // Simple parallax effect
-                    $('#portfoliolist .portfolio').hover(
-                        function () {
-                            $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
-                            $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
-                        },
-                        function () {
-                            $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
-                            $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
-                        }
-                    );
-
-                }
-
-            };
-
-            // Run the show!
-            filterList.init();
-
-
-        });
-    </script>
     <!-- start top_js_button -->
     <script type="text/javascript" src="/js/move-top.js"></script>
     <script type="text/javascript" src="/js/easing.js"></script>
@@ -79,193 +32,26 @@
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
-            <!-- start gallery_sale  -->
-            <div class="gallery1">
-                <div class="container">
-                    <ul id="filters" class="clearfix">
-                        <li><span class="filter active" data-filter="app card icon logo web">所有采摘园</span></li>
-                        <li><span class="filter" data-filter="app card web">综合排序</span></li>
-                        <li><span class="filter" data-filter="icon web card">距离优先</span></li>
-                        <li><span class="filter" data-filter="web app icon card">好评优先</span></li>
-                    </ul>
-                    <div id="portfoliolist">
-                        <div class="portfolio logo1" data-cat="logo">
-                            <div class="portfolio-wrapper">
-                                <a  href="/farm/farmItem?farmId=xxx">
-                                    <img src="/images/sale_pic1.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">Farm1-name</a>
-                                        <span class="text-category">xxxx</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
+            <h2 class="style top">采摘园</h2>
+            <!-- start grids_of_3 -->
+            <th:block th:each="farmItem,itemStat:${farms}">
+                <div class="grids_of_3">
+                    <div class="grid1_of_3">
+                        <a th:href="@{'/farm/farmItem?farmId=' + ${farmItem.getFarmId()}}">
+                            <img th:src="@{'/images/' + ${farmItem.getFarm_photo()}}" />
+                            <h3 th:text="${farmItem.getFarm_name()}">farm name</h3>
+                            <h5 th:text="${farmItem.getFarm_item()}"></h5>
+                            <div class="price">
+                                <h4 th:text="'$' + ${farmItem.getFarm_price()}">$299<span>立即选择</span></h4>
                             </div>
-                        </div>
-                        <div class="portfolio app" data-cat="app">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic2.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">fasttrack: watches</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio web" data-cat="web">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic3.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">ethnic fashion guide: dresses</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio card" data-cat="card">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic4.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">ethnic fashion guide: tees</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio app" data-cat="app">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic5.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">ethnic fashion guide: tees</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio card" data-cat="card">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic6.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">fasttrack: watches</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio web" data-cat="web">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic7.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">Sonor's Design</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio card" data-cat="card">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic8.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">Typography Company</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio app" data-cat="app">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic9.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">Weatherette</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio card" data-cat="card">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic10.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">BMF</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="portfolio card" data-cat="card">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic11.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">Techlion</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="portfolio logo1" data-cat="logo">
-                            <div class="portfolio-wrapper">
-                                <a  href="details.html">
-                                    <img src="/images/sale_pic12.jpg"  alt="Image 2" />
-                                </a>
-                                <div class="label">
-                                    <div class="label-text">
-                                        <a class="text-title">KittyPic</a>
-                                        <span class="text-category">indulge</span>
-                                    </div>
-                                    <div class="label-bg"></div>
-                                </div>
-                            </div>
-                        </div>
+                            <span class="b_btm"></span>
+                        </a>
                     </div>
-                </div><!-- container -->
-                <script type="text/javascript" src="/js/fliplightbox.min.js"></script>
-                <script type="text/javascript">$('body').flipLightBox()</script>
-                <div class="clear"> </div>
-            </div>
-            <!---End-gallery----->
+                    <div th:if="${itemStat.count % 3== 0 || itemStat.last}" class="clear"></div>
+                </div>
+            </th:block>
+
+            <!-- end grids_of_3 -->
         </div>
     </div>
 </div>
