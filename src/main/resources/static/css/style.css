@@ -1003,7 +1003,6 @@ p.para{
 	display: inline-block;
 	font-size: 1em;
 	padding: 10px 34px;
-	background: #555555;
 	color:#fff;
 	text-transform: capitalize;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -1011,9 +1010,7 @@ p.para{
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
-.btn_form form input[type="submit"]:hover{
-	background: #3CC395;
-}
+
 .span_right{
 	float: right;
 }

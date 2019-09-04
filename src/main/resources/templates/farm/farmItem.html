@@ -47,17 +47,7 @@
                     <div class="span1_of_1">
                         <!-- start product_slider -->
                         <div class="product-view">
-                            <div class="product-essential">
-                                <div class="product-img-box">
-                                    <div class="more-views" style="float:left;">
-                                        <div class="more-views-container">
-                                            <div class="product-image">
-                                                <img th:src="@{'/images/' + ${farm.getFarm_photo()}}"  />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <img th:src="@{'/images/' + ${farm.getFarm_photo()}}"  />
                         </div>
                         <!-- end product_slider -->
                     </div>
@@ -69,16 +59,19 @@
                             <h5 th:text="'$' + ${farm.getFarm_price()}">Rs. 399</h5>
                             <div class="available">
                                 <div class="btn_form">
-                                    <form>
-                                        <input type="submit" value="add to cart" title="" />
+                                    <form th:if="${session.account == null || session.account == ''}" action='/account/account'>
+                                        <input style="background: #555555" type="submit" value="选择" title="" />
+                                    </form>
+                                    <form th:unless="${session.account == null || session.account == ''}" action="#">
+                                        <input style="background: #3CC395;" type="submit" value="选择" title="" />
                                     </form>
                                 </div>
-                                <span class="span_right"><a href="#">login to save in wishlist </a></span>
+                                <span th:if="${session.account == null || session.account == ''}" class="span_right"><a href="/account/account">登录以选择</a></span>
                                 <div class="clear"></div>
                             </div>
                             <div class="share-desc">
                                 <div class="share">
-                                    <h4>Share Product :</h4>
+                                    <h4>分享至 :</h4>
                                     <ul class="share_nav">
                                         <li><a href="#"><img src="/images/facebook.png" title="facebook"></a></li>
                                         <li><a href="#"><img src="/images/twitter.png" title="Twiiter"></a></li>
@@ -130,22 +123,17 @@
                 <!-- start sidebar -->
                 <div class="left_sidebar">
                     <div class="sellers">
-                        <h4>采摘园推荐</h4>
+                        <h4>农产品推荐</h4>
                         <div class="single-nav">
                             <ul>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
-                                <li><a href="#">Always free from repetition</a></li>
+                                <th:block th:each="product:${farm_product}">
+                                    <li th:if="${productStat.count <= 3}">
+                                        <a th:href="@{'/product/productItem?productId='+${product.getProductId()}}">
+                                            <img th:src="@{'/images/' + ${product.getProduct_photo()}}">
+                                            <span th:text="${product.getProduct_name()}"></span>
+                                        </a>
+                                    </li>
+                                </th:block>
                             </ul>
                         </div>
                         <div class="banner-wrap bottom_banner color_link">
