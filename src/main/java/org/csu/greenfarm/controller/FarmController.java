@@ -9,7 +9,9 @@ package org.csu.greenfarm.controller;
 
 import org.apache.catalina.LifecycleState;
 import org.csu.greenfarm.domain.Farm;
+import org.csu.greenfarm.domain.Product;
 import org.csu.greenfarm.service.FarmService;
+import org.csu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +30,35 @@ public class FarmController {
     @Autowired
     FarmService service;
 
+    @Autowired
+    private ProductService productService;
+
     //return farmList
     @GetMapping("/farm/farmList")
     public String showFarmList(Model model){
+        //header、footer信息
+        List<Farm> f = service.getAllFarm();
+        List<Product> p = productService.getAllProducts();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++){
+            if(a < f.size()){
+                farms.add(f.get(a));
+            }
+            if(a < p.size()){
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("main_farm", farms);
+        model.addAttribute("main_product", products);
+        model.addAttribute("main_status", 1); //状态码
+
+
+
         List<Farm> farms1 = new ArrayList<>();
         List<Farm> farms2 = new ArrayList<>();
-        List<Farm> f = service.getAllFarm();
+
+
         //一页仅显示6个项目
         for(int a = 0; a < 3; a++){
             if(a < f.size()){
@@ -61,6 +86,23 @@ public class FarmController {
     //return farm item by farmId
     @GetMapping("/farm/farmItem")
     public String showFarmItem(@RequestParam("farmId") String farmId, Model model){
+        //header、footer信息
+        List<Farm> f = service.getAllFarm();
+        List<Product> p = productService.getAllProducts();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++){
+            if(a < f.size()){
+                farms.add(f.get(a));
+            }
+            if(a < p.size()){
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("main_farm", farms);
+        model.addAttribute("main_product", products);
+        model.addAttribute("main_status", 1); //状态码
+
         Farm farm = service.getFarmByFarmId(farmId);
         model.addAttribute("farm", farm);
         return "farm/farmItem";

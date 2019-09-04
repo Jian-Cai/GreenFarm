@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<header th:replace="common/template_heads::header"></header>
+<header th:replace="common/template_heads::header(${main_status})"></header>
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
@@ -106,7 +106,7 @@
 </div>
 
 
-<footer th:replace="common/template_heads::footer"></footer>
+<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
 </body>
 
 </html>

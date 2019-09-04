@@ -36,9 +36,25 @@ public class ProductController {
 
     @GetMapping("/product/productList")
     public String showProductList(Model model){
+        //header、footer信息
+        List<Farm> f = farmService.getAllFarm();
+        List<Product> p = service.getAllProducts();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++){
+            if(a < f.size()){
+                farms.add(f.get(a));
+            }
+            if(a < p.size()){
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("main_farm", farms);
+        model.addAttribute("main_product", products);
+        model.addAttribute("main_status", 2); //状态码
+
         List<Product> products1 = new ArrayList<>();
         List<Product> products2 = new ArrayList<>();
-        List<Product> p = service.getAllProducts();
         for(int a = 0; a < 3; a++){
             if(a < p.size()){
                 products1.add(p.get(a));
@@ -56,6 +72,23 @@ public class ProductController {
 
     @GetMapping("/product/productItem")
     public String showProductItem(@RequestParam("productId") String productId, Model model){
+        //header、footer信息
+        List<Farm> f = farmService.getAllFarm();
+        List<Product> p = service.getAllProducts();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++){
+            if(a < f.size()){
+                farms.add(f.get(a));
+            }
+            if(a < p.size()){
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("main_farm", farms);
+        model.addAttribute("main_product", products);
+        model.addAttribute("main_status", 2); //状态码
+
         Product product = service.getProductByProductId(productId);
         Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
         model.addAttribute("origin_farm",farm );

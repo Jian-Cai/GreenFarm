@@ -27,7 +27,7 @@
     </script>
 </head>
 <body>
-<header th:replace="common/template_heads::header"></header>
+<header th:replace="common/template_heads::header(${main_status})"></header>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -57,7 +57,7 @@
                     <div class="span1_of_1_des">
                         <div class="desc1">
                             <h3 th:text="${product.getProduct_name()}">name</h3>
-                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name()}"></a></p>
+                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name() }"></a></p>
                             <h5 th:text="'$' + ${product.getProduct_price()}">Rs. 399</h5>
                             <div class="available">
                                 <div class="btn_form">
@@ -155,6 +155,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="common/template_heads::footer"></footer>
+<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
 </body>
 </html>
