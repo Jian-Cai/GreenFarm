@@ -14,4 +14,6 @@ import java.util.List;
 public interface AccountService {
     Account getAccount(String user); //根据账号返回用户信息
     List<Account> getAccounts(); //返回所有的用户信息
+
+    void signOn(Account account); //登录
 }

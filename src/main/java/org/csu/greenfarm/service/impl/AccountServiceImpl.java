@@ -32,4 +32,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAccounts() {
         return mapper.getAccounts();
     }
+
+    @Override
+    public void signOn(Account account) {
+        mapper.signOn(account);
+    }
+
 }

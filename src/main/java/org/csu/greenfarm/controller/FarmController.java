@@ -105,6 +105,7 @@ public class FarmController {
 
         Farm farm = service.getFarmByFarmId(farmId);
         model.addAttribute("farm", farm);
+        model.addAttribute("farm_product", productService.getProductByProductOrigin(farmId));
         return "farm/farmItem";
     }
 

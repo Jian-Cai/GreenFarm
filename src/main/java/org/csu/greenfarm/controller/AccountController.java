@@ -51,6 +51,7 @@ public class AccountController {
         return session.getAttribute("account") == null ? "login/login" : "account/account";
     }
 
+
     //跳转至登录界面
     @PostMapping("/tologin")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
@@ -86,8 +87,21 @@ public class AccountController {
 
     }
 
+    //用户登录
     @GetMapping("/toregister")
     public String toRegister(){
         return "login/register";
+    }
+
+    //跳转至用户协议
+    @GetMapping("/touserAg")
+    public String toAg(){
+        return "login/userAg";
+    }
+
+    @GetMapping("signon")
+    public String signOn(Account account){
+        service.signOn(account);
+        return "account/account";
     }
 }

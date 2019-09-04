@@ -24,4 +24,8 @@
         SELECT * FROM users WHERE username=#{username}
     </select>
 
+    <insert id="signOn" parameterType="org.csu.greenfarm.domain.Account">
+        INSERT users(account, password, username, recadd, mail)  VALUES(#{account}, #{password}, #{username}, #{recadd}, #{mail})
+    </insert>
+
 </mapper>
