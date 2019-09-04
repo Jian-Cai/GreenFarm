@@ -104,4 +104,37 @@ public class AccountController {
         service.signOn(account);
         return "account/account";
     }
+
+    @GetMapping("toMyAccount")
+    public String toMyAccount(){
+        return "account/account";
+    }
+
+    @GetMapping("/toMyMessage")
+    public String toMyMessage(){
+        return "account/messages";
+    }
+
+    @GetMapping("/tologout")
+    public String toLogout(Model model){
+        //header、footer信息
+        List<Farm> f = farmService.getAllFarm();
+        List<Product> p = productService.getAllProducts();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++){
+            if(a < f.size()){
+                farms.add(f.get(a));
+            }
+            if(a < p.size()){
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("farm", farms);
+        model.addAttribute("product", products);
+        model.addAttribute("status", 0); //状态码
+
+        request.getSession().removeAttribute("account");
+        return "index";
+    }
 }

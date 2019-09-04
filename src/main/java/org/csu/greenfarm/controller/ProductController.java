@@ -35,7 +35,7 @@ public class ProductController {
     private FarmService farmService;
 
     @GetMapping("/product/productList")
-    public String showProductList(Model model){
+    public String showProductList(@RequestParam("index")int index, Model model){
         //header、footer信息
         List<Farm> f = farmService.getAllFarm();
         List<Product> p = service.getAllProducts();
@@ -53,20 +53,18 @@ public class ProductController {
         model.addAttribute("main_product", products);
         model.addAttribute("main_status", 2); //状态码
 
-        List<Product> products1 = new ArrayList<>();
-        List<Product> products2 = new ArrayList<>();
-        for(int a = 0; a < 3; a++){
+        int num = (int) Math.ceil((double)p.size()/3);
+        List<Product> indexList = new ArrayList<>();
+        //每一页展示3个
+        for(int a = index*3; a < (index+1)*3; a++){
             if(a < p.size()){
-                products1.add(p.get(a));
+                indexList.add(p.get(a));
             }
+            else break;
         }
-        for(int a = 3; a < 6; a++){
-            if(a < p.size()){
-                products2.add(p.get(a));
-            }
-        }
-        model.addAttribute("products1", products1); //model内添加farmList
-        model.addAttribute("products2", products2);
+        model.addAttribute("index", index);
+        model.addAttribute("pageNum",num-1); //num从0开始
+        model.addAttribute("products1", indexList); //model内添加ProductList
         return "product/productList";
     }
 

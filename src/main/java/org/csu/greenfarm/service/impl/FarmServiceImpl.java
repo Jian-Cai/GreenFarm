@@ -28,4 +28,9 @@ public class FarmServiceImpl implements FarmService {
     public Farm getFarmByItem(String farm_item) {
         return mapper.getFarmByItem(farm_item);
     }
+
+    @Override
+    public List<Farm> getFarmByFarmName(String farm_name) {
+        return mapper.getFarmByFarmName("%"+farm_name+"%");
+    }
 }
