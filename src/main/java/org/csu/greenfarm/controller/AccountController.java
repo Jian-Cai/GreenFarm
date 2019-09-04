@@ -73,7 +73,7 @@ public class AccountController {
 
 
         //通过邮箱、账户、昵称登录
-        Account account = service.getAccountByAccount(username) == null ? (service.getAccountByMail(username) == null ? service.getAccountByUsername(username) : service.getAccountByMail(username)) : service.getAccountByAccount(username);
+        Account account = service.getAccount(username);
         if (account.getPassword().equals(password)){
             HttpSession session = request.getSession();
             session.setAttribute("account", account);

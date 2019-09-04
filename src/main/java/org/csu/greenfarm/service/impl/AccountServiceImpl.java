@@ -22,19 +22,11 @@ public class AccountServiceImpl implements AccountService {
     AccountMapper mapper;
 
     @Override
-    public Account getAccountByAccount(String account) {
-        return mapper.getAccountByAccount(account);
+    public Account getAccount(String user) {
+        return mapper.getAccountByAccount(user) == null ? (mapper.getAccountByMail(user) == null ? mapper.getAccountByUsername(user) : mapper.getAccountByMail(user)) : mapper.getAccountByAccount(user);
     }
 
-    @Override
-    public Account getAccountByMail(String mail) {
-        return mapper.getAccountByMail(mail);
-    }
 
-    @Override
-    public Account getAccountByUsername(String username) {
-        return mapper.getAccountByUsername(username);
-    }
 
     @Override
     public List<Account> getAccounts() {
