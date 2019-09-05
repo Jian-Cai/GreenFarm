@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.CartMapper">
+    <cache />
+
+
+    <select id="getCartByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Cart">
+        SELECT * FROM cart WHERE account=#{account}
+    </select>
+
+    <select id="getCartByCartId"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Cart">
+        SELECT * FROM cart WHERE cartId=#{id}
+    </select>
+
+
+    <insert id="initCart" parameterType="org.csu.greenfarm.domain.Cart">
+        INSERT cart(cartId, account)  VALUES(#{id}, #{account})
+    </insert>
+
+</mapper>

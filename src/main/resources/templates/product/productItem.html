@@ -57,11 +57,11 @@
                     <div class="span1_of_1_des">
                         <div class="desc1">
                             <h3 th:text="${product.getProduct_name()}">name</h3>
-                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name() }"></a></p>
+                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm?.getFarmId()}}" th:text="${origin_farm?.getFarm_name() }"></a></p>
                             <h5 th:text="'$' + ${product.getProduct_price()}">Rs. 399</h5>
                             <div class="available">
                                 <div class="btn_form">
-                                    <form>
+                                    <form action="/account/account">
                                         <input th:if="${product.getProduct_check() == null || product.getProduct_check() == ''}" type="submit" value="即将上架" title="" />
                                         <input th:unless="${product.getProduct_check() == null || product.getProduct_check() == ''}" type="submit" value="add to cart" title="" />
                                     </form>

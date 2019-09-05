@@ -1,0 +1,27 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.CartItemMapper">
+    <cache />
+
+    <select id="getCartItemById"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.CartItem">
+        SELECT * FROM cart_item WHERE id=#{id}
+    </select>
+
+    <select id="getCartItemByCartId"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.CartItem">
+        SELECT * FROM cart_item WHERE cartId=#{cartId}
+    </select>
+
+    <insert id="insertCartItem" parameterType="org.csu.greenfarm.domain.CartItem">
+        INSERT cart_item(id, cartId, productId, num)  VALUES(#{id}, #{cartId}, #{productId}, #{num})
+    </insert>
+
+    <update id="updateCartItem"  parameterType="org.csu.greenfarm.domain.CartItem" >
+        UPDATE cart_item SET num = #{num} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteCartItem" parameterType="org.csu.greenfarm.domain.CartItem">
+        DELETE FROM cart_item WHERE id = #{id}
+    </delete>
+
+
+</mapper>

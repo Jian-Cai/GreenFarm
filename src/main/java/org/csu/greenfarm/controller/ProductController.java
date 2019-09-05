@@ -89,7 +89,7 @@ public class ProductController {
 
         Product product = service.getProductByProductId(productId);
         Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
-        model.addAttribute("origin_farm",farm );
+        model.addAttribute("origin_farm", farm);
         model.addAttribute("product", product);
         return "product/productItem";
     }
