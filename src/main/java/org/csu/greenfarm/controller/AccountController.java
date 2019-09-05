@@ -8,9 +8,11 @@
 package org.csu.greenfarm.controller;
 
 import org.csu.greenfarm.domain.Account;
+import org.csu.greenfarm.domain.Cart;
 import org.csu.greenfarm.domain.Farm;
 import org.csu.greenfarm.domain.Product;
 import org.csu.greenfarm.service.AccountService;
+import org.csu.greenfarm.service.CartService;
 import org.csu.greenfarm.service.FarmService;
 import org.csu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class AccountController {
 
     @Autowired
     AccountService service;
+
+    @Autowired
+    CartService cartService;
 
     @Autowired
     HttpServletRequest request;
@@ -76,8 +81,10 @@ public class AccountController {
         //通过邮箱、账户、昵称登录
         Account account = service.getAccount(username);
         if (account.getPassword().equals(password)){
+            Cart cart = cartService.initCart(account.getAccount());
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
+            session.setAttribute("cart", cart);
             return "account/account";
         }
         else{
