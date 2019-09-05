@@ -1,15 +1,17 @@
 package org.csu.greenfarm.domain;
 
-public class Cart {
-     private String id;
-     private String account;
+import java.io.Serializable;
 
-    public String getId() {
-        return id;
+public class Cart implements Serializable {
+    private String CartId;
+    private String account;
+
+    public String getCartId() {
+        return CartId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCartId(String cartId) {
+        CartId = cartId;
     }
 
     public String getAccount() {

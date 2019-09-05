@@ -4,10 +4,123 @@
     <meta charset="UTF-8">
     <title>cart</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!--bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--coustom css-->
+    <link href="css/cstyle.css" rel="stylesheet" type="text/css"/>
+    <!--shop-kart-js-->
+    <script src="js/simpleCart.min.js"></script>
+    <!--default-js-->x
+    <script src="js/jquery.min.js"></script>
+    <!--bootstrap-js-->
+    <script src="js/bootstrap.min.js"></script>
+    <!--script-->
+    <!-- FlexSlider -->
+    <script src="js/imagezoom.js"></script>
+    <script defer src="js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+    <!-- //FlexSlider-->
 </head>
 <body>
 <header th:replace="common/template_heads::header(${main_status})"></header>
 <!-- start main -->
+<body>
+<!-- check-out -->
+<div class="check" >
+    <div class="ccontainer">
+        <div class="col-md-3 cart-total">
+            <a class="continue" href="#"><<返回继续购物</a>
+            <div class="price-details">
+                <h3>账单</h3>
+                <span>数量</span>
+                <span class="total1">2</span>
+                <div class="clearfix"></div>
+            </div>
+            <hr class="featurette-divider">
+            <ul class="total_price">
+                <li class="last_price"> <h4>总价</h4></li>
+                <li class="last_price"><span>453.00</span></li>
+                <div class="clearfix"> </div>
+            </ul>
+            <div class="clearfix"></div>
+            <a class="order" href="#">下单</a>
+        </div>
+        <div class="col-md-9 cart-items">
+            <h1>我的购物车</h1>
+            <script>$(document).ready(function(c) {
+                $('.close1').on('click', function(c){
+                    $('.cart-header').fadeOut('slow', function(c){
+                        $('.cart-header').remove();
+                    });
+                });
+            });
+            </script>
+            <div class="cart-header">
+                <div class="close1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                <div class="cart-sec simpleCart_shelfItem">
+                    <div class="cart-item cyc">
+                        <img src="images/0001-1.jpg" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="cart-item-info">
+                        <ul class="qty">
+                            <li><p>数量：1</p></li>
+                            <li><p></p></li>
+                            <li><p>单价 290.00</p></li>
+                        </ul>
+                        <div class="delivery">
+                            <p>产地：瓜先生采摘园</p>
+                            <span>次日可达</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+            <script>$(document).ready(function(c) {
+                $('.close2').on('click', function(c){
+                    $('.cart-header2').fadeOut('slow', function(c){
+                        $('.cart-header2').remove();
+                    });
+                });
+            });
+            </script>
+            <div class="cart-header2">
+                <div class="close2"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                <div class="cart-sec simpleCart_shelfItem">
+                    <div class="cart-item cyc">
+                        <img src="images/0001-2.jpg" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="cart-item-info">
+                        <ul class="qty">
+                            <li><p>数量：2</p></li>
+                            <li><p></p></li>
+                            <li><p>单价 200.00</p></li>
+                        </ul>
+                        <div class="delivery">
+                            <p>产地：天源农场</p>
+                            <span>当天可达</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
 
 <footer th:replace="common/template_heads::footer(${main_product},${main_farm})"></footer>
 </body>

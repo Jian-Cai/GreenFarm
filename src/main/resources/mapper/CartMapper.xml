@@ -14,7 +14,7 @@
 
 
     <insert id="initCart" parameterType="org.csu.greenfarm.domain.Cart">
-        INSERT cart(cartId, account)  VALUES(#{id}, #{account})
+        INSERT cart(cartId, account)  VALUES(#{cartId}, #{account})
     </insert>
 
 </mapper>

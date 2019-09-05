@@ -30,7 +30,7 @@ img{max-width:100%;}
 /*end reset*/
 @font-face {
     font-family: 'bebas_neueregular';
-    src:url(../fonts/BebasNeue-webfont.ttf) format('truetype');
+    src:url(/fonts/BebasNeue-webfont.ttf) format('truetype');
 }
 body {
 	font-family: 'bebas_neueregular';

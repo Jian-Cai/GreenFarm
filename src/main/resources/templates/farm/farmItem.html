@@ -62,7 +62,8 @@
                                     <form th:if="${session.account == null || session.account == ''}" action='/account/account'>
                                         <input style="background: #555555" type="submit" value="选择" title="" />
                                     </form>
-                                    <form th:unless="${session.account == null || session.account == ''}" action="#">
+                                    <form th:unless="${session.account == null || session.account == ''}" action="/addToCart">
+                                        <input name="productId" type="hidden" th:value="${farm.getFarmId()}"/>
                                         <input style="background: #3CC395;" type="submit" value="选择" title="" />
                                     </form>
                                 </div>

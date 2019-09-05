@@ -28,13 +28,19 @@ public class CartServiceImpl implements CartService {
     ProductMapper productMapper;
 
     @Override
+    public List<CartItem> productList(String cartId) {
+        productList = cartItemMapper.getCartItemByCartId(cartId);
+        return productList;
+    }
+
+    @Override
     public Cart initCart(String account) {
         Cart cart = cartMapper.getCartByAccount(account);
         if(cart == null){
-            cart = new Cart();
             cart.setAccount(account);
-            cart.setId(account+1);
+            cart.setCartId(account+1);
             cartMapper.initCart(cart);
+            return cart;
         }
         return cart;
     }
@@ -72,8 +78,11 @@ public class CartServiceImpl implements CartService {
         cartItem.setCartId(cartId);
         cartItem.setNum(1);
         cartItem.setProductId(productId);
-        cartItemMapper.insertCartItem(cartItem);}
-        else addNum(cartId,productId);
+        cartItemMapper.insertCartItem(cartItem);
+        }
+        else {
+            addNum(cartId,productId);
+        }
     }
 
     @Override

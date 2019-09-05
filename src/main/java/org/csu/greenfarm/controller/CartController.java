@@ -1,7 +1,7 @@
 package org.csu.greenfarm.controller;
 
-import org.csu.greenfarm.domain.Farm;
-import org.csu.greenfarm.domain.Product;
+import org.csu.greenfarm.domain.*;
+import org.csu.greenfarm.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import org.csu.greenfarm.service.ProductService;
 import org.csu.greenfarm.service.FarmService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class CartController {
     @Autowired
     ProductService productService;
     @Autowired
     FarmService farmService;
+    @Autowired
+    CartService cartService;
+    @Autowired
+    HttpServletRequest request;
 
     @GetMapping("/toCart")
     public String viewCart(Model model){
@@ -36,6 +46,21 @@ public class CartController {
         model.addAttribute("main_product", products);
         model.addAttribute("main_status", 3); //状态码
 
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<CartItem> productList = cartService.productList(cart.getCartId());
+        session.setAttribute("productList",productList);
+
+        return "product/cart"; }
+
+    @GetMapping("/addToCart")
+    public String addToCart(@RequestParam("productId") String productId){
+
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        cartService.addProduct(cart.getCartId(),productId);
+        List<CartItem> productList = cartService.productList(cart.getCartId());
+        session.setAttribute("productList",productList);
         return "product/cart";
     }
 }
