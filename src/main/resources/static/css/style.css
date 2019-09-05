@@ -520,8 +520,8 @@ body {
 }
 .grid1_of_4{
 	float: left;
-	width: 21.333%;
-	margin-left: 4.3333%;
+	width: 29.3333%;
+	margin-left: auto;
 }
 .grid1_of_4:first-child{
 	margin-left: 0;
@@ -529,6 +529,20 @@ body {
 .grid1_of_4 h4{
 	font-size: 1.8em;
 	color: #ffffff;
+}
+#contact{
+	display:inline-flex;
+
+}
+#images{
+	width:175px;
+}
+#ul{
+	margin-top:0px;
+	padding-left:60px;
+}
+#ul li{
+	height:51px;
 }
 .f_nav{
 	margin-top: 4%;
@@ -1545,14 +1559,14 @@ p.para{
 	line-height: 28px;
 }
 .met_pager a.Ahover {
-	border-color: #62a8ea;
-	background: #62a8ea;
+	border-color: #3DC4B7;
+	background: #3DC4B7;
 	color: #fff;
 	cursor: default;
 }
 .met_pager a.Ahover:hover {
-	border-color: #62a8ea;
-	background: #62a8ea;
+	border-color: #3DC4B7;
+	background: #3DC4B7;
 	color: #fff;
 }
 .met_pager a {
