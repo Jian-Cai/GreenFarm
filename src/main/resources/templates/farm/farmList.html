@@ -42,7 +42,7 @@
                             <h3 th:text="${farmItem1.getFarm_name()}">farm name</h3>
                             <h4 th:text="${farmItem1.getFarm_item_short()}"></h4>
                             <div class="price">
-                                <h4 th:text="'$' + ${farmItem1.getFarm_price()}">$299<span>立即选择</span></h4>
+                                <h4 th:utext="${farmItem1.getFarm_price() + '<span>立即选购</span>'}">$299</h4>
                             </div>
                             <span class="b_btm"></span>
                         </a>
@@ -50,22 +50,55 @@
                 </th:block>
                 <div class="clear"></div>
             </div>
-            <div class="grids_of_3">
-                <th:block th:each="farmItem2:${farms2}">
-                    <div class="grid1_of_3">
-                        <a th:href="@{'/farm/farmItem?farmId=' + ${farmItem2.getFarmId()}}" th:title="${farmItem2.getFarm_item()}">
-                            <img th:src="@{'/images/' + ${farmItem2.getFarm_photo()}}" />
-                            <h3 th:text="${farmItem2.getFarm_name()}">farm name</h3>
-                            <h4 th:text="${farmItem2.getFarm_item_short()}"></h4>
-                            <div class="price">
-                                <h4 th:text="'$' + ${farmItem2.getFarm_price()}">$299<span>立即选择</span></h4>
-                            </div>
-                            <span class="b_btm"></span>
+            <div th:unless="${pageNum == -1}">
+                <div class='met_pager'>
+                    <span th:if="${index == 0}" class='PreSpan'>
+                        上一页
+                    </span>
+                    <a th:unless="${index == 0}" th:href="@{'/farm/farmList?index='+${index-1}}">
+                        上一页
+                    </a>
+                    <th:block th:if="${pageNum <= 3}" th:each="i:${#numbers.sequence(0,pageNum)}">
+                        <a th:if="${i==index}" class="Ahover" th:href="@{'/farm/farmList?index='+${i}}" th:text="${i+1}">
+                            1
                         </a>
-                    </div>
-                </th:block>
-                <div class="clear"></div>
-            </div>
+                        <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/farm/farmList?index='+${i}}">
+                            1
+                        </a>
+                    </th:block>
+                    <th:block th:if="${pageNum > 3}">
+                        <th:block th:if="${index == 0}" th:each="i:${#numbers.sequence(0, 2)}">
+                            <a th:if="${i==index}" class="Ahover" th:href="@{'/farm/farmList?index='+${i}}" th:text="${i+1}">
+                                1
+                            </a>
+                            <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/farm/farmList?index='+${i}}">
+                                1
+                            </a>
+                        </th:block>
+                        <th:block th:if="${index > 0 && index < pageNum - 1}" th:each="i:${#numbers.sequence(index - 1, index+1)}">
+                            <a th:if="${i==index}" class="Ahover" th:href="@{'/farm/farmList?index='+${i}}" th:text="${i+1}">
+                                1
+                            </a>
+                            <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/farm/farmList?index='+${i}}">
+                                1
+                            </a>
+                        </th:block>
+                        <th:block th:if="${index > 0 && index >= pageNum - 1}" th:each="i:${#numbers.sequence(index - 2, pageNum)}">
+                            <a th:if="${i==index}" class="Ahover" th:href="@{'/farm/farmList?index= '+${i}}" th:text="${i+1}">
+                                1
+                            </a>
+                            <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/farm/farmList?index='+${i}}">
+                                1
+                            </a>
+                        </th:block>
+                    </th:block>
+                    <span th:if="${index == pageNum}" class="PreSpan" >
+                                            下一页
+                                        </span>
+                    <a th:unless="${index == pageNum}" th:href="@{'/farm/farmList?index='+${index+1}}">
+                        下一页
+                    </a>
+                </div>
             <!-- end grids_of_3 -->
         </div>
     </div>

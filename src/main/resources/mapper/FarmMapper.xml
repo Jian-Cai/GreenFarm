@@ -21,4 +21,8 @@
         SELECT * FROM farm where farm_item LIKE #{farm_item}
     </select>
 
+    <select id="getFarmByFarmName" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Farm">
+        SELECT  * FROM farm where farm_name like #{farm_name}
+    </select>
+
 </mapper>

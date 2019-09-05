@@ -29,8 +29,9 @@
                     </ul>
                 </div>
                 <div class="h_search">
-                    <form>
-                        <input type="text" value="">
+                    <form action="/search/search">
+                        <input name="item" type="text" value="">
+                        <input type="hidden" name="index" value="0" />
                         <input type="submit" value="">
                     </form>
                 </div>
@@ -45,10 +46,10 @@
                     <ul>
                         <li th:if="${status == 0}" class="active"><a href="/">主页</a></li>
                         <li th:unless="${status == 0}"><a href="/">主页</a></li> |
-                        <li th:if="${status == 1}" class="active"><a href="/farm/farmList">采摘园</a></li>
-                        <li th:unless="${status == 1}"><a href="/farm/farmList">采摘园</a></li> |
-                        <li th:if="${status == 2}" class="active"><a href="/product/productList">农产品</a></li>
-                        <li th:unless="${status == 2}" ><a href="/product/productList">农产品</a></li> |
+                        <li th:if="${status == 1}" class="active"><a href="/farm/farmList?index=0">采摘园</a></li>
+                        <li th:unless="${status == 1}"><a href="/farm/farmList?index=0">采摘园</a></li> |
+                        <li th:if="${status == 2}" class="active"><a href="/product/productList?index=0">农产品</a></li>
+                        <li th:unless="${status == 2}" ><a href="/product/productList?index=0">农产品</a></li> |
                         <li th:if="${status == 3}" class="active"><a href="/account/account">个人中心</a></li>
                         <li th:unless="${status == 3}"><a href="/account/account">个人中心</a></li>
                     </ul>
@@ -59,10 +60,10 @@
                         <ul class="nav-list" style="">
                             <li class="nav-item"><a th:if="${status == 0}" class="active" href="/">主页</a></li>
                             <li class="nav-item"><a th:unless="${status == 0}" href="/">主页</a></li>
-                            <li class="nav-item"><a th:if="${status == 1}" class="active" href="/farm/farmList">采摘园</a></li>
-                            <li class="nav-item"><a th:unless="${status == 1}" href="/farm/farmList">采摘园</a></li>
-                            <li class="nav-item"><a th:if="${status == 2}" class="active" href="/product/productList">农产品</a></li>
-                            <li class="nav-item"><a th:unless="${status == 2}" href="/product/productList">农产品</a></li>
+                            <li class="nav-item"><a th:if="${status == 1}" class="active" href="/farm/farmList?index=0">采摘园</a></li>
+                            <li class="nav-item"><a th:unless="${status == 1}" href="/farm/farmList?index=0">采摘园</a></li>
+                            <li class="nav-item"><a th:if="${status == 2}" class="active" href="/product/productList?index=0">农产品</a></li>
+                            <li class="nav-item"><a th:unless="${status == 2}" href="/product/productList?index=0">农产品</a></li>
                             <li class="nav-item"><a th:if="${status == 3}" class="active" href="/account/account">个人中心</a></li>
                             <li class="nav-item"><a th:unless="${status == 3}" href="/account/account">个人中心</a></li>
                         </ul>
@@ -104,6 +105,22 @@
                                 <li><a th:href="@{'/product/productItem?productId=' + ${productItem.getProductId()}}" th:text="${productItem.getProduct_name()}"></a></li>
                             </th:block>
                         </ul>
+                    </div>
+                    <div class="grid1_of_4">
+                        <h4>联系我们</h4>
+                        <div id="contact">
+                            <div id="images">
+                                <img src="/images/contact.PNG">
+                            </div>
+                            <div id="ul">
+                                <ul class="f_nav">
+                                    <li><a href="#"><img src="/images/facebook.png" title="facebook"></a></li>
+                                    <li><a href="#"><img src="/images/twitter.png" title="Twiiter"></a></li>
+                                    <li><a href="#"><img src="/images/rss.png" title="Rss"></a></li>
+                                    <li><a href="#"><img src="/images/gpluse.png" title="Google+"></a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>

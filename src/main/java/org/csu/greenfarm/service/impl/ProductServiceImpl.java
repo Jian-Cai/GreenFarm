@@ -26,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductByProductName(String product_name) {
-        return mapper.getProductByProductName(product_name);
+    public List<Product> getProductByProductName(String product_name) {
+        return mapper.getProductByProductName("%"+product_name+"%");
     }
 
     @Override

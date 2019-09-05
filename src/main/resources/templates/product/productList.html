@@ -32,7 +32,7 @@
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
-            <h2 class="style top">featured wallets</h2>
+            <h2 class="style top">农产品</h2>
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
                 <th:block th:each="productItem1:${products1}">
@@ -50,22 +50,56 @@
                 </th:block>
                 <div class="clear"></div>
             </div>
-            <div class="grids_of_3">
-                <th:block th:each="productItem2:${products2}">
-                    <div class="grid1_of_3">
-                        <a th:href="@{'/product/productItem?productId=' + ${productItem2.getProductId()}}">
-                            <img th:src="@{'/images/' + ${productItem2.getProduct_photo()}}" />
-                            <h3 th:text="${productItem2.getProduct_name()}">product name</h3>
-                            <div class="price">
-                                <h4 th:unless="${productItem2.getProduct_check() == null || productItem2.getProduct_check() == ''}" th:utext="'$' + ${productItem2.getProduct_price() + '<span>立即选购</span>'}">$299</h4>
-                                <h4 th:if="${productItem2.getProduct_check() == null || productItem2.getProduct_check() == ''}" th:utext="'$' + ${productItem2.getProduct_price()  + '<span>即将上架</span>'}">$299</h4>
-                            </div>
-                            <span class="b_btm"></span>
-                        </a>
-                    </div>
+            </div><div th:unless="${pageNum == -1}">
+            <div class='met_pager'>
+                    <span th:if="${index == 0}" class='PreSpan'>
+                        上一页
+                    </span>
+                <a th:unless="${index == 0}" th:href="@{'/product/productList?index='+${index-1}}">
+                    上一页
+                </a>
+                <th:block th:if="${pageNum <= 3}" th:each="i:${#numbers.sequence(0,pageNum)}">
+                    <a th:if="${i==index}" class="Ahover" th:href="@{'/product/productList?index='+${i}}" th:text="${i+1}">
+                        1
+                    </a>
+                    <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/product/productList?index='+${i}}">
+                        1
+                    </a>
                 </th:block>
-                <div class="clear"></div>
+                <th:block th:if="${pageNum > 3}">
+                    <th:block th:if="${index == 0}" th:each="i:${#numbers.sequence(0, 2)}">
+                        <a th:if="${i==index}" class="Ahover" th:href="@{'/product/productList?index='+${i}}" th:text="${i+1}">
+                            1
+                        </a>
+                        <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/product/productList?index='+${i}}">
+                            1
+                        </a>
+                    </th:block>
+                    <th:block th:if="${index > 0 && index < pageNum - 1}" th:each="i:${#numbers.sequence(index - 1, index+1)}">
+                        <a th:if="${i==index}" class="Ahover" th:href="@{'/product/productList?index='+${i}}" th:text="${i+1}">
+                            1
+                        </a>
+                        <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/product/productList?index='+${i}}">
+                            1
+                        </a>
+                    </th:block>
+                    <th:block th:if="${index > 0 && index >= pageNum - 1}" th:each="i:${#numbers.sequence(index - 2, pageNum)}">
+                        <a th:if="${i==index}" class="Ahover" th:href="@{'/product/productList?index='+${i}}" th:text="${i+1}">
+                            1
+                        </a>
+                        <a th:unless="${i == index}" th:text="${i+1}" th:href="@{'/product/productList?index='+${i}}">
+                            1
+                        </a>
+                    </th:block>
+                </th:block>
+                <span th:if="${index == pageNum}" class="PreSpan" >
+                                            下一页
+                                        </span>
+                <a th:unless="${index == pageNum}" th:href="@{'/product/productList?index='+${index+1}}">
+                    下一页
+                </a>
             </div>
+
             <!-- end grids_of_3 -->
         </div>
     </div>

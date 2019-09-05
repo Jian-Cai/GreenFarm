@@ -35,7 +35,7 @@ public class FarmController {
 
     //return farmList
     @GetMapping("/farm/farmList")
-    public String showFarmList(Model model){
+    public String showFarmList(@RequestParam("index") int index, Model model){
         //header、footer信息
         List<Farm> f = service.getAllFarm();
         List<Product> p = productService.getAllProducts();
@@ -55,31 +55,19 @@ public class FarmController {
 
 
 
-        List<Farm> farms1 = new ArrayList<>();
-        List<Farm> farms2 = new ArrayList<>();
-
-
-        //一页仅显示6个项目
-        for(int a = 0; a < 3; a++){
-            if(a < f.size()){
-                if(f.get(a).getFarm_item().length() >= 8){
-                    String s = f.get(a).getFarm_item();
-                    f.get(a).setFarm_item_short(s.substring(0,8)+"...");
-                }
-                farms1.add(f.get(a));
+        List<Farm> farms1 = service.getAllFarm();
+        int num = (int) Math.ceil((double)farms1.size()/3);
+        List<Farm> indexList = new ArrayList<>();
+        //每一页展示3个
+        for(int a = index*3; a < (index+1)*3; a++){
+            if(a < farms1.size()){
+                indexList.add(farms1.get(a));
             }
+            else break;
         }
-        for(int a = 3; a < 6; a++){
-            if(a < f.size()){
-                if(f.get(a).getFarm_item().length() >= 8){
-                    String s = f.get(a).getFarm_item();
-                    f.get(a).setFarm_item_short(s.substring(0,8)+"...");
-                }
-                farms2.add(f.get(a));
-            }
-        }
-        model.addAttribute("farms1", farms1); //model内添加farmList
-        model.addAttribute("farms2", farms2);
+        model.addAttribute("farms1", indexList); //model内添加farmList
+        model.addAttribute("index", index);
+        model.addAttribute("pageNum",num-1); //num从0开始
         return "farm/farmList";
     }
 

@@ -53,13 +53,13 @@
     <div class="left">
         <ul>
             <li>
-                <a href="/toMyAccount" class="active">
+                <a href="/toMyAccount">
                     <i class="icon iconfont icon-ziliao"></i>
                     个人资料
                 </a>
             </li>
             <li>
-                <a href="/toMyMessage">
+                <a href="/toMyMessage" class="active">
                     <i class="icon iconfont icon-wodexiaoxi"></i>
                     我的消息
                 </a>
@@ -87,21 +87,12 @@
     </div>
     <div class="right">
         <div class="tap">
-            <span>个人资料</span>
+            <span>系统消息</span>
         </div>
         <div class="container">
             <div class="no-doc">
-                <form>
-                    <ul>
-                        <li th:utext="'<span>用户名：</span>' + ${session.account.getUsername()}">用户名：</li>
-                        <hr/>
-                        <li th:text="'账户：' + ${session.account.getAccount()}">账户：</li>
-                        <hr/>
-                        <li th:text="'邮箱：'+ ${session.account.getMail()}" >邮箱：</li>
-                        <hr/>
-                        <li th:text="'收货地址：' + ${session.account.getRecadd()}">收货地址</li>
-                    </ul>
-                </form>
+                <img src="/images/no_doc.jpg">
+                <p>您还没有消息哦~</p>
             </div>
         </div>
     </div>
