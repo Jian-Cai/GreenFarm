@@ -135,3 +135,92 @@ a{
 a{
 	color: #666666;
 }
+
+
+/* start tabs */
+a #tabs {
+	position: relative;
+	margin: 40px auto;
+}
+#tabs{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background: #fff;
+}
+#tabs .tap input {
+	position: absolute;
+	z-index: 1000;
+	width: 248px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	cursor: pointer;
+}
+#tabs .tap input#tab-2{
+	left: 257px;
+}
+#tabs .tap input#tab-3{
+	left: 515px;
+}
+#tabs .tap label {
+	font-family: 'bebas_neueregular';
+	cursor: pointer;
+	background: #fffff;
+	line-height: 40px;
+	height: 40px;
+	width: 128px;
+	position: relative;
+	float: left;
+	color:#11111;
+	text-align: center;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+#tabs .tap label:after {
+	content: '';
+	background: #fff;
+	left: 0;
+	width: 100%;
+	display: block;
+}
+#tabs .tap input:hover + label {
+	background: #32AC9D;
+	color:#fff;
+	font-weight: normal;
+}
+
+#tabs .tap input:checked + label {
+	cursor:pointer;
+	color: #ffff;
+	background: #32AC9D;
+	z-index: 6;
+}
+#tabs label:first-of-type {
+	border-left: 1px solid rgb(241, 238, 238);
+	z-index: 4;
+	box-shadow: 0px 0 2px rgba(197, 197, 197, 1);
+	-webkit-box-shadow: 0px 0 2px rgba(197, 197, 197, 1);
+	-moz-box-shadow: 0px 0 2px rgba(197, 197, 197, 1);
+	-o-box-shadow: 0px 0 2px rgba(197, 197, 197, 1);
+}
+#tabs input.tab-selector-1:checked ~ .content .content-1,
+#tabs input.tab-selector-2:checked ~ .content .content-2,
+#tabs input.tab-selector-3:checked ~ .content .content-3,
+#tabs input.tab-selector-4:checked ~ .content .content-4 {
+	z-index: 100;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+	-webkit-transition: opacity ease-out 0.2s 0.1s;
+	-moz-transition: opacity ease-out 0.2s 0.1s;
+	-o-transition: opacity ease-out 0.2s 0.1s;
+	-ms-transition: opacity ease-out 0.2s 0.1s;
+	transition: opacity ease-out 0.2s 0.1s;
+}

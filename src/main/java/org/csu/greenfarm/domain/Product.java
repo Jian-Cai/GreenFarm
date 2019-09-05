@@ -14,6 +14,15 @@ public class Product implements java.io.Serializable{
     private String product_photo; //农产品图片
     private String product_origin; //农产品种植园（所属采摘园）
     private String product_check; //农产品检测结果 结果为null则显示目前即将上架
+    private String product_category; //农产品分类
+
+    public String getProduct_category() {
+        return product_category;
+    }
+
+    public void setProduct_category(String product_category) {
+        this.product_category = product_category;
+    }
 
     public String getProductId() {
         return productId;

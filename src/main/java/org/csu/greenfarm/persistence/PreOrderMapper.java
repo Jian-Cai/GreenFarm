@@ -1,13 +1,10 @@
-package org.csu.greenfarm.service;
+package org.csu.greenfarm.persistence;
 
 import org.csu.greenfarm.domain.PreOrder;
 
 import java.util.List;
 
-public interface OrderService {
-    /*
-    预定订单和购买订单共用一个Service
-     */
+public interface PreOrderMapper {
 
     List<PreOrder> getAllPreOrder(); //获取所有的订单
     List<PreOrder> getPreOrderByAccount(String account); //根据用户账户获取订单

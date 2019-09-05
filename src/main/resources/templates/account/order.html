@@ -53,7 +53,7 @@
     <div class="left">
         <ul>
             <li>
-                <a href="/toMyAccount" class="active">
+                <a href="/toMyAccount">
                     <i class="icon iconfont icon-ziliao"></i>
                     个人资料
                 </a>
@@ -66,7 +66,7 @@
             </li>
 
             <li>
-                <a href="/account/order">
+                <a href="/account/order" class="active">
                     <i class="icon iconfont icon-dingdan"></i>
                     我的订单
                 </a>
@@ -86,24 +86,47 @@
         </ul>
     </div>
     <div class="right">
-        <div class="tap">
-            <span>个人资料</span>
-        </div>
-        <div class="container">
-            <div class="no-doc">
-                <form>
-                    <ul>
-                        <li th:utext="'<span>用户名：</span>' + ${session.account.getUsername()}">用户名：</li>
-                        <hr/>
-                        <li th:text="'账户：' + ${session.account.getAccount()}">账户：</li>
-                        <hr/>
-                        <li th:text="'邮箱：'+ ${session.account.getMail()}" >邮箱：</li>
-                        <hr/>
-                        <li th:text="'收货地址：' + ${session.account.getRecadd()}">收货地址</li>
-                    </ul>
-                </form>
+        <section id="tabs">
+            <div class="tap">
+                <input id="tab-1" type="radio" name="radio-set" checked="checked">
+                <label for="tab-1" class="tab-label-1">购买订单</label>
+
+                <input id="tab-2" type="radio" name="radio-set" >
+                <label for="tab-2" class="tab-label-2">预定订单</label>
             </div>
-        </div>
+            <div class="clear-shadow"></div>
+
+            <div id="content">
+                <div id="content-1">
+                    <th:block th:each="preorderItem:${preorder}">
+                        <a href="#">
+                            <li>
+                                <a href="#" class="btn">去付款</a>
+                                <hr/>
+                            </li>
+                        </a>
+                    </th:block>
+                    <div id="clear"></div>
+                </div>
+                <div id="content-2">
+                    <th:block th:each="preorderItem:${preorder}">
+                        <a href="#">
+                            <li>
+                                <div class="orderName">
+                                    <a href="#" ><h4 th:text="'订单号：' + ${preorderItem.getPreorderId()}"></h4></a>
+                                </div>
+                                <div class="orderTime">
+                                    <p th:text="${#dates.format(preorderItem.getPre_time(), 'yyyy-MM-dd')}"></p>
+                                </div>
+                                <a href="#" class="btn">去付款</a>
+                                <hr/>
+                            </li>
+                        </a>
+                    </th:block>
+                </div>
+
+            </div>
+        </section>
     </div>
 </div>
 

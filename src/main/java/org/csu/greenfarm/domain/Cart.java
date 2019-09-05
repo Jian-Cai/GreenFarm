@@ -1,6 +1,6 @@
 package org.csu.greenfarm.domain;
 
-public class Cart {
+public class Cart implements java.io.Serializable {
      private String id;
      private String account;
 

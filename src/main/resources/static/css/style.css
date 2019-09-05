@@ -1134,7 +1134,7 @@ p.para{
 	width: 100%;
 }
 /* start tabs */
-.tabs {
+a.tabs {
     position: relative;
 	margin: 40px auto;
 }
