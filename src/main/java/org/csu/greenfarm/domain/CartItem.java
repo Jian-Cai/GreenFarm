@@ -1,5 +1,11 @@
 package org.csu.greenfarm.domain;
 
+import org.csu.greenfarm.persistence.ProductMapper;
+import org.csu.greenfarm.service.ProductService;
+import org.csu.greenfarm.service.impl.FarmServiceImpl;
+import org.csu.greenfarm.service.impl.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 
 public class CartItem implements Serializable {
@@ -43,6 +49,7 @@ public class CartItem implements Serializable {
     public void setNum(int num) {
         this.num = num;
     }
+
 
 
 }

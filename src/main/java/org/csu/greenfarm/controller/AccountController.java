@@ -85,6 +85,7 @@ public class AccountController {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
             session.setAttribute("cart", cart);
+            session.setAttribute("productService", productService);
             return "account/account";
         }
         else{

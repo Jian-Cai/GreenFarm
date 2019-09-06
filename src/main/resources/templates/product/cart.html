@@ -11,7 +11,7 @@
     <link href="css/cstyle.css" rel="stylesheet" type="text/css"/>
     <!--shop-kart-js-->
     <script src="js/simpleCart.min.js"></script>
-    <!--default-js-->x
+    <!--default-js-->
     <script src="js/jquery.min.js"></script>
     <!--bootstrap-js-->
     <script src="js/bootstrap.min.js"></script>
@@ -35,59 +35,37 @@
 <body>
 <header th:replace="common/template_heads::header(${main_status})"></header>
 <!-- start main -->
-<body>
 <!-- check-out -->
 <div class="check" >
     <div class="ccontainer">
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#"><<返回继续购物</a>
+            <a class="continue" href="#">返回继续购物</a>
             <div class="price-details">
                 <h3>账单</h3>
                 <span>数量</span>
-                <span class="total1">2</span>
+                <span class="total1"><td th:text="${session.productList.size()}"></td> </span>
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
             <ul class="total_price">
                 <li class="last_price"> <h4>总价</h4></li>
-                <li class="last_price"><span>453.00</span></li>
+                <li class="last_price"><span><td th:text="${session.allTotal}"></td> </span></li>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"></div>
             <a class="order" href="#">下单</a>
         </div>
+
         <div class="col-md-9 cart-items">
             <h1>我的购物车</h1>
             <script>$(document).ready(function(c) {
                 $('.close1').on('click', function(c){
-                    $('.cart-header').fadeOut('slow', function(c){
-                        $('.cart-header').remove();
+                    $('.cart-header1').fadeOut('slow', function(c){
+                        $('.cart-header1').remove();
                     });
                 });
             });
             </script>
-            <div class="cart-header">
-                <div class="close1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-                <div class="cart-sec simpleCart_shelfItem">
-                    <div class="cart-item cyc">
-                        <img src="images/0001-1.jpg" class="img-responsive" alt=""/>
-                    </div>
-                    <div class="cart-item-info">
-                        <ul class="qty">
-                            <li><p>数量：1</p></li>
-                            <li><p></p></li>
-                            <li><p>单价 290.00</p></li>
-                        </ul>
-                        <div class="delivery">
-                            <p>产地：瓜先生采摘园</p>
-                            <span>次日可达</span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-
-                </div>
-            </div>
             <script>$(document).ready(function(c) {
                 $('.close2').on('click', function(c){
                     $('.cart-header2').fadeOut('slow', function(c){
@@ -96,27 +74,72 @@
                 });
             });
             </script>
-            <div class="cart-header2">
-                <div class="close2"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+            <script>$(document).ready(function(c) {
+                $('.close3').on('click', function(c){
+                    $('.cart-header3').fadeOut('slow', function(c){
+                        $('.cart-header3').remove();
+                    });
+                });
+            });
+            </script>
+            <script>$(document).ready(function(c) {
+                $('.close4').on('click', function(c){
+                    $('.cart-header4').fadeOut('slow', function(c){
+                        $('.cart-header4').remove();
+                    });
+                });
+            });
+            </script>
+
+            <th:block th:each="cartItem,index:${session.items}">
+
+            <div th:class="'cart-header'+${index.count}">
+                <div th:class="'close'+${index.count}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
                 <div class="cart-sec simpleCart_shelfItem">
+                    <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Farm'}">
                     <div class="cart-item cyc">
-                        <img src="images/0001-2.jpg" class="img-responsive" alt=""/>
+                        <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getFarm_photo()}}" />
                     </div>
                     <div class="cart-item-info">
                         <ul class="qty">
-                            <li><p>数量：2</p></li>
-                            <li><p></p></li>
-                            <li><p>单价 200.00</p></li>
+                            <th:block th:each="item:${session.productList}" >
+                                <th:block th:if="${item.getProductId()==cartItem.getFarmId()}">
+                                    <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                </th:block>
+                            </th:block>
+                            <li><p>单价 <td th:text="${cartItem.getFarm_price()}"></td></p></li>
                         </ul>
                         <div class="delivery">
-                            <p>产地：天源农场</p>
-                            <span>当天可达</span>
+                            <p>地址: <td th:text="${cartItem.getFarm_address()}"></td></p>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
+                    </th:block>
+                    <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Product'}">
+                        <div class="cart-item cyc">
+                            <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getProduct_photo}}" />
+                        </div>
+                        <div class="cart-item-info">
+                            <ul class="qty">
+                                <th:block th:each="item:${session.productList}" >
+                                    <th:block th:if="${item.getProductId()==cartItem.getProductId()}">
+                                <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                    </th:block>
+                                </th:block>
+                                <li><p>单价 <td th:text="${cartItem.getProduct_price()}"></td></p></li>
+
+                            </ul>
+                            <div class="delivery">
+                                <p>产地: <td th:text="${cartItem.getProduct_origin()}"></td></p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </th:block>
                 </div>
             </div>
+            </th:block>
         </div>
         <div class="clearfix"> </div>
     </div>

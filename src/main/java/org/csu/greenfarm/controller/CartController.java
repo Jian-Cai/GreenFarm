@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.csu.greenfarm.service.ProductService;
 import org.csu.greenfarm.service.FarmService;
@@ -29,16 +30,16 @@ public class CartController {
     HttpServletRequest request;
 
     @GetMapping("/toCart")
-    public String viewCart(Model model){
+    public String viewCart(Model model) {
         List<Product> p = productService.getAllProducts();
         List<Farm> f = farmService.getAllFarm();
         List<Farm> farms = new ArrayList<>();
         List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
+        for (int a = 0; a < 6; a++) {
+            if (a < f.size()) {
                 farms.add(f.get(a));
             }
-            if(a < p.size()){
+            if (a < p.size()) {
                 products.add(p.get(a));
             }
         }
@@ -47,20 +48,57 @@ public class CartController {
         model.addAttribute("main_status", 3); //状态码
 
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        List<CartItem> productList = cartService.productList(cart.getCartId());
-        session.setAttribute("productList",productList);
+        Account account = (Account) session.getAttribute("account");
+        if (account != null) {
+            Cart cart = (Cart) session.getAttribute("cart");
+            List<CartItem> productList = cartService.productList(cart.getCartId());
+            session.setAttribute("productList", productList);
 
-        return "product/cart"; }
+            Iterator<CartItem> item = productList.iterator();
+            List<Object> items = new ArrayList<>();
+            while (item.hasNext()) {
+                CartItem cartItem = item.next();
+                if (farmService.getFarmByFarmId(cartItem.getProductId()) == null) {
+                    items.add(productService.getProductByProductId(cartItem.getProductId()));
+                } else {
+                    items.add(farmService.getFarmByFarmId(cartItem.getProductId()));
+                }
+            }
+            double allTotal = cartService.getAllTotal(cart.getCartId());
+            session.setAttribute("allTotal", allTotal);
+            session.setAttribute("items", items);
+            return "product/cart";
+        }
+        else return "login/login";
+    }
 
     @GetMapping("/addToCart")
     public String addToCart(@RequestParam("productId") String productId){
 
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        cartService.addProduct(cart.getCartId(),productId);
-        List<CartItem> productList = cartService.productList(cart.getCartId());
-        session.setAttribute("productList",productList);
-        return "product/cart";
+        Account account = (Account) session.getAttribute("account");
+        if(account!=null) {
+            Cart cart = (Cart) session.getAttribute("cart");
+            cartService.addProduct(cart.getCartId(), productId);
+            List<CartItem> productList = cartService.productList(cart.getCartId());
+
+            Iterator<CartItem> item = productList.iterator();
+
+            List<Object> items = new ArrayList<>();
+            while (item.hasNext()) {
+                CartItem cartItem = item.next();
+                if (farmService.getFarmByFarmId(cartItem.getProductId()) == null) {
+                    items.add(productService.getProductByProductId(cartItem.getProductId()));
+                } else {
+                    items.add(farmService.getFarmByFarmId(cartItem.getProductId()));
+                }
+            }
+            double allTotal = cartService.getAllTotal(cart.getCartId());
+            session.setAttribute("allTotal", allTotal);
+            session.setAttribute("items", items);
+            session.setAttribute("productList", productList);
+            return "product/cart";
+        }
+        else return  "login/login";
     }
 }

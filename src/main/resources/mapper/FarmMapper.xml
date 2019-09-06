@@ -15,7 +15,7 @@
         SELECT * FROM farm
     </select>
     <select id="getFarmByFarmId"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Farm">
-        SELECT * FROM farm where farmid=#{farmId}
+        SELECT * FROM farm where farmId=#{farmId}
     </select>
     <select id="getAccountByMail"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Farm">
         SELECT * FROM farm where farm_item LIKE #{farm_item}

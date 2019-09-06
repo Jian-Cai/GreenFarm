@@ -2,9 +2,11 @@ package org.csu.greenfarm.service.impl;
 
 import org.csu.greenfarm.domain.Cart;
 import org.csu.greenfarm.domain.CartItem;
+import org.csu.greenfarm.domain.Farm;
 import org.csu.greenfarm.domain.Product;
 import org.csu.greenfarm.persistence.CartItemMapper;
 import org.csu.greenfarm.persistence.CartMapper;
+import org.csu.greenfarm.persistence.FarmMapper;
 import org.csu.greenfarm.persistence.ProductMapper;
 import org.csu.greenfarm.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     ProductMapper productMapper;
+
+    @Autowired
+    FarmMapper farmMapper;
 
     @Override
     public List<CartItem> productList(String cartId) {
@@ -50,8 +55,14 @@ public class CartServiceImpl implements CartService {
         double total = 0;
         String id = cartId + productId;
         CartItem cartItem = cartItemMapper.getCartItemById(id);
-        Product product = productMapper.getProductByProductId(cartItem.getProductId());
-        total = product.getProduct_price()*cartItem.getNum();
+        if(productMapper.getProductByProductId(cartItem.getProductId())!=null) {
+            Product product = productMapper.getProductByProductId(cartItem.getProductId());
+            total = product.getProduct_price() * cartItem.getNum();
+        }
+        else{
+            Farm farm = farmMapper.getFarmByFarmId(cartItem.getProductId());
+            total = farm.getFarm_price() * cartItem.getNum();
+        }
         return total;
     }
 
@@ -62,8 +73,7 @@ public class CartServiceImpl implements CartService {
         Iterator<CartItem> products = productList.iterator();
         while (products.hasNext()){
             CartItem cartItem = products.next();
-            Product product = productMapper.getProductByProductId(cartItem.getProductId());
-            total += product.getProduct_price()*cartItem.getNum();
+            total += getTotal(cartId,cartItem.getProductId());
         }
 
         return total;

@@ -2,6 +2,7 @@ package org.csu.greenfarm.service;
 
 import org.csu.greenfarm.domain.Cart;
 import org.csu.greenfarm.domain.CartItem;
+import org.csu.greenfarm.domain.Product;
 
 import java.util.List;
 
