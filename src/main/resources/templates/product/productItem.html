@@ -61,9 +61,11 @@
                             <h5 th:text="'$' + ${product.getProduct_price()}">Rs. 399</h5>
                             <div class="available">
                                 <div class="btn_form">
-                                    <form action="/account/account">
-                                        <input th:if="${product.getProduct_check() == null || product.getProduct_check() == ''}" type="submit" value="即将上架" title="" />
-                                        <input th:unless="${product.getProduct_check() == null || product.getProduct_check() == ''}" type="submit" value="add to cart" title="" />
+                                    <form th:if="${session.account == null || session.account == ''}" action='/account/account'>
+                                        <input style="background: #555555" type="submit" value="选择" title="" />
+                                    </form>
+                                    <form th:unless="${session.account == null || session.account == ''}" action="#">
+                                        <input style="background: #3CC395;" type="submit" value="选择" title="" />
                                     </form>
                                 </div>
                                 <span th:if="${session.account == null || session.account == ''}" class="span_right"><a href="/account/account">登录以加入购物车</a></span>
