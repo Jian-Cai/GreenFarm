@@ -27,7 +27,7 @@
     </script>
 </head>
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -116,6 +116,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

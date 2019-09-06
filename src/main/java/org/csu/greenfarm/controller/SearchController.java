@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,23 +22,12 @@ public class SearchController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @GetMapping("/search/search")
     public String search(@RequestParam("item") String item, @RequestParam("index") int index, Model model){
-        List<Farm> f = farmService.getAllFarm();
-        List<Product> p = productService.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("farm", farms);
-        model.addAttribute("product", products);
-        model.addAttribute("status", 5); //状态码
+        request.getSession().setAttribute("status", 5);
 
         List<Farm> search_farm = farmService.getFarmByFarmName(item);
         List<Product> search_product = productService.getProductByProductName(item);

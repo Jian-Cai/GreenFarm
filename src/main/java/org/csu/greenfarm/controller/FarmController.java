@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -33,28 +34,13 @@ public class FarmController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     //return farmList
     @GetMapping("/farm/farmList")
     public String showFarmList(@RequestParam("index") int index, Model model){
-        //header、footer信息
-        List<Farm> f = service.getAllFarm();
-        List<Product> p = productService.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("main_farm", farms);
-        model.addAttribute("main_product", products);
-        model.addAttribute("main_status", 1); //状态码
-
-
-
+        request.getSession().setAttribute("status", 1);
         List<Farm> farms1 = service.getAllFarm();
         int num = (int) Math.ceil((double)farms1.size()/3);
         List<Farm> indexList = new ArrayList<>();
@@ -74,23 +60,7 @@ public class FarmController {
     //return farm item by farmId
     @GetMapping("/farm/farmItem")
     public String showFarmItem(@RequestParam("farmId") String farmId, Model model){
-        //header、footer信息
-        List<Farm> f = service.getAllFarm();
-        List<Product> p = productService.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("main_farm", farms);
-        model.addAttribute("main_product", products);
-        model.addAttribute("main_status", 1); //状态码
-
+        request.getSession().setAttribute("status", 1);
         Farm farm = service.getFarmByFarmId(farmId);
         model.addAttribute("farm", farm);
         model.addAttribute("farm_product", productService.getProductByProductOrigin(farmId));

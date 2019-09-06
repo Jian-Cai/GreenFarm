@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -32,13 +33,28 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public PreOrder getPreOrderByOrderId(String orderId) {
+        return preOrderMapper.getPreOrderByOrderId(orderId);
+    }
+
+    @Override
+    public void delectOrder(String orderId) {
+        if(preOrderMapper.getPreOrderByOrderId(orderId) == null){
+
+        }
+        else {
+            preOrderMapper.delectPreOrder(orderId);
+        }
+    }
+
+    @Override
     public List<BuyOrder> getAllBuyOrder() {
         return orderByDate2(buyOrderMapper.getAllPreOrder());
     }
 
     @Override
     public List<BuyOrder> getBuyOrderByAccount(String account) {
-        return orderByDate2(buyOrderMapper.getPreOrderByAccount(account));
+        return orderByDate2(buyOrderMapper.getBuyOrderByAccount(account));
     }
 
     //根据预定订单时间排序

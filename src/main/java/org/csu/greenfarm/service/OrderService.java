@@ -12,6 +12,8 @@ public interface OrderService {
 
     List<PreOrder> getAllPreOrder(); //获取所有的订单
     List<PreOrder> getPreOrderByAccount(String account); //根据用户账户获取订单
+    PreOrder getPreOrderByOrderId(String orderId);
+    void delectOrder(String orderId); //删除预定订单
 
     List<BuyOrder> getAllBuyOrder(); //获取所有的订单
     List<BuyOrder> getBuyOrderByAccount(String account); //根据用户账户获取订单
