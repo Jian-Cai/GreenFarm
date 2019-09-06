@@ -48,6 +48,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void insertPreOrder(PreOrder order) {
+        preOrderMapper.insertPreOrder(order);
+    }
+
+    @Override
     public List<BuyOrder> getAllBuyOrder() {
         return orderByDate2(buyOrderMapper.getAllPreOrder());
     }
@@ -87,5 +92,14 @@ public class OrderServiceImpl implements OrderService {
         return list;
     }
 
+    //随机生成订单号
+    @Override
+    public String setOrderId(){
+        int r1=(int)(Math.random()*(10));//产生2个0-9的随机数
+        int r2=(int)(Math.random()*(10));
+        long now = System.currentTimeMillis()%1000000000;//一个10位的时间戳
+        String paymentID =String.valueOf(r1)+String.valueOf(r2)+String.valueOf(now);
+        return paymentID;
+    }
 
 }

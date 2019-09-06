@@ -129,7 +129,7 @@
                         <h4>农产品推荐</h4>
                         <div class="single-nav">
                             <ul>
-                                <th:block th:each="product,productStat:${main_product}">
+                                <th:block th:each="product,productStat:${session.main_product}">
                                     <li th:if="${productStat.count <= 3}">
                                         <a th:href="@{'/product/productItem?productId='+${product.getProductId()}}">
                                             <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}">

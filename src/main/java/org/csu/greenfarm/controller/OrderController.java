@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -41,6 +41,15 @@ public class OrderController {
     public String toOrders(Model model){
         request.getSession().setAttribute("status", 3);
 
+        if(request.getParameter("isSet") == "true"){
+            PreOrder order = new PreOrder();
+            order.setPre_account(request.getParameter("account"));
+            order.setPre_time(Date.from(Instant.now()));
+            order.setPreorderId(request.getSession().getAttribute("orderId").toString());
+            order.setRemarks(request.getParameter("remarks"));
+            //添加到数据库
+            orderService.insertPreOrder(order);
+        }
         Account account = (Account)request.getSession().getAttribute("account");
         List<PreOrder> preOrder = orderService.getPreOrderByAccount(account.getAccount());
         model.addAttribute("preorder", preOrder);
@@ -51,8 +60,8 @@ public class OrderController {
     @GetMapping("/pay/toPay")
     public String showPay(@RequestParam("preorderId") String preorderId){
         request.getSession().setAttribute("status", 3);
-
         orderService.delectOrder(preorderId);
+        request.getSession().removeAttribute("orderId");
         return "pay/toPay";
     }
 
@@ -60,5 +69,13 @@ public class OrderController {
     @GetMapping("/pay/paySuccess")
     public String showPaySuccess(){
         return "pay/paySuccess";
+    }
+
+    //生成订单
+    @GetMapping("/order/setOrder")
+    public String setOrder(){
+        //生成订单号
+        request.getSession().setAttribute("orderId", orderService.setOrderId());
+        return "order/setOrder";
     }
 }
