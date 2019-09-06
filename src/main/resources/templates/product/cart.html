@@ -90,55 +90,61 @@
                 });
             });
             </script>
-
             <th:block th:each="cartItem,index:${session.items}">
-
-            <div th:class="'cart-header'+${index.count}">
-                <div th:class="'close'+${index.count}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-                <div class="cart-sec simpleCart_shelfItem">
-                    <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Farm'}">
-                    <div class="cart-item cyc">
-                        <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getFarm_photo()}}" />
-                    </div>
-                    <div class="cart-item-info">
-                        <ul class="qty">
-                            <th:block th:each="item:${session.productList}" >
-                                <th:block th:if="${item.getProductId()==cartItem.getFarmId()}">
-                                    <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
-                                </th:block>
-                            </th:block>
-                            <li><p>单价 <td th:text="${cartItem.getFarm_price()}"></td></p></li>
-                        </ul>
-                        <div class="delivery">
-                            <p>地址: <td th:text="${cartItem.getFarm_address()}"></td></p>
+                <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Farm'}">
+                    <div th:class="'cart-header'+${index.count}">
+                        <div th:class="'close'+${index.count}">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>
+                        </div>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getFarm_photo()}}" />
+                            </div>
+                            <div class="cart-item-info">
+                                <ul class="qty">
+                                    <th:block th:each="item:${session.productList}" >
+                                        <th:block th:if="${item.getProductId()==cartItem.getFarmId()}">
+                                            <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                        </th:block>
+                                    </th:block>
+                                    <li><p>单价 <td th:text="${cartItem.getFarm_price()}"></td></p></li>
+                                </ul>
+                                <div class="delivery">
+                                    <p>地址: <td th:text="${cartItem.getFarm_address()}"></td></p>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                    </th:block>
-                    <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Product'}">
-                        <div class="cart-item cyc">
-                            <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getProduct_photo}}" />
+                </th:block>
+                <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Product'}">
+                    <div th:class="'cart-header'+${index.count}">
+                        <div th:class="'close'+${index.count}">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>
                         </div>
-                        <div class="cart-item-info">
-                            <ul class="qty">
-                                <th:block th:each="item:${session.productList}" >
-                                    <th:block th:if="${item.getProductId()==cartItem.getProductId()}">
-                                <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
-                                    </th:block>
-                                </th:block>
-                                <li><p>单价 <td th:text="${cartItem.getProduct_price()}"></td></p></li>
-
-                            </ul>
-                            <div class="delivery">
-                                <p>产地: <td th:text="${cartItem.getProduct_origin()}"></td></p>
-                                <div class="clearfix"></div>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <img class="img-responsive" th:src="@{'/images/' + ${cartItem.getProduct_photo}}" />
                             </div>
+                            <div class="cart-item-info">
+                                <ul class="qty">
+                                    <th:block th:each="item:${session.productList}" >
+                                        <th:block th:if="${item.getProductId()==cartItem.getProductId()}">
+                                            <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                        </th:block>
+                                    </th:block>
+                                    <li><p>单价 <td th:text="${cartItem.getProduct_price()}"></td></p></li>
+                                </ul>
+                                <div class="delivery">
+                                    <p>产地: <td th:text="${cartItem.getProduct_origin()}"></td></p>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
-                    </th:block>
-                </div>
-            </div>
+                    </div>
+                </th:block>
             </th:block>
         </div>
         <div class="clearfix"> </div>
