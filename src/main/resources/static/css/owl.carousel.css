@@ -79,13 +79,13 @@
 .owl-prev {
 	position: absolute;
 	top: 23%;
-	left: -5%;
+	left: -9%;
 	background: url(../images/c-arrows.png) no-repeat;
 }
 .owl-next{
 	position: absolute;
 	top:23%;
-	right: -5%;
+	right: -9%;
 	background: url(../images/c-arrows.png) no-repeat -39px 0px;
 }
 /* Styling Pagination*/
