@@ -27,7 +27,7 @@
     </script>
 </head>
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -42,7 +42,7 @@
                             <h3 th:text="${farmItem1.getFarm_name()}">farm name</h3>
                             <h4 th:text="${farmItem1.getFarm_item_short()}"></h4>
                             <div class="price">
-                                <h4 th:utext="${farmItem1.getFarm_price() + '<span>立即选购</span>'}">$299</h4>
+                                <h4 th:utext="${farmItem1.getFarm_price() + '<span>去看看</span>'}">$299</h4>
                             </div>
                             <span class="b_btm"></span>
                         </a>
@@ -100,9 +100,10 @@
                     </a>
                 </div>
             <!-- end grids_of_3 -->
+            </div>
         </div>
     </div>
 </div>
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+    <footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

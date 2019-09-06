@@ -51,7 +51,7 @@
 </head>
 <body>
 <!-- header --->
-<header th:replace="common/template_heads::header(${status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start slider -->
 <div id="da-slider" class="da-slider">
 	<div class="da-slide">
@@ -141,8 +141,6 @@
 				<a href="details.html" class="btn">去看看</a>
 			</div>
 		</div>
-
-
 	</div>
 	<!----//End-img-cursual---->
 </div>
@@ -150,7 +148,7 @@
 <div class="main_bg1">
 <div class="wrap">	
 	<div class="main1">
-		<h2>featured farms</h2>
+		<h2>热门商品</h2>
 	</div>
 </div>
 </div>
@@ -229,6 +227,6 @@
 	</div>
 </div>
 </div>
-<footer th:replace="common/template_heads::footer(${product},${farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

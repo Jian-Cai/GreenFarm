@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019
+  ~ User: Duo.y
+  ~ File: FarmMapper.xml
+  ~ Date: 2019/09/02 15:32:02
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.PreOrderMapper">
+    <cache />
+
+    <select id="getAllPreOrder" resultType="org.csu.greenfarm.domain.PreOrder">
+        SELECT * FROM preorder
+    </select>
+    <select id="getPreOrderByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.PreOrder">
+        SELECT * FROM preorder where pre_account=#{account}
+    </select>
+    <select id="getPreOrderByOrderId" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.PreOrder">
+        SELECT  * FROM preorder where preorderId=#{orderId}
+    </select>
+    <delete id="delectPreOrder" parameterType="java.lang.String">
+        DELETE FROM preorder where preorderId=#{orderId}
+    </delete>
+    <insert id="insertPreOrder" parameterType="org.csu.greenfarm.domain.PreOrder">
+        INSERT preorder(preorderId, pre_time, pre_account, remarks) values (#{preorderId}, #{pre_time}, #{pre_account}, #{remarks})
+    </insert>
+
+</mapper>

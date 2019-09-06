@@ -895,14 +895,17 @@ p.para{
 .desc1 {
 	font-family: 'Source Sans Pro', sans-serif;
 	display: block;
-	float: right;
+	float: left;
+    margin-left: 20px;
+    width: 330px;
 }
 .desc1 h3{
 	text-shadow: 0 1px 0 #ffffff;
 	font-family: 'bebas_neueregular';
 	color:#555555;
 	font-size:2em;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+    margin-top: 5px;
 }
 .desc1 h5{
 	margin-top: 2%;
@@ -1134,7 +1137,7 @@ p.para{
 	width: 100%;
 }
 /* start tabs */
-.tabs {
+a.tabs {
     position: relative;
 	margin: 40px auto;
 }
@@ -1246,7 +1249,6 @@ p.para{
 }
 .content div {
 	width:98%;
-    position: absolute;
 	top: 0;
 	left: 0;
 	padding: 10px;
@@ -1257,6 +1259,9 @@ p.para{
     -o-transition: opacity linear 0.1s;
     -ms-transition: opacity linear 0.1s;
     transition: opacity linear 0.1s;
+}
+.content_img{
+width: 850px;
 }
 .tabs input.tab-selector-1:checked ~ .content .content-1,
 .tabs input.tab-selector-2:checked ~ .content .content-2,

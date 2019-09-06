@@ -27,7 +27,7 @@
     </script>
 </head>
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -38,7 +38,7 @@
                 <th:block th:each="productItem1:${products1}">
                     <div class="grid1_of_3">
                         <a th:href="@{'/product/productItem?productId=' + ${productItem1.getProductId()}}">
-                            <img th:src="@{'/images/' + ${productItem1.getProduct_photo()}}" />
+                            <img th:src="@{'/images/small/' + ${productItem1.getProduct_photo()}}" />
                             <h3 th:text="${productItem1.getProduct_name()}">product name</h3>
                             <div class="price">
                                 <h4 th:unless="${productItem1.getProduct_check() == null || productItem1.getProduct_check() == ''}" th:utext="'$' + ${productItem1.getProduct_price() + '<span>立即选购</span>'}">$299</h4>
@@ -104,6 +104,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

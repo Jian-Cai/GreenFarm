@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,25 +35,14 @@ public class ProductController {
     @Autowired
     private FarmService farmService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @GetMapping("/product/productList")
     public String showProductList(@RequestParam("index")int index, Model model){
-        //header、footer信息
-        List<Farm> f = farmService.getAllFarm();
-        List<Product> p = service.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("main_farm", farms);
-        model.addAttribute("main_product", products);
-        model.addAttribute("main_status", 2); //状态码
+        request.getSession().setAttribute("status", 2);
 
+        List<Product> p = service.getAllProducts();
         int num = (int) Math.ceil((double)p.size()/3);
         List<Product> indexList = new ArrayList<>();
         //每一页展示3个
@@ -70,26 +60,11 @@ public class ProductController {
 
     @GetMapping("/product/productItem")
     public String showProductItem(@RequestParam("productId") String productId, Model model){
-        //header、footer信息
-        List<Farm> f = farmService.getAllFarm();
-        List<Product> p = service.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("main_farm", farms);
-        model.addAttribute("main_product", products);
-        model.addAttribute("main_status", 2); //状态码
+        request.getSession().setAttribute("status", 2);
 
         Product product = service.getProductByProductId(productId);
         Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
-        model.addAttribute("origin_farm",farm );
+        model.addAttribute("origin_farm", farm);
         model.addAttribute("product", product);
         return "product/productItem";
     }

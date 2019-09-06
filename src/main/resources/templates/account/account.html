@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
@@ -59,26 +59,26 @@
                 </a>
             </li>
             <li>
-                <a href="/toMyMessage" class="active">
+                <a href="/toMyMessage">
                     <i class="icon iconfont icon-wodexiaoxi"></i>
                     我的消息
                 </a>
             </li>
 
             <li>
-                <a href="#" class="active">
+                <a href="/account/order">
                     <i class="icon iconfont icon-dingdan"></i>
                     我的订单
                 </a>
             </li>
             <li>
-                <a href="#" class="active">
+                <a href="#">
                     <i class="icon iconfont icon-pinglun"></i>
                     我的评论
                 </a>
             </li>
             <li>
-                <a href="/toCart" class="active">
+                <a href="/toCart">
                     <i class="icon iconfont icon-gouwuche"></i>
                     我的购物车
                 </a>
@@ -108,7 +108,7 @@
 </div>
 
 
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 
 </html>
