@@ -99,6 +99,7 @@
                         <div class="content">
                             <div class="content-1">
                                 <p class="para top"><span>网友评论</span> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
+                                <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}">
                                 <ul>
                                     <li>Research</li>
                                     <li>Design and Development</li>
@@ -131,7 +132,7 @@
                                 <th:block th:each="product,productStat:${main_product}">
                                     <li th:if="${productStat.count <= 3}">
                                         <a th:href="@{'/product/productItem?productId='+${product.getProductId()}}">
-                                            <img th:src="@{'/images/' + ${product.getProduct_photo()}}">
+                                            <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}">
                                             <span th:text="${product.getProduct_name()}"></span>
                                         </a>
                                     </li>
