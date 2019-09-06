@@ -7,9 +7,11 @@
 
 package org.csu.greenfarm.persistence;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.csu.greenfarm.domain.Farm;
 
 import java.util.List;
+
 
 public interface FarmMapper {
 

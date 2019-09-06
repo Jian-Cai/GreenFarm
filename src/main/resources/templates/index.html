@@ -51,7 +51,7 @@
 </head>
 <body>
 <!-- header --->
-<header th:replace="common/template_heads::header(${status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start slider -->
 <div id="da-slider" class="da-slider">
 	<div class="da-slide">
@@ -227,6 +227,6 @@
 	</div>
 </div>
 </div>
-<footer th:replace="common/template_heads::footer(${product},${farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

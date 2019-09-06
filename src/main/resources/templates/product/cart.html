@@ -6,9 +6,9 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start main -->
 
-<footer th:replace="common/template_heads::footer(${main_product},${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>

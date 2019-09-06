@@ -1246,7 +1246,6 @@ a.tabs {
 }
 .content div {
 	width:98%;
-    position: absolute;
 	top: 0;
 	left: 0;
 	padding: 10px;
@@ -1257,6 +1256,9 @@ a.tabs {
     -o-transition: opacity linear 0.1s;
     -ms-transition: opacity linear 0.1s;
     transition: opacity linear 0.1s;
+}
+.content_img{
+width: 850px;
 }
 .tabs input.tab-selector-1:checked ~ .content .content-1,
 .tabs input.tab-selector-2:checked ~ .content .content-2,

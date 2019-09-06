@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 跳转至登录界面&个人中心界面
@@ -52,32 +50,17 @@ public class AccountController {
     @GetMapping("/account/account")
     public String showaccount(){
         HttpSession session = request.getSession();
-        //如果session中的account为空则去登录
+        //header、footer信息
+        session.setAttribute("status", 3);
         return session.getAttribute("account") == null ? "login/login" : "account/account";
     }
 
 
     //跳转至登录界面
     @PostMapping("/tologin")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        //header、footer信息
-        List<Farm> f = farmService.getAllFarm();
-        List<Product> p = productService.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("main_farm", farms);
-        model.addAttribute("main_product", products);
-        model.addAttribute("main_status", 3); //状态码
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 
-
+        request.getSession().setAttribute("status", 3);
         //通过邮箱、账户、昵称登录
         Account account = service.getAccount(username);
         if (account.getPassword().equals(password)){
@@ -97,12 +80,14 @@ public class AccountController {
     //用户登录
     @GetMapping("/toregister")
     public String toRegister(){
+        request.getSession().setAttribute("status", 3);
         return "login/register";
     }
 
     //跳转至用户协议
     @GetMapping("/touserAg")
     public String toAg(){
+        request.getSession().setAttribute("status", 3);
         return "login/userAg";
     }
 
@@ -114,32 +99,19 @@ public class AccountController {
 
     @GetMapping("toMyAccount")
     public String toMyAccount(){
+        request.getSession().setAttribute("status", 3);
         return "account/account";
     }
 
     @GetMapping("/toMyMessage")
     public String toMyMessage(){
+        request.getSession().setAttribute("status", 3);
         return "account/messages";
     }
 
     @GetMapping("/tologout")
-    public String toLogout(Model model){
-        //header、footer信息
-        List<Farm> f = farmService.getAllFarm();
-        List<Product> p = productService.getAllProducts();
-        List<Farm> farms = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
-        for (int a = 0; a < 6; a++){
-            if(a < f.size()){
-                farms.add(f.get(a));
-            }
-            if(a < p.size()){
-                products.add(p.get(a));
-            }
-        }
-        model.addAttribute("farm", farms);
-        model.addAttribute("product", products);
-        model.addAttribute("status", 0); //状态码
+    public String toLogout(){
+        request.getSession().setAttribute("status", 0);
 
         request.getSession().removeAttribute("account");
         return "index";

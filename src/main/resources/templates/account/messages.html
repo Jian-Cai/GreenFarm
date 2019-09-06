@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/toCart">
                     <i class="icon iconfont icon-gouwuche"></i>
                     我的购物车
                 </a>
@@ -99,7 +99,7 @@
 </div>
 
 
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 
 </html>
