@@ -130,7 +130,7 @@
                                 <th:block th:each="product:${farm_product}">
                                     <li th:if="${productStat.count <= 3}">
                                         <a th:href="@{'/product/productItem?productId='+${product.getProductId()}}">
-                                            <img th:src="@{'/images/' + ${product.getProduct_photo()}}">
+                                            <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}">
                                             <span th:text="${product.getProduct_name()}"></span>
                                         </a>
                                     </li>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019
+  ~ User: Duo.y
+  ~ File: FarmMapper.xml
+  ~ Date: 2019/09/02 15:32:02
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.OrderMapper">
+    <cache />
+
+    <select id="getOrderItemByOrderId"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.OrderItem">
+        SELECT * FROM orderItem where orderId=#{orderId}
+    </select>
+    <insert id="insertOrderItem" parameterType="org.csu.greenfarm.domain.OrderItem">
+        INSERT orderItem(orderItemId,orderId, productId, amount) values (#{orderItemId}, #{orderId}, #{productId}, #{amount})
+    </insert>
+<!--
+    <delete id="delectBuyOrder" parameterType="java.lang.String">
+        DELETE FROM buyorder where preorderId=#{orderId}
+    </delete>
+
+    -->
+</mapper>

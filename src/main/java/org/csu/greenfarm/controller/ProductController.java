@@ -68,4 +68,25 @@ public class ProductController {
         model.addAttribute("product", product);
         return "product/productItem";
     }
+
+    @GetMapping("/product/productList2")
+    public String showProductList(@RequestParam("index")int index, @RequestParam("cate") String cate,  Model model){
+        request.getSession().setAttribute("status", 2);
+
+        List<Product> p = service.getProductByProductCate(cate);
+        int num = (int) Math.ceil((double)p.size()/3);
+        List<Product> indexList = new ArrayList<>();
+        //每一页展示3个
+        for(int a = index*3; a < (index+1)*3; a++){
+            if(a < p.size()){
+                indexList.add(p.get(a));
+            }
+            else break;
+        }
+        model.addAttribute("index", index);
+        model.addAttribute("pageNum",num-1); //num从0开始
+        model.addAttribute("products1", indexList); //model内添加ProductList
+        model.addAttribute("cate", cate);
+        return "product/productList";
+    }
 }

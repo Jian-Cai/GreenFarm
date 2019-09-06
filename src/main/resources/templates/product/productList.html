@@ -32,7 +32,8 @@
 <div class="main_bg">
     <div class="wrap">
         <div class="main">
-            <h2 class="style top">农产品</h2>
+            <h2 th:if="${cate == null}" class="style top">农产品</h2>
+            <h2 th:unless="${cate == null}" th:text="${cate}" class="style top">农产品</h2>
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
                 <th:block th:each="productItem1:${products1}">
