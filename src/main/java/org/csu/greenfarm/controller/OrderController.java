@@ -77,11 +77,12 @@ public class OrderController {
         for(int a = 0; a < productList.size(); a++){
             try{
                 OrderItem orderItem = new OrderItem();
-                orderItem.setOrderItemId(orderService.setOrderId()+orderService.setOrderId());
+                orderItem.setOrderItemId(request.getSession().getAttribute("orderId").toString() + request.getSession().getAttribute("account").toString());
                 orderItem.setOrderId(request.getSession().getAttribute("orderId").toString());
                 orderItem.setAmount(productList.get(a).getNum());
                 orderItem.setProductId(productList.get(a).getProductId());
                 orderService.insertOrderItem(orderItem);
+                cartService.removeProduct(cart.getCartId(), productList.get(a).getProductId());
             }catch (Exception e){
                 e.printStackTrace();
             }
