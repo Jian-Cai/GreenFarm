@@ -34,4 +34,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductByProductOrigin(String product_origin) {
         return mapper.getProductByProductOrigin(product_origin);
     }
+
+    @Override
+    public List<Product> getProductByProductCate(String category) {
+        return mapper.getProductByProductCate(category);
+    }
 }

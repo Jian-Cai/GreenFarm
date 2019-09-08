@@ -9,14 +9,22 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>FarmName-product</title>
+    <title th:text="${product}+'详情'"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="/js/jquery.min.js"></script>
+    <!-- start details -->
+    <link rel="stylesheet" type="text/css" href="/css/productviewgallery.css" media="all" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/cloud-zoom.1.0.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="/js/jquery.fancybox-thumbs.js"></script>
+    <script type="text/javascript" src="/js/productviewgallery.js"></script>
     <!-- start top_js_button -->
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/move-top.js"></script>
+    <script type="text/javascript" src="/js/easing.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -27,7 +35,7 @@
     </script>
 </head>
 <body>
-<header th:replace="common/template_heads::header(${main_status})"></header>
+<header th:replace="common/template_heads::header(${session.status})"></header>
 <!-- start main -->
 <div class="main_bg">
     <div class="wrap">
@@ -44,7 +52,7 @@
                                     <div class="more-views" style="float:left;">
                                         <div class="more-views-container">
                                             <div class="product-image">
-                                                <img th:src="@{'/images/' + ${product.getProduct_photo()}}"  />
+                                                <img th:src="@{'/images/main/' + ${product.getProduct_photo()}}" />
                                             </div>
                                         </div>
                                     </div>
@@ -57,17 +65,28 @@
                     <div class="span1_of_1_des">
                         <div class="desc1">
                             <h3 th:text="${product.getProduct_name()}">name</h3>
-                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name() }"></a></p>
+                            <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name()}"></a></p>
                             <h5 th:text="'$' + ${product.getProduct_price()}">Rs. 399</h5>
                             <div class="available">
                                 <div class="btn_form">
-                                    <form th:if="${product.getProduct_check() == null || product.getProduct_check() == ''}">
-                                        <input  type="submit" value="即将上架" title="" />
-                                    </form>
-                                    <form th:unless="${product.getProduct_check() == null || product.getProduct_check() == ''}">
-                                        <input type="hidden" th:value="${product.getProductId()}"/>
-                                        <input  type="submit" value="add to cart" title="" />
-                                    </form>
+                                    <th:block th:if="${product.getProduct_check() == null || product.getProduct_check() == ''}">
+                                        <form th:if="${session.account == null || session.account == ''}" action='/account/account'>
+                                            <input style="background: #555555" type="submit" value="加入购物车" title="" />
+                                        </form>
+                                        <form th:unless="${session.account == null || session.account == ''}" action="/addToCart">
+                                            <input name="productId" type="hidden" th:value="${product.getProductId()}"/>
+                                            <input style="background: #3CC395;" type="submit" value="加入购物车" title="" />
+                                        </form>
+                                    </th:block>
+                                    <th:block th:unless="${product.getProduct_check() == null || product.getProduct_check() == ''}">
+                                        <form th:if="${session.account == null || session.account == ''}" action='/account/account'>
+                                            <input style="background: #555555" type="submit" value="加入购物车" title="" />
+                                        </form>
+                                        <form th:unless="${session.account == null || session.account == ''}" action="/addToCart">
+                                            <input name="productId" type="hidden" th:value="${product.getProductId()}"/>
+                                            <input style="background: #3CC395;" type="submit" value="加入购物车" title="" />
+                                        </form>
+                                    </th:block>
                                 </div>
                                 <span th:if="${session.account == null || session.account == ''}" class="span_right"><a href="/account/account">登录以加入购物车</a></span>
                                 <div class="clear"></div>
@@ -123,16 +142,17 @@
                     </section>
                     <!-- end tabs -->
                 </div>
+                </div>
                 <!-- start sidebar -->
                 <div class="left_sidebar">
                     <div class="sellers">
                         <h4>农产品推荐</h4>
                         <div class="single-nav">
                             <ul>
-                                <th:block th:each="product,productStat:${main_product}">
+                                <th:block th:each="product,productStat:${session.main_product}">
                                     <li th:if="${productStat.count <= 3}">
                                         <a th:href="@{'/product/productItem?productId='+${product.getProductId()}}">
-                                            <img th:src="@{'/images/' + ${product.getProduct_photo()}}">
+                                            <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}">
                                             <span th:text="${product.getProduct_name()}"></span>
                                         </a>
                                     </li>
@@ -154,6 +174,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="common/template_heads::footer(${main_product}, ${main_farm})"></footer>
+<footer th:replace="common/template_heads::footer(${session.main_product}, ${session.main_farm})"></footer>
 </body>
 </html>

@@ -22,5 +22,8 @@
     <select id="getProductByProductOrigin"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Product">
         SELECT * FROM product where product_origin = #{product_origin}
     </select>
+    <select id="getProductByProductCate"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Product">
+        SELECT * FROM product where product_category = #{product_category}
+    </select>
 
 </mapper>

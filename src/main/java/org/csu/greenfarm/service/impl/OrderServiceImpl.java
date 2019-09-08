@@ -1,8 +1,10 @@
 package org.csu.greenfarm.service.impl;
 
 import org.csu.greenfarm.domain.BuyOrder;
+import org.csu.greenfarm.domain.OrderItem;
 import org.csu.greenfarm.domain.PreOrder;
 import org.csu.greenfarm.persistence.BuyOrderMapper;
+import org.csu.greenfarm.persistence.OrderMapper;
 import org.csu.greenfarm.persistence.PreOrderMapper;
 import org.csu.greenfarm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private BuyOrderMapper buyOrderMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public List<PreOrder> getAllPreOrder() {
@@ -52,6 +57,7 @@ public class OrderServiceImpl implements OrderService {
         preOrderMapper.insertPreOrder(order);
     }
 
+
     @Override
     public List<BuyOrder> getAllBuyOrder() {
         return orderByDate2(buyOrderMapper.getAllPreOrder());
@@ -60,6 +66,31 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<BuyOrder> getBuyOrderByAccount(String account) {
         return orderByDate2(buyOrderMapper.getBuyOrderByAccount(account));
+    }
+
+    @Override
+    public void delectBuyOrder(String orderId) {
+        buyOrderMapper.delectBuyOrder(orderId);
+    }
+
+    @Override
+    public BuyOrder getBuyOrderByOrderId(String orderId) {
+        return buyOrderMapper.getBuyOrderByOrderId(orderId);
+    }
+
+    @Override
+    public void insertOrderItem(OrderItem item) {
+        orderMapper.insertOrderItem(item);
+    }
+
+    @Override
+    public void insertBuyOrder(BuyOrder order) {
+        buyOrderMapper.insertBuyOrder(order);
+    }
+
+    @Override
+    public List<OrderItem> getOrderItemByOrderId(String orderId) {
+        return orderMapper.getOrderItemByOrderId(orderId);
     }
 
     //根据预定订单时间排序

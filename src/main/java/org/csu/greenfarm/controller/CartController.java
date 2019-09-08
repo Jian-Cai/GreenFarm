@@ -89,6 +89,7 @@ public class CartController {
                 CartItem cartItem = item.next();
                 if (farmService.getFarmByFarmId(cartItem.getProductId()) == null) {
                     items.add(productService.getProductByProductId(cartItem.getProductId()));
+
                 } else {
                     items.add(farmService.getFarmByFarmId(cartItem.getProductId()));
                 }

@@ -33,8 +33,9 @@
 <body>
 <header th:replace="common/template_heads::header(${session.status})"></header>
     <div style="align-content: center">
-        <h1 th:text="'订单号：' + ${preorder}"></h1>
-        <form action="/pay/paySuccess">
+        <h1 th:text="'订单号：' + ${session.orderId}"></h1>
+        <form action="/pay/paySuccess?">
+            <input name="preorderId" type="hidden" th:value="${session.orderId}">
             <input id="alp" type="radio" value="支付宝">
             <label for="alp">支付宝</label>
             <br/>

@@ -100,11 +100,12 @@
                     <th:block th:each="preorderItem:${preorder}">
                         <li>
                             <div class="hp1">
-                                <h4 th:text="'预定订单编号：' + ${preorderItem.getPreorderId()}"></h4>
-                                <p th:text="'下单时间' + ${preorderItem.getPre_time()}"></p>
+                                <p th:text="'预定订单编号：' + ${preorderItem.getPreorderId()}"></p>
+                                <p th:text="'下单时间：' + ${#dates.format(preorderItem.getPre_time(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
+                                <p th:text="'备注：' + ${preorderItem?.getRemarks()}"></p>
                             </div>
                             <div class="hp2">
-                                <a th:href="'/pay/toPay?preorderId='+${preorderItem.getPreorderId()}" class="btn">去支付</a>
+                                <a th:href="'/pay/toPay?preorderId=' + ${preorderItem.getPreorderId()}" class="btn">去支付</a>
                             </div>
                         </li>
                         <hr/>
@@ -112,8 +113,14 @@
                     <div class="clear"></div>
                 </div>
                 <div class="content-21">
-                    <th:block th:each="preorderItem:${preorder}">
-                        <p>aaa</p>
+                    <th:block th:each="buyorderItem:${buyorder}">
+                        <li>
+                            <div class="hp1">
+                                <p th:text="'订单编号：' + ${buyorderItem.getBuyorderId()}"></p>
+                                <p th:text="'下单时间：' + ${#dates.format(buyorderItem.getBuy_date(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
+                            </div>
+                        </li>
+                        <hr/>
                     </th:block>
                 </div>
 

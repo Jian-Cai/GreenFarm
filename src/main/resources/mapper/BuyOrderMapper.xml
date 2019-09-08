@@ -17,5 +17,13 @@
     <select id="getBuyOrderByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.BuyOrder">
         SELECT * FROM buyorder where buy_account=#{account}
     </select>
-
+    <select id="getBuyOrderByOrderId" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.BuyOrder">
+        SELECT  * FROM buyorder where preorderId=#{orderId}
+    </select>
+    <delete id="delectBuyOrder" parameterType="java.lang.String">
+        DELETE FROM buyorder where preorderId=#{orderId}
+    </delete>
+    <insert id="insertBuyOrder" parameterType="org.csu.greenfarm.domain.BuyOrder">
+        INSERT buyorder(buyorderId, buy_account, buy_period, buy_date) values (#{buyorderId},  #{buy_account}, #{buy_period}, #{buy_date})
+    </insert>
 </mapper>

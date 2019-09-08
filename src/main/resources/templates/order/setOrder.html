@@ -22,13 +22,12 @@
         function pay()
         {
             document.form1.action="/pay/toPay";
+            document.form1.getElementById("isSet").setAttribute(value, null);
             document.form1.submit();
         }
 
-        function wait()
-        {
-            document.form1.action="/account/order";
-            document.form1.getElementById("isSet").setAttribute(value, "false");
+        function wait() {
+            document.form1.action = "/account/order";
             document.form1.submit();
         }
     </script>
