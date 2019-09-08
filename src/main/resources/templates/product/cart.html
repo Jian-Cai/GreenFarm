@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
     <title>cart</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -47,7 +48,7 @@
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
-            <ul class="total_price">
+            <ul class="total_price" id="totaldiv">
                 <li class="last_price"> <h4>总价</h4></li>
                 <li class="last_price"><span><td th:text="${session.allTotal}"></td> </span></li>
                 <div class="clearfix"> </div>
@@ -61,39 +62,102 @@
             <script>$(document).ready(function(c) {
                 $('.close1').on('click', function(c){
                     $('.cart-header1').fadeOut('slow', function(c){
+                        var proId = document.getElementById('close1').getAttribute("name");
+                        $.ajax({
+                            type: "POST",
+                            url:"/removeItem",
+                            data:{
+                                productId: proId
+                            },
+                            dataType:"TEXT",
+                            success:function(data){
+
+                            }
+                        });
                         $('.cart-header1').remove();
+                        setTimeout(function (c) {
+                            location.replace("/toCart");
+                        },1000)
                     });
+
                 });
             });
             </script>
+
             <script>$(document).ready(function(c) {
                 $('.close2').on('click', function(c){
                     $('.cart-header2').fadeOut('slow', function(c){
+
+                        var proId = document.getElementById('close2').getAttribute("name");
+                        $.ajax({
+                            type: "POST",
+                            url:"/removeItem",
+                            data:{
+                                productId: proId
+                            },
+                            dataType:"TEXT",
+                            success:function(data){
+
+                            }
+                        });
                         $('.cart-header2').remove();
+                        location.replace("/toCart");
                     });
+
                 });
             });
             </script>
+
             <script>$(document).ready(function(c) {
                 $('.close3').on('click', function(c){
                     $('.cart-header3').fadeOut('slow', function(c){
+                        var proId = document.getElementById('close3').getAttribute("name");
+                        $.ajax({
+                            type: "POST",
+                            url:"/removeItem",
+                            data:{
+                                productId: proId
+                            },
+                            dataType:"TEXT",
+                            success:function(data){
+
+                            }
+                        });
                         $('.cart-header3').remove();
+                        location.replace("/toCart");
                     });
+
                 });
             });
             </script>
+
             <script>$(document).ready(function(c) {
                 $('.close4').on('click', function(c){
                     $('.cart-header4').fadeOut('slow', function(c){
+                        var proId = document.getElementById('close4').getAttribute("name");
+                        $.ajax({
+                            type: "POST",
+                            url:"/removeItem",
+                            data:{
+                                productId: proId
+                            },
+                            dataType:"TEXT",
+                            success:function(data){
+
+                            }
+                        });
                         $('.cart-header4').remove();
+                        location.replace("/toCart");
                     });
+
                 });
             });
             </script>
+
             <th:block th:each="cartItem,index:${session.items}">
                 <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Farm'}">
                     <div th:class="'cart-header'+${index.count}">
-                        <div th:class="'close'+${index.count}">
+                        <div th:class="'close'+${index.count}" th:id="'close'+${index.count}" th:name="${cartItem.getFarmId()}">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>
                         </div>
                         <div class="cart-sec simpleCart_shelfItem">
@@ -104,7 +168,17 @@
                                 <ul class="qty">
                                     <th:block th:each="item:${session.productList}" >
                                         <th:block th:if="${item.getProductId()==cartItem.getFarmId()}">
-                                            <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                            <li>
+                                                <p >数量:
+                                                    <button th:class="addbtn+${index.count}" style="outline: none;border: none;background: none;">
+                                                        <img th:src="@{'/images/addbtn.png'}" />
+                                                    </button>
+                                                <td th:text="${item.getNum()}"></td>
+                                                     <button th:class="subbtn+${index.count}" style="outline: none;border: none;background:none;">
+                                                        <img th:src="@{'/images/subbtn.png'}" />
+                                                    </button>
+                                                </p>
+                                            </li>
                                         </th:block>
                                     </th:block>
                                     <li><p>单价 <td th:text="${cartItem.getFarm_price()}"></td></p></li>
@@ -120,7 +194,7 @@
                 </th:block>
                 <th:block th:if="${cartItem.getClass().getName()=='org.csu.greenfarm.domain.Product'}">
                     <div th:class="'cart-header'+${index.count}">
-                        <div th:class="'close'+${index.count}">
+                        <div th:class="'close'+${index.count}" th:id="'close'+${index.count}" th:name="${cartItem.getProductId()}">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>
                         </div>
                         <div class="cart-sec simpleCart_shelfItem">
@@ -131,7 +205,17 @@
                                 <ul class="qty">
                                     <th:block th:each="item:${session.productList}" >
                                         <th:block th:if="${item.getProductId()==cartItem.getProductId()}">
-                                            <li><p >数量:<td th:text="${item.getNum()}"></td></p></li>
+                                            <li>
+                                                <p >数量:
+                                                    <button th:class="addbtn+${index.count}" style="outline: none;border: none;background: none;">
+                                                        <img th:src="@{'/images/addbtn.png'}" />
+                                                    </button>
+                                                <td th:text="${item.getNum()}"></td>
+                                                <button th:class="subbtn+${index.count}" style="outline: none;border: none;background: none;">
+                                                    <img th:src="@{'/images/subbtn.png'}" />
+                                                </button>
+                                                </p>
+                                            </li>
                                         </th:block>
                                     </th:block>
                                     <li><p>单价 <td th:text="${cartItem.getProduct_price()}"></td></p></li>
@@ -147,10 +231,163 @@
                 </th:block>
             </th:block>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix" > </div>
     </div>
 </div>
 
 <footer th:replace="common/template_heads::footer(${main_product},${main_farm})"></footer>
+
+<script>
+    $('.addbtn1').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/addItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.subbtn1').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/subItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.addbtn2').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/addItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.subbtn2').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/subItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.addbtn3').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/addItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.subbtn3').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/subItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.addbtn4').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/addItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
+<script>
+    $('.subbtn4').on('click',function (c) {
+        var proId = document.getElementById('close1').getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/subItem",
+            data:{
+                productId:proId
+            },
+            dataType:"TEXT",
+            success:function (data) {
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/toCart");
+        },500)
+    })
+</script>
 </body>
 </html>

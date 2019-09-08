@@ -90,6 +90,8 @@ public class OrderController {
         Account account = (Account)request.getSession().getAttribute("account");
         buyOrder.setBuy_account(account.getAccount());
         buyOrder.setBuy_date((Date) request.getSession().getAttribute("time"));
+        if((Date) request.getSession().getAttribute("time")==null)
+            buyOrder.setBuy_date(new Date());
         buyOrder.setBuy_period(11);
         buyOrder.setBuyorderId(request.getSession().getAttribute("orderId").toString());
         orderService.insertBuyOrder(buyOrder);
