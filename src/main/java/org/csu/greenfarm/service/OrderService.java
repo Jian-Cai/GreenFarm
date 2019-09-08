@@ -3,6 +3,7 @@ package org.csu.greenfarm.service;
 import org.csu.greenfarm.domain.BuyOrder;
 import org.csu.greenfarm.domain.OrderItem;
 import org.csu.greenfarm.domain.PreOrder;
+import org.csu.greenfarm.domain.Product;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface OrderService {
     /*
     预定订单和购买订单共用一个Service
      */
+
+    List<Object> getProductByOrderId(String orderId); //通过订单号返回商品
 
     List<PreOrder> getAllPreOrder(); //获取所有的订单
     List<PreOrder> getPreOrderByAccount(String account); //根据用户账户获取订单

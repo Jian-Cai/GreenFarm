@@ -1,12 +1,23 @@
 package org.csu.greenfarm.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class BuyOrder implements java.io.Serializable {
     private String buyorderId; //购买订单ID
     private String buy_account; //购买人
     private int buy_period; //运货周期
     private Date buy_date; //购买时间
+    private List<Object> products;
+
+    public List<Object> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Object> products) {
+        this.products = new ArrayList<>(products);
+    }
 
     public String getBuyorderId() {
         return buyorderId;

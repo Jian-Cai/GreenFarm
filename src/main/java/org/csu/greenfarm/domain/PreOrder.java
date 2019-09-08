@@ -1,12 +1,23 @@
 package org.csu.greenfarm.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PreOrder implements java.io.Serializable {
     private String preorderId; //预定订单Id
     private Date pre_time; //预定订单时间
     private String pre_account; //预定订单所属用户账户名
     private String remarks; //备注
+    private List<Object> products;
+
+    public List<Object> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Object> products) {
+        this.products = new ArrayList<>(products);
+    }
 
     public String getPreorderId() {
         return preorderId;

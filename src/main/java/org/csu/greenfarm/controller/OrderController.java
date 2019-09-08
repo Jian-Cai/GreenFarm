@@ -35,8 +35,7 @@ public class OrderController {
     @GetMapping("/account/order")
     public String toOrders(Model model){
         request.getSession().setAttribute("status", 3);
-        Date date = new Date();
-        request.getSession().setAttribute("time", date);
+        Date date = (Date) request.getSession().getAttribute("time");
         if(request.getParameter("isSet")!=null){
             try{
                 PreOrder order = new PreOrder();
@@ -54,6 +53,14 @@ public class OrderController {
         Account account = (Account)request.getSession().getAttribute("account");
         List<PreOrder> preOrder = orderService.getPreOrderByAccount(account.getAccount());
         List<BuyOrder> buyOrder = orderService.getBuyOrderByAccount(account.getAccount());
+        for(int a = 0; a < preOrder.size(); a++){
+            String id = preOrder.get(a).getPreorderId();
+            preOrder.get(a).setProducts(orderService.getProductByOrderId(id));
+        }
+        for(int a = 0; a < buyOrder.size(); a++){
+            String id = buyOrder.get(a).getBuyorderId();
+            buyOrder.get(a).setProducts(orderService.getProductByOrderId(id));
+        }
         model.addAttribute("preorder", preOrder);
         model.addAttribute("buyorder", buyOrder);
         request.getSession().setAttribute("preOrder",preOrder);
@@ -73,11 +80,10 @@ public class OrderController {
     public String showPaySuccess(@RequestParam("preorderId") String preorderId){
         Cart cart = (Cart)request.getSession().getAttribute("cart");
         List<CartItem> productList = cartService.productList(cart.getCartId());
-        BuyOrder buyOrder = new BuyOrder();
         for(int a = 0; a < productList.size(); a++){
             try{
                 OrderItem orderItem = new OrderItem();
-                orderItem.setOrderItemId(request.getSession().getAttribute("orderId").toString() + request.getSession().getAttribute("account").toString());
+                orderItem.setOrderItemId(orderService.setOrderId() + orderService.setOrderId());
                 orderItem.setOrderId(request.getSession().getAttribute("orderId").toString());
                 orderItem.setAmount(productList.get(a).getNum());
                 orderItem.setProductId(productList.get(a).getProductId());
@@ -87,6 +93,8 @@ public class OrderController {
                 e.printStackTrace();
             }
         }
+
+        BuyOrder buyOrder = new BuyOrder();
         Account account = (Account)request.getSession().getAttribute("account");
         buyOrder.setBuy_account(account.getAccount());
         buyOrder.setBuy_date((Date) request.getSession().getAttribute("time"));
@@ -109,6 +117,8 @@ public class OrderController {
     @GetMapping("/order/setOrder")
     public String setOrder(){
         //生成订单号
+        Date date = new Date();
+        request.getSession().setAttribute("time", date);
         request.getSession().setAttribute("orderId", orderService.setOrderId());
         return "order/setOrder";
     }

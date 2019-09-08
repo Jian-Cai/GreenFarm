@@ -17,8 +17,8 @@
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
     <script src="/js/jquery.min.js"></script>
     <!-- start top_js_button -->
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="/js/move-top.js"></script>
+    <script type="text/javascript" src="/js/easing.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -88,42 +88,71 @@
     <div class="right">
         <section class="tabs1">
             <input id="tab-11" type="radio" name="radio-set" class="tab-selector-11" checked="checked">
-            <label for="tab-11" class="tab-label-1">预定订单</label>
+            <label for="tab-11" class="tab-label-1">购买订单</label>
 
             <input id="tab-21" type="radio" name="radio-set" class="tab-selector-21">
-            <label for="tab-21" class="tab-label-2">购买订单</label>
+            <label for="tab-21" class="tab-label-2">预定订单</label>
 
             <div class="clear-shadow"></div>
 
             <div class="content1">
                 <div class="content-11">
-                    <th:block th:each="preorderItem:${preorder}">
-                        <li>
-                            <div class="hp1">
-                                <p th:text="'预定订单编号：' + ${preorderItem.getPreorderId()}"></p>
-                                <p th:text="'下单时间：' + ${#dates.format(preorderItem.getPre_time(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
-                                <p th:text="'备注：' + ${preorderItem?.getRemarks()}"></p>
-                            </div>
-                            <div class="hp2">
-                                <a th:href="'/pay/toPay?preorderId=' + ${preorderItem.getPreorderId()}" class="btn">去支付</a>
-                            </div>
-                        </li>
-                        <hr/>
-                    </th:block>
-                    <div class="clear"></div>
-                </div>
-                <div class="content-21">
                     <th:block th:each="buyorderItem:${buyorder}">
                         <li>
                             <div class="hp1">
                                 <p th:text="'订单编号：' + ${buyorderItem.getBuyorderId()}"></p>
                                 <p th:text="'下单时间：' + ${#dates.format(buyorderItem.getBuy_date(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
                             </div>
+                            <form>
+                                <th:block th:each="product:${buyorderItem.getProducts()}">
+                                    <div class="order" th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Product'}">
+                                        <a th:href="'/product/productItem?productId=' + ${product.getProductId()}">
+                                            <div class="order-img">
+                                                <img th:src="'/images/' + ${product.getProduct_photo()}">
+                                            </div>
+                                            <div class="order-p">
+                                                <p th:text="${product.getProduct_name()}"></p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Farm'}">
+                                        <a th:href="'/farm/farmItem?farmId=' + ${product.getFarmId()}">
+                                            <div class="order-img">
+                                                <img th:src="'/images/' + ${product.getFarm_photo()}">
+                                            </div>
+                                            <div class="order-p">
+                                                <p th:text="${product.getFarm_name()}"></p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </th:block>
+                                <div class="order-amount">
+                                    <p th:text="'预计到达时间：' + ${buyorderItem.getBuy_period()} + '天后'"></p>
+                                </div>
+                            </form>
                         </li>
                         <hr/>
                     </th:block>
                 </div>
-
+                <div class="content-21">
+                    <th:block th:each="preorderItem:${preorder}">
+                        <li>
+                            <a>
+                                <div class="hp1">
+                                    <p th:text="'预定订单编号：' + ${preorderItem.getPreorderId()}"></p>
+                                    <p th:text="'下单时间：' + ${#dates.format(preorderItem.getPre_time(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
+                                    <p th:text="'备注：' + ${preorderItem?.getRemarks()}"></p>
+                                </div>
+                                <div class="hp2">
+                                    <a th:href="'/pay/toPay?preorderId=' + ${preorderItem.getPreorderId()}" class="btn">去支付</a>
+                                </div>
+                            </a>
+                        </li>
+                        <hr/>
+                    </th:block>
+                    <div class="clear"></div>
+                </div>
             </div>
         </section>
     </div>
