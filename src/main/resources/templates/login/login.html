@@ -1,23 +1,28 @@
-<html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title>登录界面</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="/js/citi-cup.js"></script>
 </head>
-<body style="overflow-x:hidden; overflow-y:hidden">
-    <form class="form" name="form1" action="/tologin" method="post">
-        <h1>简&nbsp;&nbsp;&nbsp;菜</h1>
+<body style="overflow-x:hidden">
+<header th:replace="common/template_heads::header(${session.status})"></header>
+<img id="login_img" src="/images/login-bg.png">
+<div id="login_div" align="center">
+
+    <form id="login_form" class="form" name="form1" action="/tologin" method="post">
         <input class="input_1" id="username" size="15" name="username" placeholder="手机号/邮箱/昵称"><br>
         <input class="input_1" id="password" type="password" size="15" name="password" placeholder="密码"><br>
         <br>
-        <br>
 
-        <br>
         <input class="input_3" type="submit" onclick="login()" value="登录">
         <input class="input_3" type="button"  onclick="window.location.href='/toregister'" value="注册">
     </form>
+
+
+</div>
     <script type="text/javascript" src="/js/three.js"></script>
     <script type="text/javascript">
         var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
@@ -107,8 +112,6 @@
             count += 0.1;
         }
     </script>
-    <div>
-        <canvas width="2432" height="1000" style="width: 1216px; height: 600px;"></canvas>
-    </div>
+
 </body>
 </html>
