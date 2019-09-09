@@ -35,20 +35,20 @@
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
-            <img src="/images/user_face.jpg">
+            <img th:src="'/images/' + ${session.account.getHead()}">
         </div>
         <div class="user-account">
-            <p class="tip">huann，Tom</p>
+            <p th:text="'您好, '+ ${session.account.getUsername()}" class="tip">huann，Tom</p>
             <p class="account">
-                <span>帐户名：Tom</span>
-                <span>用户：tomandjerry</span>
+                <span th:text="'帐户名:' + ${session.account.getAccount()}">帐户名：Tom</span>
+                <span th:text="'用户: ' + ${session.account.getUsername()}">用户：tomandjerry</span>
             </p>
         </div>
         <div class="user-modify">
             <a href="/tologout">退出登录&gt;</a>
         </div>
     </div>
-</div>
+
 <div class="w1200">
     <div class="left">
         <ul>

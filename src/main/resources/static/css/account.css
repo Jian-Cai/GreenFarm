@@ -321,38 +321,39 @@ form div{
 
 .order-p{
 	display: none;
-	margin-top: 0px;
-	padding-top: 10px;
-	font-size: 0.8em;
+	font-size: 1em;
 	width: 20%;
-	float: left ;
-	padding-left: 30px;
+	float: left;
 }
 .order-amount{
+
 	display: none;
+	margin-top: 0px;
+	padding-top: -10px;
 	font-size: 0.8em;
 	width: 20%;
 	float: right;
-	padding-right: 70px;
-	margin-top: -15px;
+	padding-right: 10%;
 
 }
 
 .order-p p{
-	margin-top: 10%;
-	padding-left: 30%;
+	padding-left: 60%;
+	margin-top: 15%;
+	float: left ;
 
 }
 .order-img{
 	display: none;
-	width: 60%;
+	width:6%;
+	float: left ;
 
 }
 .order-img img{
-	width: 15%;
-	height: 15%;
-	margin-left: 0;
-	padding-left:0;
+	width: 100%;
+	height: 100%;
+	margin-left: 70%;
+	padding-top: 20%;
 
 }
 .no-doc form{
@@ -380,5 +381,13 @@ hr{
 	background-image: repeating-radial-gradient(transparent, rgba(107, 107, 107, 0.37) 12.18%, rgba(44, 250, 234, 1), rgba(236, 189, 17, 0.36) 89.5%, rgba(1, 1, 1, 0));
 
 }
+
+.hr{
+	width: 20%;
+	float: left ;
+	padding-left: 10px;
+
+}
+
 
 
