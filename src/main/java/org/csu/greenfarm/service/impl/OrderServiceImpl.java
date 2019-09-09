@@ -3,13 +3,13 @@ package org.csu.greenfarm.service.impl;
 import org.csu.greenfarm.domain.BuyOrder;
 import org.csu.greenfarm.domain.OrderItem;
 import org.csu.greenfarm.domain.PreOrder;
-import org.csu.greenfarm.persistence.BuyOrderMapper;
-import org.csu.greenfarm.persistence.OrderMapper;
-import org.csu.greenfarm.persistence.PreOrderMapper;
+import org.csu.greenfarm.domain.Product;
+import org.csu.greenfarm.persistence.*;
 import org.csu.greenfarm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -26,6 +26,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private ProductMapper productMapper;
+
+    @Autowired
+    private FarmMapper farmMapper;
+
+    @Override
+    public List<Object> getProductByOrderId(String orderId) {
+        List<OrderItem> orderItems = orderMapper.getOrderItemByOrderId(orderId);
+        List<Object> products = new ArrayList<>();
+        for(int a = 0; a < orderItems.size(); a++){
+            if(productMapper.getProductByProductId(orderItems.get(a).getProductId()) == null){
+                products.add(farmMapper.getFarmByFarmId(orderItems.get(a).getProductId()));
+            }
+            else products.add(productMapper.getProductByProductId(orderItems.get(a).getProductId()));
+        }
+        return products;
+    }
 
     @Override
     public List<PreOrder> getAllPreOrder() {
@@ -132,5 +151,6 @@ public class OrderServiceImpl implements OrderService {
         String paymentID =String.valueOf(r1)+String.valueOf(r2)+String.valueOf(now);
         return paymentID;
     }
+
 
 }

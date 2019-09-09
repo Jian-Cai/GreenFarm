@@ -860,10 +860,10 @@ ul.qty li {
     font-weight: 400;
     float: right; 
 }
-.cart-header,.cart-header2 {
+.cart-header,.cart-header2,.cart-header3,.cart-header4 {
     position: relative;
 }
-.close1,.close2{
+.close1,.close2,.close3,.close4{
     position: absolute;
     right: 0%;
     color: #D2D2D2;

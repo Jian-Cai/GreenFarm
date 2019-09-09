@@ -310,3 +310,75 @@ hr{
 .tabs1 div{
 	display:inline-block;
 }
+
+form div{
+	width: 100%;
+}
+
+.order{
+	display: inline-block ;
+}
+
+.order-p{
+	display: none;
+	margin-top: 0px;
+	padding-top: 10px;
+	font-size: 0.8em;
+	width: 20%;
+	float: left ;
+	padding-left: 30px;
+}
+.order-amount{
+	display: none;
+	font-size: 0.8em;
+	width: 20%;
+	float: right;
+	padding-right: 70px;
+	margin-top: -15px;
+
+}
+
+.order-p p{
+	margin-top: 10%;
+	padding-left: 30%;
+
+}
+.order-img{
+	display: none;
+	width: 60%;
+
+}
+.order-img img{
+	width: 15%;
+	height: 15%;
+	margin-left: 0;
+	padding-left:0;
+
+}
+.no-doc form{
+	display: inline-block;
+	font-size: 1.8em;
+	text-align: left ;
+	letter-spacing:5px;
+	text-emphasis-color: black ;
+	padding-top: 20px;
+	color: #111111;
+
+}
+.no-doc form li{
+	width: 100%;
+	height: 10%;
+	padding-left: 7.4%;
+	padding-top: 20px;
+	margin-block-end: 20px;
+}
+hr{
+	width:80%;
+	margin:0 auto;
+	border: 0;
+	height: 1px;
+	background-image: repeating-radial-gradient(transparent, rgba(107, 107, 107, 0.37) 12.18%, rgba(44, 250, 234, 1), rgba(236, 189, 17, 0.36) 89.5%, rgba(1, 1, 1, 0));
+
+}
+
+

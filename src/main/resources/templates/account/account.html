@@ -35,13 +35,13 @@
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
-            <img src="/images/user_face.jpg">
+            <img th:src="'/images/' + ${session.account.getHead()}">
         </div>
         <div class="user-account">
-            <p class="tip">huann，Tom</p>
+            <p th:text="'您好, '+ ${session.account.getUsername()}" class="tip">huann，Tom</p>
             <p class="account">
-                <span>帐户名：Tom</span>
-                <span>用户：tomandjerry</span>
+                <span th:text="'帐户名:' + ${session.account.getAccount()}">帐户名：Tom</span>
+                <span th:text="'用户: ' + ${session.account.getUsername()}">用户：tomandjerry</span>
             </p>
         </div>
         <div class="user-modify">
@@ -93,15 +93,16 @@
             <div class="no-doc">
                 <form>
                     <ul>
-                        <li th:utext="'<span>用户名：</span>' + ${session.account.getUsername()}">用户名：</li>
+                        <li><span  th:text="'用户名: ' + ${session.account.getUsername()}"></span></li>
                         <hr/>
-                        <li th:text="'账户：' + ${session.account.getAccount()}">账户：</li>
+                        <li><span th:text="'账户：' + ${session.account.getAccount()}"></span></li>
                         <hr/>
-                        <li th:text="'邮箱：'+ ${session.account.getMail()}" >邮箱：</li>
+                        <li><span th:text="'邮箱：'+ ${session.account.getMail()}"></span></li>
                         <hr/>
-                        <li th:text="'收货地址：' + ${session.account.getRecadd()}">收货地址</li>
+                        <li><span th:text="'收货地址：' + ${session.account.getRecadd()}"></span></li>
                     </ul>
                 </form>
+
             </div>
         </div>
     </div>

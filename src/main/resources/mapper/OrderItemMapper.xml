@@ -15,7 +15,7 @@
         SELECT * FROM orderItem where orderId=#{orderId}
     </select>
     <insert id="insertOrderItem" parameterType="org.csu.greenfarm.domain.OrderItem">
-        INSERT orderItem(orderItemId,orderId, productId, amount) values (#{orderItemId}, #{orderId}, #{productId}, #{amount})
+        INSERT orderItem(orderItemId, orderId, productId, amount) values (#{orderItemId}, #{orderId}, #{productId}, #{amount})
     </insert>
 <!--
     <delete id="delectBuyOrder" parameterType="java.lang.String">

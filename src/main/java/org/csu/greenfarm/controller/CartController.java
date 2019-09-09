@@ -67,13 +67,30 @@ public class CartController {
             double allTotal = cartService.getAllTotal(cart.getCartId());
             session.setAttribute("allTotal", allTotal);
             session.setAttribute("items", items);
+
             return "product/cart";
         }
         else return "login/login";
     }
 
     @GetMapping("/addToCart")
-    public String addToCart(@RequestParam("productId") String productId){
+    public String addToCart(@RequestParam("productId") String productId,Model model){
+
+        List<Product> p = productService.getAllProducts();
+        List<Farm> f = farmService.getAllFarm();
+        List<Farm> farms = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        for (int a = 0; a < 6; a++) {
+            if (a < f.size()) {
+                farms.add(f.get(a));
+            }
+            if (a < p.size()) {
+                products.add(p.get(a));
+            }
+        }
+        model.addAttribute("main_farm", farms);
+        model.addAttribute("main_product", products);
+        model.addAttribute("main_status", 3); //状态码
 
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
@@ -101,5 +118,26 @@ public class CartController {
             return "product/cart";
         }
         else return  "login/login";
+    }
+
+    @PostMapping("/removeItem")
+    public void removeItem(@RequestParam("productId") String productId){
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        cartService.removeProduct(cart.getCartId(),productId);
+    }
+
+    @PostMapping("/addItem")
+    public  void addItem(@RequestParam("productId") String productId){
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        cartService.addNum(cart.getCartId(),productId);
+        System.out.println(productId);
+    }
+    @PostMapping("/subItem")
+    public  void subItem(@RequestParam("productId") String productId){
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        cartService.subNum(cart.getCartId(),productId);
     }
 }
