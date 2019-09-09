@@ -52,7 +52,7 @@
                                     <div class="more-views" style="float:left;">
                                         <div class="more-views-container">
                                             <div class="product-image">
-                                                <img th:src="@{'/images/main/' + ${product.getProduct_photo()}}" />
+                                                <img th:src="@{'/images/small/' + ${product.getProduct_photo()}}" />
                                             </div>
                                         </div>
                                     </div>
@@ -130,6 +130,7 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="content-2">
+                                <img th:src="@{'/images/detail/' + ${product.getProduct_photo()}}" />
                                 <p class="para"><span>农产品详情</span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
                                 <ul class="qua_nav">
                                     <li>Multimedia Systems</li>
