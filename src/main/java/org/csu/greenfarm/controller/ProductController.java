@@ -87,6 +87,6 @@ public class ProductController {
         model.addAttribute("pageNum",num-1); //num从0开始
         model.addAttribute("products1", indexList); //model内添加ProductList
         model.addAttribute("cate", cate);
-        return "product/productList";
+        return "product/productList2";
     }
 }
