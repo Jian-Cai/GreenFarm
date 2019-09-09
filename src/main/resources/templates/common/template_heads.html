@@ -23,7 +23,10 @@
                     <ul class="icon1 sub-icon1">
                         <li><a class="active-icon c1" href="/toCart"><i></i></a>
                             <ul class="sub-icon1 list">
-                                <li><h3>总价<td th:value="${session.allTotal}"></td></h3><a href=""></a></li>
+                                <li>
+                                    <h3 th:if="${session.allTotal == null || session.allTotal == ''}" th:text="购物车为空">总价<td th:value="${session.allTotal}"></td></h3>
+                                    <h3 th:unless="${session.allTotal == null}">总价<td th:value="${session.allTotal}"></td></h3>
+                                </li>
                             </ul>
                         </li>
                     </ul>

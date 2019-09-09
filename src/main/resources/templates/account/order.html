@@ -26,6 +26,18 @@
                 $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
             });
         });
+        function f1() {
+            var f1 = document.getElementById("f1");
+            var f2 = document.getElementById("f2");
+            f1.hide();
+            f2.show();
+        }
+        function f2() {
+            var f1 = document.getElementById("f1");
+            var f2 = document.getElementById("f2");
+            f1.show();
+            f2.hide();
+        }
     </script>
 
 </head>
@@ -87,16 +99,16 @@
     </div>
     <div class="right">
         <section class="tabs1">
-            <input id="tab-11" type="radio" name="radio-set" class="tab-selector-11" checked="checked">
+            <input onclick="f1()" id="tab-11" type="radio" name="radio-set" class="tab-selector-11" checked="checked">
             <label for="tab-11" class="tab-label-1">购买订单</label>
 
-            <input id="tab-21" type="radio" name="radio-set" class="tab-selector-21">
+            <input onclick="f2()" id="tab-21" type="radio" name="radio-set" class="tab-selector-21">
             <label for="tab-21" class="tab-label-2">预定订单</label>
 
             <div class="clear-shadow"></div>
 
             <div class="content1">
-                <div class="content-11">
+                <div id="f1" class="content-11">
                     <th:block th:each="buyorderItem:${buyorder}">
                         <li>
                             <div class="hp1">
@@ -108,7 +120,7 @@
                                     <div class="order" th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Product'}">
                                         <a th:href="'/product/productItem?productId=' + ${product.getProductId()}">
                                             <div class="order-img">
-                                                <img th:src="'/images/' + ${product.getProduct_photo()}">
+                                                <img th:src="'/images/small/' + ${product.getProduct_photo()}">
                                             </div>
                                             <div class="order-p">
                                                 <p th:text="${product.getProduct_name()}"></p>
@@ -135,7 +147,7 @@
                         <hr/>
                     </th:block>
                 </div>
-                <div class="content-21">
+                <div id="f2" class="content-21">
                     <th:block th:each="preorderItem:${preorder}">
                         <li>
                             <a>
