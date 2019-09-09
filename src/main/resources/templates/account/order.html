@@ -38,6 +38,20 @@
             f1.show();
             f2.hide();
         }
+        function func(){
+            var t = document.getElementsByClassName("textarea1");
+            t.onfocus = function(){
+                if(this.innerHTML == '输入不超过100字评论'){this.value = ''}
+            };
+
+            t.onblur = function(){
+                if(this.value == ''){
+                    this.innerHTML = '输入不超过100字评论'
+                }
+            };
+        }
+
+
     </script>
 
 </head>
@@ -115,8 +129,9 @@
                                 <p th:text="'订单编号：' + ${buyorderItem.getBuyorderId()}"></p>
                                 <p th:text="'下单时间：' + ${#dates.format(buyorderItem.getBuy_date(), 'yyyy-MM-dd, HH:mm:ss')}"></p>
                             </div>
-                            <form>
+                            <form action="/setComment">
                                 <th:block th:each="product:${buyorderItem.getProducts()}">
+                                    <input type="hidden" th:value="${product}">
                                     <div class="order" th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Product'}">
                                         <a th:href="'/product/productItem?productId=' + ${product.getProductId()}">
                                             <div class="order-img">
@@ -126,8 +141,10 @@
                                                 <p th:text="${product.getProduct_name()}"></p>
                                             </div>
                                         </a>
+                                        <!--<textarea class="textarea1"></textarea>-->
                                     </div>
                                     <div th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Farm'}">
+                                        <input name="farmId" type="hidden" th:value="${product.getFarmId()}">
                                         <a th:href="'/farm/farmItem?farmId=' + ${product.getFarmId()}">
                                             <div class="order-img">
                                                 <img th:src="'/images/' + ${product.getFarm_photo()}">
@@ -136,8 +153,12 @@
                                                 <p th:text="${product.getFarm_name()}"></p>
                                             </div>
                                         </a>
+                                        <textarea name="com" class="textarea1"></textarea>
+                                        <div class="input-div">
+                                            <input th:id="${product.getFarmId()}" type="submit" value="提交">
+                                            <label class="sub-label" th:for="${product.getFarmId()}">提交</label>
+                                        </div>
                                     </div>
-
                                 </th:block>
                                 <div class="order-amount">
                                     <p th:text="'预计到达时间：' + ${buyorderItem.getBuy_period()} + '天后'"></p>

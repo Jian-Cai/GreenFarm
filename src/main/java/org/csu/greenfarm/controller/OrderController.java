@@ -104,7 +104,6 @@ public class OrderController {
         buyOrder.setBuyorderId(request.getSession().getAttribute("orderId").toString());
         orderService.insertBuyOrder(buyOrder);
 
-        request.getSession().removeAttribute("orderId");
         request.getSession().removeAttribute("allTotal");
         request.getSession().removeAttribute("items");
         request.getSession().removeAttribute("productList");

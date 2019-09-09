@@ -124,6 +124,10 @@ public class AccountController {
         Account account = service.getAccount(username);
         if(account.getPassword().equals(password)){
             request.getSession().setAttribute("account", account);
+            Cart cart = cartService.initCart(account.getAccount());
+            request.getSession().setAttribute("cart", cart);
+            double allTotal = cartService.getAllTotal(cart.getCartId());
+            request.getSession().setAttribute("allTotal", allTotal);
             return true;
         }
         else return false;

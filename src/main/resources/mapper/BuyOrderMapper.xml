@@ -11,7 +11,7 @@
 <mapper namespace="org.csu.greenfarm.persistence.BuyOrderMapper">
     <cache />
 
-    <select id="getAllPreOrder" resultType="org.csu.greenfarm.domain.BuyOrder">
+    <select id="getAllBuyOrder" resultType="org.csu.greenfarm.domain.BuyOrder">
         SELECT * FROM buyorder
     </select>
     <select id="getBuyOrderByAccount"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.BuyOrder">

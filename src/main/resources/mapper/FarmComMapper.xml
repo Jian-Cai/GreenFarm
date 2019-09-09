@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.FarmComMapper">
+    <cache />
+
+
+    <select id="getAllFarmComment"  resultType="org.csu.greenfarm.domain.FarmComment">
+        SELECT * FROM farmcom
+    </select>
+
+    <select id="getFarmCommentByUsername"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.FarmComment">
+        SELECT * FROM farmcom WHERE farmcom_username=#{farmcom_username}
+    </select>
+
+
+    <select id="getFarmCommentByFarmId" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.FarmComment">
+        SELECT * FROM farmcom WHERE farmcom_farmId=#{farmcom_farmId}
+    </select>
+
+    <insert id="insertFarmComment" parameterType="org.csu.greenfarm.domain.FarmComment">
+        insert farmcom(farmcomId, farmcom_username, farmcom_farmId, farmcom_time, farmcom_comment, farmcom_photo) values (#{farmcomId}, #{farmcom_username}, #{farmcom_farmId}, #{farmcom_time}, #{farmcom_comment}, #{farmcom_photo})
+    </insert>
+
+</mapper>

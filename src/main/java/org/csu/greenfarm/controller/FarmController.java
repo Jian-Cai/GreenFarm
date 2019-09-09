@@ -10,6 +10,7 @@ package org.csu.greenfarm.controller;
 import org.apache.catalina.LifecycleState;
 import org.csu.greenfarm.domain.Farm;
 import org.csu.greenfarm.domain.Product;
+import org.csu.greenfarm.service.CommentService;
 import org.csu.greenfarm.service.FarmService;
 import org.csu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class FarmController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private HttpServletRequest request;
@@ -64,6 +68,7 @@ public class FarmController {
         Farm farm = service.getFarmByFarmId(farmId);
         model.addAttribute("farm", farm);
         model.addAttribute("farm_product", productService.getProductByProductOrigin(farmId));
+        model.addAttribute("comment", commentService.getCommentByItemId(farmId));
         return "farm/farmItem";
     }
 

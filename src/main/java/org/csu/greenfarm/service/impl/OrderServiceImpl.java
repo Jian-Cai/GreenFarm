@@ -79,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<BuyOrder> getAllBuyOrder() {
-        return orderByDate2(buyOrderMapper.getAllPreOrder());
+        return orderByDate2(buyOrderMapper.getAllBuyOrder());
     }
 
     @Override

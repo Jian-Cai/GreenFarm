@@ -388,6 +388,26 @@ hr{
 	padding-left: 10px;
 
 }
+.textarea1{
+	margin-top: 1%;
+	width: 300px;
+	height: 80px;
+	margin-left: 10%;
+}
+
+
+.input-div{
+	float:right;
+	margin-right:28%;
+	margin-top:5.5%;
+	width:1px;
+}
+.input-div label{
+	width:50px;
+	height:40px;
+	font-size:0.1em;
+	text-align:center;
+}
 
 
 
