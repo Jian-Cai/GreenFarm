@@ -12,6 +12,82 @@
 </head>
 <body>
 <header th:fragment="header(status)">
+    <!-- 主体 -->
+    <script>
+        window.onload = function(){
+            document.getElementById("btn_showlogin").onclick = shogMinLogin;
+            document.getElementById("close_minilogin").onclick = closeLogin;
+            /* 显示登录窗口 */
+            function shogMinLogin(){
+                var mini_login = document.getElementsByClassName("mini_login")[0];
+                var cover = document.getElementsByClassName("cover")[0];
+                mini_login.style.display = "block";
+                cover.style.display = "block";
+                cover.style.height = document.body.scrollHeight + "px";
+
+                //登录框layout
+                mini_login.style.left = (document.body.scrollWidth - mini_login.scrollWidth) / 2 + "px";
+                mini_login.style.top = 45 + "%";
+            }
+
+            /* 关闭登录窗口 */
+            function closeLogin(){
+                var mini_login = document.getElementsByClassName("mini_login")[0];
+                var cover = document.getElementsByClassName("cover")[0];
+                mini_login.style.display = "none";
+                cover.style.display = "none";
+            }
+
+        };
+        $(document).ready(function(){
+            $("#idlogin").click(function(){
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                $.ajax({
+                    type:"POST",
+                    url:"/login",
+                    data:{
+                        username:username,
+                        password:password,
+                    },
+                    dataType:"TEXT",
+                    success:function (data) {
+                        var mini_login = document.getElementsByClassName("mini_login")[0];
+                        var cover = document.getElementsByClassName("cover")[0];
+                        mini_login.style.display = "none";
+                        cover.style.display = "none";
+                        location.replace(location.href);
+                    }
+                })
+            });
+        });
+
+    </script>
+
+    <!-- 弹出登录小窗口 -->
+    <div class="mini_login" id="mini_login">
+        <!-- 表单 -->
+        <form action="" method="post">
+            <div class="item firstLine" id="firstLine">
+                <span class="login_title">我要登录</span>
+                <span class="login_close" id="close_minilogin">X</span>
+            </div>
+            <div class="item">
+                <label>用户</label>
+                <input id="username" type="text" value="" name="uname" />
+            </div>
+            <div class="item">
+                <label>密码</label>
+                <input id="password" type="password" value="" name="upwd" />
+            </div>
+            <div class="item">
+                <p id="p"></p>
+                <a href="javascript:void(0)" class="btn_login" id="idlogin">登录</a>
+            </div>
+        </form>
+    </div>
+    <!-- 遮罩层 -->
+    <div class="cover"></div>
     <!-- start header -->
     <div class="header_bg">
         <div class="wrap">
@@ -53,8 +129,8 @@
                         <li th:unless="${status == 1}"><a href="/farm/farmList?index=0">采摘园</a></li> |
                         <li th:if="${status == 2}" class="active"><a href="/product/productList?index=0">农产品</a></li>
                         <li th:unless="${status == 2}" ><a href="/product/productList?index=0">农产品</a></li> |
-                        <li th:if="${status == 3}" class="active"><a href="/account/account">个人中心</a></li>
-                        <li th:unless="${status == 3}"><a href="/account/account">个人中心</a></li>
+                        <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
+                        <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
                     </ul>
                 </div>
                 <div class="top-nav">
@@ -67,8 +143,8 @@
                             <li class="nav-item"><a th:unless="${status == 1}" href="/farm/farmList?index=0">采摘园</a></li>
                             <li class="nav-item"><a th:if="${status == 2}" class="active" href="/product/productList?index=0">农产品</a></li>
                             <li class="nav-item"><a th:unless="${status == 2}" href="/product/productList?index=0">农产品</a></li>
-                            <li class="nav-item"><a th:if="${status == 3}" class="active" href="/account/account">个人中心</a></li>
-                            <li class="nav-item"><a th:unless="${status == 3}" href="/account/account">个人中心</a></li>
+                            <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
+                            <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
                         </ul>
                     </nav>
                     <div class="search_box">

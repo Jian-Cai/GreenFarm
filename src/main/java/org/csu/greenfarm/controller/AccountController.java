@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -68,7 +69,6 @@ public class AccountController {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
             session.setAttribute("cart", cart);
-            session.setAttribute("productService", productService);
             return "account/account";
         }
         else{
@@ -117,4 +117,16 @@ public class AccountController {
         request.getSession().removeAttribute("account");
         return "index";
     }
+
+    @ResponseBody
+    @PostMapping("/login")
+    public boolean inPageLogin(@RequestParam("username") String username, @RequestParam("password") String password){
+        Account account = service.getAccount(username);
+        if(account.getPassword().equals(password)){
+            request.getSession().setAttribute("account", account);
+            return true;
+        }
+        else return false;
+    }
+
 }
