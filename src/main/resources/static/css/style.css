@@ -1722,6 +1722,13 @@ a{
 	padding-left: 4px;
 	padding-right: 4px;
 }
+
+#loginout{
+    color: #FFFFFF;
+}
+#user_head_photo{
+    z-index: 100;
+}
 #login_img{
 	position: absolute;
 	width: 70%;
