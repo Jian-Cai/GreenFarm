@@ -1779,16 +1779,19 @@ a{
 }
 /* 登录按钮 */
 .mini_login .item a.btn_login{
-	display:inline-block;
+	display:inline;
 	height:35px;
 	line-height:30px;
-	width:30%;
-	margin-left: 13%;
+	width:50%;
+	margin-left: 15%;
 	background:#63CBA7;
 	border-radius:5px;
 	font-weight:bold;
 	text-align:center;
 	padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20PX;
+    padding-left: 20px;
 }
 .mini_login .item a.btn_login:hover{
 	background:#c0ecdd;

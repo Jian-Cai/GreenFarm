@@ -66,9 +66,10 @@
     <div class="mini_login" id="mini_login">
        <img id="mini_login_img" src="/images/login-bg.png">
         <form id="mini_login_form" action="" method="post">
-            <div class="item firstLine" id="firstLine">
-                <span class="login_close" id="close_minilogin"><img src="/images/close_login.png"></span>
-            </div>
+<!--            <div class="item firstLine" id="firstLine">-->
+<!--                <span class="login_close" id="close_minilogin"><img src="/images/close_login.png"></span>-->
+<!--            </div>-->
+            <span class="login_close" id="close_minilogin"><img src="/images/close_login.png" style="margin-left: 73%"></span>
            <div class="item">
                 <label>用户</label>
                 <input id="username" type="text" value="" name="uname" />
@@ -80,9 +81,10 @@
             </div>
             <br>
             <div class="item">
-                <p id="p"></p>
-                <a href="javascript:void(0)" class="btn_login" id="idlogin">登录</a>
-                <a href="/toregister" class="btn_login" id="register">注册</a>
+                <p id="p" style="display: inline">
+                    <a href="/tologin" class="btn_login" id="idlogin">登录</a>
+                    <a href="/toregister" class="btn_login" id="register">注册</a>
+                </p>
            </div>
        </form>
 
