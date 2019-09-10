@@ -1710,18 +1710,18 @@ a{
 	text-align: center;
 	margin: auto;
 	position:absolute;
-	top:50%;
+	top:40%;
 	left:15%;
 }
 
-.db{
-	border-radius: 10px;
-	background-color:white;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-left: 4px;
-	padding-right: 4px;
-}
+/*.db{*/
+/*	border-radius: 10px;*/
+/*	padding-top: 10px;*/
+/*	padding-bottom: 10px;*/
+/*	padding-left: 20px;*/
+/*	padding-right: 20px;*/
+/*	background-color: #3cc395;*/
+/*}*/
 
 #loginout{
     color: #FFFFFF;

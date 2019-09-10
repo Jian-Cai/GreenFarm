@@ -77,6 +77,9 @@
                     <div class="span1_of_1_des">
                         <div class="desc1">
                             <h3 th:text="${product.getProduct_name()}">name</h3>
+                            <script>
+                                //判断商品是否上架
+                            </script>
                             <p>所属采摘园：<a th:href="@{'/farm/farmItem?farmId='+${origin_farm.getFarmId()}}" th:text="${origin_farm.getFarm_name()}"></a></p>
                             <h5 th:text="'$' + ${product.getProduct_price()}">Rs. 399</h5>
                             <div class="available">

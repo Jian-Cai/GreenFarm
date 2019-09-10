@@ -69,9 +69,9 @@
             </li>
             &nbsp;
             <li class="clr">
-                <input id="sub" class="db fl next"  type="submit" onclick="pay()" value="去付款">
+                <input id="sub" class="db fl next input_3"  type="submit" onclick="pay()" value="去付款">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input id="suba" class="db fl next" type="submit" onclick="wait()" value="先等等">
+                <input id="suba" class="db fl next input_3" type="submit" onclick="wait()" value="先等等">
             </li>
         </ul>
 
@@ -82,9 +82,7 @@
 
 <script type="text/javascript" src="/js/three.js"></script>
 <script type="text/javascript" src="/js/backgroundEfects.js"></script>
-<div>
-    <canvas width="2432" height="1000" style="width: 1216px; height: 600px;"></canvas>
-</div>
+
 <footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 </html>
