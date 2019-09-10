@@ -32,19 +32,27 @@
 
 <body>
 <header th:replace="common/template_heads::header(${session.status})"></header>
-    <div style="align-content: center">
+    <div style="align-content: center" id="aboutOrder">
         <h1 th:text="'订单号：' + ${session.orderId}"></h1>
-        <form action="/pay/paySuccess?">
+        &nbsp;&nbsp;
+        <form action="/pay/paySuccess?" class="form">
             <input name="preorderId" type="hidden" th:value="${session.orderId}">
-            <input id="alp" type="radio" value="支付宝">
+            <input id="alp" type="radio" value="支付宝" name="payment" checked="checked">
             <label for="alp">支付宝</label>
-            <br/>
-            <input id="wcp" type="radio" value="微信">
-            <label for="wcp">微信</label>
-            <br/>
+            <br/>&nbsp;
+            <input id="wcp" type="radio" value="微信" name="payment">
+            <label for="wcp">微&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信</label>
+            <br/>&nbsp;
             <input type="submit" value="确定支付">
         </form>
     </div>
+
+<script type="text/javascript" src="/js/three.js"></script>
+<script type="text/javascript" src="/js/backgroundEfects.js"></script>
+<div>
+    <canvas width="2432" height="1000" style="width: 1216px; height: 600px;"></canvas>
+</div>
+
 <footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
 </body>
 

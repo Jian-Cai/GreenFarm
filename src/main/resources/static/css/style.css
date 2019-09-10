@@ -330,12 +330,12 @@ body {
 	-moz-border-top-left-radius: 5px;
 	-o-border-top-left-radius: 5px;
 }
-.icon1 ul li:last-child {
+.icon1 ul li:last-child {   
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-	box-shadow: none;
+	box-shadow: none;    
 }
-.icon1 ul a {
+.icon1 ul a {    
 	_height: 10px; /*IE6 only*/
 	white-space: nowrap;
 	float: none;
@@ -357,7 +357,7 @@ body {
 	left: -100px;
 	top: 0%;
 	margin-top: 20px;
-	border-left: 0;
+	border-left: 0;	
 	border-bottom:20px solid transparent;
 	border-top: 20px solid transparent;
 	border-right:20px solid #323757;
@@ -490,7 +490,7 @@ body {
 }
 .price h4{
 	font-size: 1.5em;
-	color: #999999;
+	color: #999999;	
 }
 .price h4 span{
 	display: inline-block;
@@ -554,7 +554,7 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1em;
 	color: #fefefe;
-	line-height: 1.8em;
+	line-height: 1.8em;	
 	text-transform: capitalize;
 }
 .f_nav li a:hover{
@@ -563,7 +563,7 @@ body {
 }
 /* start footer1 */
 .footer_bg1{
-	background: #2DA89B;
+	background: #2DA89B;	
 }
 #toTop {
 	display: none;
@@ -602,7 +602,7 @@ body {
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
 	-o-border-radius: 5px;
-	border-radius:5px;
+	border-radius:5px;				
 	background:#fcf8e3;
 	border:1px solid  #fbeed5;
 	width:95%;
@@ -623,17 +623,17 @@ body {
 #info a {
 	color:#c09853;
 	text-decoration:none;
-}
+}	
 #info p {
 	margin:5px 0 0 0;
 }
 .container {
-	font-family: 'Source Sans Pro', sans-serif;
-	position: relative;
+	font-family: 'Source Sans Pro', sans-serif; 
+	position: relative; 
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
-	transition: all 1s ease;
+	transition: all 1s ease;	
 }
 #filters {
 	margin:1%;
@@ -845,7 +845,7 @@ p.para{
 }
 .contact-form textarea{
 	resize:none;
-	height:120px;
+	height:120px;		
 }
 .contact-form input[type="submit"]{
 	margin-top:10px;
@@ -968,7 +968,7 @@ p.para{
 	margin-right: 10px;
 }
 .available span a:hover{
-	text-decoration: none;
+	text-decoration: none;	
 }
 /* start share-des */
 .share-desc{
@@ -1006,7 +1006,7 @@ p.para{
 	background: #3CC395;
 }
 .share li img {
-	vertical-align:middle;
+	vertical-align:middle; 
 }
 .btn_form{
 	margin-top: 6%;
@@ -1084,7 +1084,7 @@ p.para{
 .banner-wrap.bottom_banner .main_link figure {
 	display: inline-block;
 	margin: 0 9px 0 0;
-	vertical-align: middle;
+	vertical-align: middle;	
 }
 .banner-wrap.bottom_banner.color_link .main_link h5{
 	color: #fff;
@@ -1248,21 +1248,7 @@ a.tabs {
     -moz-border-radius: 0 3px 3px 3px;
     -o-border-radius: 0 3px 3px 3px;
 }
-.content .content-1 {
-	width:98%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 10px;
-	z-index: 1;
-	opacity: 0;
-	-webkit-transition: opacity linear 0.1s;
-	-moz-transition: opacity linear 0.1s;
-	-o-transition: opacity linear 0.1s;
-	-ms-transition: opacity linear 0.1s;
-	transition: opacity linear 0.1s;
-}
-.content .content-2{
+.content div {
 	width:98%;
 	position: absolute;
 	top: 0;
@@ -1611,99 +1597,6 @@ width: 850px;
 a{
 	color: #666666;
 }
-
-/* 弹出 样式 */
-.mini_login{
-	display:none;
-	position:absolute;
-	z-index:100000001;
-	background:white;
-}
-.mini_login .item{
-	width:320px;
-	margin:0 auto;
-	height:48px;
-	line-height:48px;
-	padding:0 20px;
-}
-/* 登录窗第一行*/
-.mini_login .firstLine{
-	color:#666;
-	background:#f7f7f7;
-	font-size:18px;
-	font-weight:bold;
-	cursor:move;
-}
-.mini_login .item .login_close{
-	display:inline-block;
-	float:right;
-	cursor:pointer;
-}
-
-.mini_login .item label{
-	font-size:14px;
-	margin-right:15px;
-}
-.mini_login .item input{
-	display:inline-block;
-	height:60%;
-	width:70%;
-}
-/* 登录按钮 */
-.mini_login .item a.btn_login{
-	display:block;
-	margin:10px 10% 0;
-	height:30px;
-	line-height:30px;
-	width:80%;
-	background:#4490F7;
-	color:white;
-	font-size:16px;
-	font-weight:bold;
-	text-align:center;
-}
-/* 遮罩层样式 */
-.cover{
-	display:none;
-	width:100%;
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:100000000;
-	background-color:#000;
-	opacity:0.3;
-}
-/*评论样式*/
-.comment{
-	display: block;
-}
-.user-comment{
-	display: inline-block ;
-}
-.comment-img{
-	float: left;
-	width: 10%;
-	height:10%;
-	overflow: hidden;
-	border-radius: 50%;
-	margin-top: 2%;
-	margin-left: 5%
-}
-.comment-name, .comment-time{
-	float: left;
-	margin-left: 1%;
-	margin-top: 2.5%;
-	color: #111111;
-}
-.comment-name p{
-	color: #111;
-}
-.comment-time {
-	padding-left: 20%;
-}
-
-
-
 #aboutOrder{
 	width: 70%;
 	align-content: center;
@@ -1725,55 +1618,4 @@ a{
 	padding-bottom: 2px;
 	padding-left: 4px;
 	padding-right: 4px;
-}
-#login_img{
-	position: absolute;
-	width: 70%;
-	margin-left: 15%;
-}
-#login_div{
-	position: absolute;
-	width: 80%;
-	margin-left: 10%;
-	text-align: center;
-}
-#login_form{
-	position:absolute;
-	margin-top:13%;
-	width:84%;
-	margin-left: 8%;
-	height:300px;
-	border-radius:25px;
-	color: rgb(0, 0, 0);
-	text-align:center;
-
-}
-.input_1{
-	outline:none;
-	margin-top:40px;
-	border:1;
-	border-color: #83c5af;
-	width:300px;
-	height:50px;
-	border-radius:25px;
-	padding-left:15px;
-	font-size:18px;
-	color: rgba(171, 171, 171, 0.84);
-}
-
-.input_3{
-	outline: none;
-	width:100px;
-	height:45px;
-	border:0;
-	padding:5px 7px;
-	background:#63CBA7;
-	border-radius:25px;
-	margin:0px 30px;
-	font-size:18px;
-	color:#FFFFFF;
-}
-.input_3:hover{
-	background:#c0ecdd;
-	color: #63CBA7;
 }
