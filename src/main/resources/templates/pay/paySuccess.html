@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>支付成功</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/account.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script src="/js/jquery.min.js"></script>
+    <!-- start top_js_button -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
     <script>
         function countDown(){
             //获取初始时间
@@ -21,18 +30,28 @@
     </script>
     <style>
         #Time,#p{
-            font-size: 150px;
+            font-size: 64px;
             text-align: center;
         }
         .Font,#p{
-            font-size: 100px;
+            font-size: 48px;
             text-align: center;
         }
     </style>
 </head>
 <body>
-<p class="Font">支付成功！</p>
-<font color="yellow"><p id="Time" >5</p></font>
-<p class="Font">将跳转至<a href="/account/order">订单页面</a></p>
+<header th:replace="common/template_heads::header(${session.status})"></header>
+<div style="align-content: center" id="aboutOrder">
+    <p class="Font">支付成功！</p>
+    <font color="yellow"><p id="Time" >5</p></font>
+    <p class="Font">将跳转至<a href="/account/order">订单页面</a></p>
+</div>
+
+<div>
+    <canvas width="2432" height="5000" style="width: 1216px; height: 600px;"></canvas>
+</div>
+
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
+
 </body>
 </html>
