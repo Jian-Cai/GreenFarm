@@ -7,15 +7,10 @@
 
 package org.csu.greenfarm.controller;
 
-import org.csu.greenfarm.domain.Account;
-import org.csu.greenfarm.domain.Cart;
-import org.csu.greenfarm.domain.Farm;
-import org.csu.greenfarm.domain.Product;
-import org.csu.greenfarm.service.AccountService;
-import org.csu.greenfarm.service.CartService;
-import org.csu.greenfarm.service.FarmService;
-import org.csu.greenfarm.service.ProductService;
+import org.csu.greenfarm.domain.*;
+import org.csu.greenfarm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /*
 跳转至登录界面&个人中心界面
@@ -43,6 +39,9 @@ public class AccountController {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    OrderService orderService;
 
     @Autowired
     HttpServletRequest request;
@@ -69,7 +68,13 @@ public class AccountController {
             HttpSession session = request.getSession();
             session.setAttribute("account", account);
             session.setAttribute("cart", cart);
-            return "account/account";
+            if(account.getUsername().equals("admin")) {
+                List<Account> accountList = service.getAccounts();
+                session.setAttribute("accountList",accountList);
+                return "account/admin";
+            }
+            else return "account/account";
+
         }
         else{
 
@@ -123,14 +128,20 @@ public class AccountController {
     public boolean inPageLogin(@RequestParam("username") String username, @RequestParam("password") String password){
         Account account = service.getAccount(username);
         if(account.getPassword().equals(password)){
-            request.getSession().setAttribute("account", account);
             Cart cart = cartService.initCart(account.getAccount());
-            request.getSession().setAttribute("cart", cart);
             double allTotal = cartService.getAllTotal(cart.getCartId());
-            request.getSession().setAttribute("allTotal", allTotal);
+            HttpSession session = request.getSession();
+            session.setAttribute("allTotal", allTotal);
+            session.setAttribute("account", account);
+            session.setAttribute("cart", cart);
             return true;
         }
         else return false;
     }
+
+
+    //上架
+
+    //下架
 
 }

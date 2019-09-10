@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>产品上架</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/account.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script src="/js/jquery.min.js"></script>
+    <!-- start top_js_button -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+<header th:replace="common/template_heads::header(${session.status})"></header>
+
+<div class="push_Product" id="push_Product">
+    <!-- 表单 -->
+    <form action="" method="post">
+        <div class="item firstLine" id="firstLine">
+            <span class="login_title">产品上架</span>
+            <span class="login_close" id="closePush">X</span>
+        </div>
+        <div class="item">
+            <label>检测编号</label>
+            <input id="checkId" type="text" value=""  />
+        </div>
+        <div class="item">
+            <label>检测结果</label>
+            <input id="result" type="text" value="" />
+        </div>
+        <div class="item">
+            <p id="p"></p>
+            <button class="btn_login" id="proPush">提交</button>
+        </div>
+    </form>
+</div>
+<!-- 遮罩层 -->
+<div class="pushCover" id="pushCover"></div>
+<div class="user-info">
+    <div class="w1200">
+        <div class="user-headface">
+            <img th:src="'/images/' + ${session.account.getHead()}">
+        </div>
+        <div class="user-account">
+            <p th:text="'您好, '+ ${session.account.getUsername()}" class="tip">huann，Tom</p>
+            <p class="account">
+                <span th:text="'帐户名:' + ${session.account.getAccount()}">帐户名：Tom</span>
+                <span th:text="'用户: ' + ${session.account.getUsername()}">用户：tomandjerry</span>
+            </p>
+        </div>
+        <div class="user-modify">
+            <a href="/tologout">退出登录&gt;</a>
+        </div>
+    </div>
+</div>
+<div class="w1200">
+    <div class="left">
+        <ul>
+            <li>
+                <a href="/adminAccount">
+                    <i class="icon iconfont icon-ziliao"></i>
+                    用户列表
+                </a>
+            </li>
+
+            <li>
+                <a href="/pushProduct">
+                    <i class="icon iconfont icon-shangjia"></i>
+                    产品上架
+                </a>
+            </li>
+
+            <li>
+                <a href="/pullProduct">
+                    <i class="icon iconfont-xiajia"></i>
+                    产品下架
+                </a>
+            </li>
+
+            <li>
+                <a href="/adminOrder">
+                    <i class="icon iconfont icon-dingdan"></i>
+                    订单列表
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <section class="tabs1">
+            <div class="tap">
+                <span>产品上架</span>
+            </div>
+
+            <div class="clear-shadow"></div>
+            <div class="content-11">
+                <th:block th:each="pushItem,index:${session.manageProduct}">
+                    <th:block th:if="${pushItem.getProduct_check()==null}">
+                        <li>
+                            <a th:href="'/product/productItem?productId=' + ${pushItem.getProductId()}">
+                                <div class="order-img">
+                                    <img th:src="'/images/small/' + ${pushItem.getProduct_photo()}">
+                                </div>
+                                <div class="order-p" >
+                                    <p th:text="${pushItem.getProduct_name()}"></p>
+                                </div>
+                            </a><button th:class="'push'+${index.count} " style="outline: none;background: none;" th:name="${pushItem.getProductId()}" th:id="'push'+${index.count}">上架</button>
+                        </li>
+                        <hr/>
+                    </th:block>
+                </th:block>
+            </div>
+        </section>
+    </div>
+</div>
+
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
+<script>
+    /* 显示登录窗口 */
+    function showPush(){
+        var mini_login = document.getElementById("push_Product");
+        var cover = document.getElementById("pushCover");
+        mini_login.style.display = "block";
+        cover.style.display = "block";
+        cover.style.height = document.body.scrollHeight + "px";
+
+        //登录框layout
+        mini_login.style.left = (document.body.scrollWidth - mini_login.scrollWidth) / 2 + "px";
+        mini_login.style.top = 45 + "%";
+    }
+
+    /* 关闭登录窗口 */
+    function closePush(){
+        var mini_login = document.getElementById("push_Product");
+        var cover = document.getElementById("pushCover");
+        mini_login.style.display = "none";
+        cover.style.display = "none";
+    }
+    document.getElementById("push1").onclick = showPush;
+    document.getElementById("closePush").onclick = closePush;
+    $("#proPush").click(function(){
+        var checkId = document.getElementById("checkId").value;
+        var result = document.getElementById("result").value;
+        var  productId = document.getElementById("push1").getAttribute("name");
+        $.ajax({
+            type:"POST",
+            url:"/pushDown",
+            data:{
+                productId:productId,
+                checkId:checkId,
+                result:result
+            },
+            dataType:"TEXT",
+            success:function (data) {
+                var mini_login = document.getElementById("push_Product");
+                var cover = document.getElementsById("pushCover");
+                mini_login.style.display = "none";
+                cover.style.display = "none";
+
+            }
+        });
+        setTimeout(function (c) {
+            location.replace("/pushProduct");
+        },500);
+        return false;
+    });
+
+</script>
+</body>
+
+</html>

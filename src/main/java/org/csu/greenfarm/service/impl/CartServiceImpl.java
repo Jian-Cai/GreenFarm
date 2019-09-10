@@ -42,12 +42,13 @@ public class CartServiceImpl implements CartService {
     public Cart initCart(String account) {
         Cart cart = cartMapper.getCartByAccount(account);
         if(cart == null){
-            cart.setAccount(account);
+            cart = new Cart();
             cart.setCartId(account+1);
+            cart.setAccount(account);
             cartMapper.initCart(cart);
             return cart;
         }
-        return cart;
+        else return cart;
     }
 
     @Override

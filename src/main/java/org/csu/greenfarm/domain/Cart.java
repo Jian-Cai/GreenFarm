@@ -18,8 +18,8 @@ public class Cart implements Serializable {
         return account;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setAccount(String Account) {
+        account = Account;
     }
 
 }

@@ -25,8 +25,9 @@
                 cover.style.display = "block";
                 cover.style.height = document.body.scrollHeight + "px";
 
+                //登录框layout
                 mini_login.style.left = (document.body.scrollWidth - mini_login.scrollWidth) / 2 + "px";
-                mini_login.style.top = 45 + "%";//登录框layout
+                mini_login.style.top = 45 + "%";
             }
 
             /* 关闭登录窗口 */
@@ -64,30 +65,27 @@
     </script>
 
     <!-- 弹出登录小窗口 -->
-<!--    <div class="mini_login" id="mini_login">-->
-<!--        <img id="mini_login_img" src="/images/login-bg.png">-->
-<!--        &lt;!&ndash; 表单 &ndash;&gt;-->
-<!--        <form id="mini_login_form" action="" method="post">-->
-<!--            <div class="item firstLine" id="firstLine">-->
-<!--                <span class="login_close" id="close_minilogin"><img src="/images/close_login.png"></span>-->
-<!--            </div>-->
-<!--            <div class="item">-->
-<!--                <label>用户</label>-->
-<!--                <input id="username" type="text" value="" name="uname" />-->
-<!--            </div>-->
-<!--            <br>-->
-<!--            <div class="item">-->
-<!--                <label>密码</label>-->
-<!--                <input id="password" type="password" value="" name="upwd" />-->
-<!--            </div>-->
-<!--            <br>-->
-<!--            <div class="item">-->
-<!--                <p id="p"></p>-->
-<!--                <a href="javascript:void(0)" class="btn_login" id="idlogin">登录</a>-->
-<!--            </div>-->
-<!--        </form>-->
-
-<!--    </div>-->
+    <div class="mini_login" id="mini_login">
+        <!-- 表单 -->
+        <form action="" method="post">
+            <div class="item firstLine" id="firstLine">
+                <span class="login_title">我要登录</span>
+                <span class="login_close" id="close_minilogin">X</span>
+            </div>
+            <div class="item">
+                <label>用户</label>
+                <input id="username" type="text" value="" name="uname" />
+            </div>
+            <div class="item">
+                <label>密码</label>
+                <input id="password" type="password" value="" name="upwd" />
+            </div>
+            <div class="item">
+                <p id="p"></p>
+                <a href="javascript:void(0)" class="btn_login" id="idlogin">登录</a>
+            </div>
+        </form>
+    </div>
     <!-- 遮罩层 -->
     <div class="cover"></div>
     <!-- start header -->
@@ -103,7 +101,7 @@
                             <ul class="sub-icon1 list">
                                 <li>
                                     <h3 th:if="${session.allTotal == null || session.allTotal == ''}" th:text="购物车为空">总价<td th:value="${session.allTotal}"></td></h3>
-                                    <h3 th:unless="${session.allTotal == null}">总价<td th:value="${session.allTotal}"></td></h3>
+                                    <h3 th:unless="${session.allTotal == null}">总价<td th:text="${session.allTotal}"></td></h3>
                                 </li>
                             </ul>
                         </li>
@@ -132,7 +130,7 @@
                         <li th:if="${status == 2}" class="active"><a href="/product/productList?index=0">农产品</a></li>
                         <li th:unless="${status == 2}" ><a href="/product/productList?index=0">农产品</a></li> |
                         <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
-                        <li th:if="${session.account == null}"><a href="/account/account" class="btn_login" id="btn_showlogin">登录</a></li>
+                        <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
                     </ul>
                 </div>
                 <div class="top-nav">

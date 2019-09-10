@@ -14,7 +14,7 @@
         SELECT * FROM product
     </select>
     <select id="getProductByProductId"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Product">
-        SELECT * FROM product where productid=#{productId}
+        SELECT * FROM product where productId=#{productId}
     </select>
     <select id="getProductByProductName"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Product">
         SELECT * FROM product where product_name LIKE #{product_name}
@@ -25,5 +25,11 @@
     <select id="getProductByProductCate"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Product">
         SELECT * FROM product where product_category = #{product_category}
     </select>
+    <update id="updateProduct" parameterType="org.csu.greenfarm.domain.Product">
+        UPDATE product SET product_check = #{product_check} WHERE productId=#{productId}
+    </update>
+    <update id="pullProduct" parameterType="java.lang.String">
+        UPDATE product SET product_check = NULL WHERE productId=#{productId}
+    </update>
 
 </mapper>

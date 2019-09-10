@@ -1,0 +1,18 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.CheckMapper">
+    <cache />
+    <select id="getCheckById" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.Check">
+        SELECT * FROM check_item WHERE checkId = #{checkId}
+    </select>
+
+    <insert id="insertCheckItem" parameterType="org.csu.greenfarm.domain.Check">
+        INSERT check_item() VALUES (#{checkId}, #{check_item},#{check_date}, #{check_result},#{check_origin})
+    </insert>
+
+    <delete id="deleteCheckItem" parameterType="java.lang.String">
+        DELETE FROM check_item WHERE checkId = #{checkId}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,493 @@
+<!DOCTYPE HTML>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>产品下架</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/account.css">
+    <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+    <script src="/js/jquery.min.js"></script>
+    <!-- start top_js_button -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+<header th:replace="common/template_heads::header(${session.status})"></header>
+
+
+<div class="user-info">
+    <div class="w1200">
+        <div class="user-headface">
+            <img th:src="'/images/' + ${session.account.getHead()}">
+        </div>
+        <div class="user-account">
+            <p th:text="'您好, '+ ${session.account.getUsername()}" class="tip">huann，Tom</p>
+            <p class="account">
+                <span th:text="'帐户名:' + ${session.account.getAccount()}">帐户名：Tom</span>
+                <span th:text="'用户: ' + ${session.account.getUsername()}">用户：tomandjerry</span>
+            </p>
+        </div>
+        <div class="user-modify">
+            <a href="/tologout">退出登录&gt;</a>
+        </div>
+    </div>
+</div>
+<div class="w1200">
+    <div class="left">
+        <ul>
+            <li>
+                <a href="/adminAccount">
+                    <i class="icon iconfont icon-ziliao"></i>
+                    用户列表
+                </a>
+            </li>
+
+            <li>
+                <a href="/pushProduct">
+                    <i class="icon iconfont icon-shangjia"></i>
+                    产品上架
+                </a>
+            </li>
+
+            <li>
+                <a href="/pullProduct">
+                    <i class="icon iconfont-xiajia"></i>
+                    产品下架
+                </a>
+            </li>
+
+            <li>
+                <a href="/adminOrder">
+                    <i class="icon iconfont icon-dingdan"></i>
+                    订单列表
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <section class="tabs1">
+            <div class="tap">
+                <span>产品上架</span>
+            </div>
+
+            <div class="clear-shadow"></div>
+
+            <div class="content-11">
+                <div id="pullIndex" style="display: none" th:name="${session.manageProduct.size()}" ></div>
+                <th:block th:each="pullItem,index:${session.manageProduct}" >
+                    <th:block th:if="${pullItem.getProduct_check()!=null}">
+                    <li>
+                        <a th:href="'/product/productItem?productId=' + ${pullItem.getProductId()}">
+                            <div class="order-img">
+                                <img th:src="'/images/small/' + ${pullItem.getProduct_photo()}">
+                            </div>
+                            <div class="order-p">
+                                <p th:text="${pullItem.getProduct_name()}"></p>
+                            </div>
+                        </a>
+                        <button th:class="'push'+${index.count}" th:id="'push'+${index.count} " style="outline: none;background: none;" th:name="${pullItem.getProductId()}">下架</button>
+                    </li>
+                    <hr/>
+                    </th:block>
+                </th:block>
+            </div>
+        </section>
+    </div>
+</div>
+<footer th:replace="common/template_heads::footer(${session.main_product},${session.main_farm})"></footer>
+<script>
+            $('.push1').on('click', function () {
+                    var productId = document.getElementById('push1').getAttribute('name');
+                    $.ajax({
+                        type: "POST",
+                        url: "/pullDown",
+                        data: {
+                            productId: productId
+                        },
+                        dataType: "TEXT",
+                        success: function (data) {
+
+                        }
+                    });
+                    setTimeout(function (c) {
+                        location.replace("/pullProduct");
+                    }, 500);
+            });
+
+            $('.push2').on('click', function () {
+                var productId = document.getElementById('push2').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push3').on('click', function () {
+                var productId = document.getElementById('push3').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push4').on('click', function () {
+                var productId = document.getElementById('push4').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push5').on('click', function () {
+                var productId = document.getElementById('push5').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push6').on('click', function () {
+                var productId = document.getElementById('push6').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push7').on('click', function () {
+                var productId = document.getElementById('push7').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push8').on('click', function () {
+                var productId = document.getElementById('push8').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push9').on('click', function () {
+                var productId = document.getElementById('push9').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push10').on('click', function () {
+                var productId = document.getElementById('push10').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push11').on('click', function () {
+                var productId = document.getElementById('push11').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push12').on('click', function () {
+                var productId = document.getElementById('push12').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push13').on('click', function () {
+                var productId = document.getElementById('push13').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push14').on('click', function () {
+                var productId = document.getElementById('push14').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push15').on('click', function () {
+                var productId = document.getElementById('push15').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push16').on('click', function () {
+                var productId = document.getElementById('push16').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push17').on('click', function () {
+                var productId = document.getElementById('push17').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push18').on('click', function () {
+                var productId = document.getElementById('push18').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push19').on('click', function () {
+                var productId = document.getElementById('push19').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push20').on('click', function () {
+                var productId = document.getElementById('push20').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+            $('.push21').on('click', function () {
+                var productId = document.getElementById('push21').getAttribute('name');
+                $.ajax({
+                    type: "POST",
+                    url: "/pullDown",
+                    data: {
+                        productId: productId
+                    },
+                    dataType: "TEXT",
+                    success: function (data) {
+
+                    }
+                });
+                setTimeout(function (c) {
+                    location.replace("/pullProduct");
+                }, 500);
+            });
+
+</script>
+</body>
+
+</html>
