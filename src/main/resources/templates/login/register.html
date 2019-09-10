@@ -11,6 +11,183 @@
     <meta charset="UTF-8">
     <title>注册</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background: no-repeat;
+            background-size:100%;
+        }
+        html{
+            height: 100%;
+        }
+
+        h1{
+            color: #060606;
+        }
+        /*单选*/
+        .radio_box label{ width:15px; height:15px; position:absolute; top:0; left:0; border:2px solid #3A5367; border-radius:50%; background:#fff; cursor:pointer;}
+        .radio_box input:checked + label:after{ content:''; width:9px; height:9px; position:absolute; top:3px; left:3px; background:#3A5367; border-radius:50%;}
+        .check_box em{ margin:0 0 0 5px;}
+
+        /*基本清零*/
+
+        .clr:after{content:'';display:block;height:0;clear:both;}
+        .clr{*zoom:1;}
+        ul,li{
+            list-style:none;}
+        img{ border:none;}
+        input,button,select,textarea{outline:none}
+        textarea{resize:none}
+        a{
+            text-decoration:none;}
+        a:hover{
+            text-decoration:none;
+            -webkit-transition:  0.4s linear !important;
+            -moz-transition:  0.4s linear !important;
+            -o-transition:  0.4s linear !important;
+            transition:  0.4s linear !important; }
+
+        /* 设置HTML5元素为块 */
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;padding:0px; margin:0px; border:none;}
+
+        /* 超出隐藏 */
+        .overflow{ overflow:hidden;}
+
+        /* 点击去除阴影 */
+        a,button,input,i{-webkit-tap-highlight-color:rgba(0,0,0,0); -moz-tap-highlight-color:rgba(0,0,0,0); -ms-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,0);}
+        a{cursor:pointer;
+            color:#333;
+        }
+
+        /* 基础样式 */
+        .fl{ float: left; }
+        .fr{ float: right;}
+        .db{ display:block;}
+        .w12{width:1200px;
+            margin:0 auto;}
+        div{
+            background:none;
+        }
+        /*开始*/
+        body{
+            margin:0 auto;
+            font-size:14px;
+            font-family:"微软雅黑", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color:#666;
+        }
+        header{
+            background:#fff;
+            width:100%;
+            height:auto;
+        }
+
+        .logofr a{
+            color:#666;}
+        .logofr a:hover{
+            color:#007dcd;
+            text-decoration:underline;}
+
+        .head_border{
+            width:100%;
+            height:11px;}
+        .tit2{
+            width:100%;
+            height:auto;}
+        .tit2 span{
+            display:block;
+            width:50%;
+            height:20px;
+
+        }
+        .step{
+            height:146px;
+
+        }
+        .inputsec{
+            width: 840px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 0 0 100px 360px;
+        }
+        .inputsec ul,.inputsec ul li{
+            display:block;
+            min-width:400px;}
+        .inputsec ul li{
+            clear: both;
+            zoom: 1;
+            overflow: visible;
+            height:54px;
+            line-height:50px;
+            color:#333;}
+        .inputsec ul li label{
+            display:block;
+            width:72px;
+            text-align:right;}
+        .txt-m {
+            margin:10px 12px 0 0;
+            height: 28px;
+            line-height: 28px;
+            padding: 2px 3px;
+            padding-left: 15px;
+            border: 1px solid #dedede;
+            color: #666;
+            width: 292px;
+            font-size: 14px;}
+
+        .next{
+            margin-top:8px;
+            width:300px;
+            height:42px;
+            line-height:42px;
+            text-align:center;
+            color:#fff;
+            font-size:16px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            background:#1ca521;}
+        a.next:hover{
+            background:#27c42d;}
+        a.next:active{
+            background:#19861d;}
+
+        /*注册成功*/
+
+        .success ul,.success ul li{
+            display:block;
+            width:426px;
+            text-align:center;
+            color:#333;}
+        .success ul li{
+            height:56px;
+            line-height:56px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;  }
+        .success ul li em{
+            color:#007dcd;
+        }
+
+        .success ul li a{
+            display:block;
+            width:135px;
+            line-height:36px;
+            font-size:16px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            color:#fff;
+            background:#007dcd;}
+        .success ul li a:hover{
+            background:#2896dd;
+        }
+        .success ul li a:active{
+            background:#007dcd;
+        }
+
+
+    </style>
 </head>
 <body>
 <!--
@@ -25,35 +202,34 @@
             <ul>
                 <li>
                     <label class="fl mr2">手机号码</label>
-                    &nbsp
-                    <input type="text" tabindex="3" name="account" id="account" autocomplete="off" maxlength="11" onfocus="usercenter_check.hide_note('tel-tip')" onblur="usercenter_check.check_tel()" style="color: rgb(51, 51, 51);" class="txt-m fl "onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="text" tabindex="3" name="account" id="account" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl ">
+                    <p style="color: #c7254e" id="account-p"></p>
                 </li>
-                <li>
-                    <label class="fl mr2">校验码</label>
-                    <span class="fl yzm2">
-                    <input type="text" class="fl txt-j" id="identify" name="identify"  onclick="if(value==defaultValue){value='';this.style.color='#333'}">
-                </span>
-                    <a class="db fl chg send">发送至手机</a>
-                </li>
+
                 <li>
                     <label class="fl mr2">邮箱</label>
-                    <input type="text" tabindex="3" name="mail" id="mail" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="text" tabindex="3" name="mail" id="mail" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl ">
+                    <p style="color: #c7254e" id="mail-p"></p>
                 </li>
                 <li>
                     <label class="fl mr2">昵称</label>
-                    <input type="text" tabindex="3" name="username" id="username" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="text" tabindex="3" name="username" id="username" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl">
+                    <p style="color: #c7254e" id="username-p"></p>
                 </li>
                 <li>
                     <label class="fl mr2">登录密码</label>
-                    <input type="password" tabindex="3" name="password" id="password" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl "onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="password" tabindex="3" name="password" id="password" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl ">
+                    <p style="color: #c7254e" id="password-p"></p>
                 </li>
                 <li>
                     <label class="fl mr2">确认密码</label>
-                    <input type="password" tabindex="3"  id="pw2" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " value="" onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="password" tabindex="3"  id="pw2" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " >
+                    <p style="color: #c7254e" id="pw2-p"></p>
                 </li>
                 <li>
                     <label class="fl mr2">收货地址</label>
-                    <input type="text" tabindex="3" name="recadd" id="email" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " value="" onclick="if(value==defaultValue){value='';this.style.color='#333'}">
+                    <input value="" type="text" tabindex="3" name="recadd" id="add" autocomplete="off" maxlength="11" style="color: rgb(51, 51, 51);" class="txt-m fl " >
+                    <p style="color: #c7254e" id="add-p"></p>
                 </li>
                 <li>
                     <label class="fl">&nbsp;</label>
@@ -66,7 +242,127 @@
                     <input class="db fl next" type="submit" value="注册">
                 </li>
             </ul>
+            <script type="text/javascript" src="/js/three.js"></script>
+            <script type="text/javascript">
+                document.getElementById("account").onchange = function (){
+                    var p = document.getElementById("account").getAttribute("value");
+                    var rex = /^1(3|4|5|6|7|8|9)\d{9}$/;
+                    var message1;
+                    if(!rex.test(p.valueOf())){
+                        message1 = "请输入正确的号码";
+                        document.getElementById("account-p").innerText = message1;
+                        console.log(message1);
+                    }
+                    else {
+                        message1 = "输入正确";
+                        console.log(message1);
+                        document.getElementById("account-p").style.display = "none";
+                    }
+                }
+                document.getElementById("mail").onchange = function (){
+                    var p = document.getElementById("mail").getAttribute("value");
+                    var rex =  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                    var message1;
+                    if(!rex.test(p.valueOf())){
+                        message1 = "请输入正确的邮箱";
+                        console.log(message1);
+                        document.getElementById("mail-p").innerText = message1;
+                    }
+                    else {
+                        message1 = "输入正";
+                        console.log(message1);
+                        document.getElementById("mail-p").style.display = "none";
+                    }
+                }
+                var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
+                var container;
+                var camera, scene, renderer;
+                var particles, particle, count = 0;
+                var mouseX = 0, mouseY = 0;
+                var windowHalfX = window.innerWidth / 2;
+                var windowHalfY = window.innerHeight / 2;
+                init();
+                animate();
+                function init() {
+                    container = document.createElement( 'div' );
+                    document.body.appendChild( container );
+                    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+                    camera.position.z = 1000;
+                    scene = new THREE.Scene();
+                    particles = new Array();
+                    var PI2 = Math.PI * 2;
+                    var material = new THREE.ParticleCanvasMaterial( {
+                        color: 0xfadfad2,
+                        program: function ( context ) {
+                            context.beginPath();
+                            context.arc( 0, 0, 1, 0, PI2, true );
+                            context.fill();
+                        }
+                    } );
+                    var i = 0;
+                    for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+                        for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+                            particle = particles[ i ++ ] = new THREE.Particle( material );
+                            particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
+                            particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
+                            scene.add( particle );
+                        }
+                    }
+                    renderer = new THREE.CanvasRenderer();
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                    container.appendChild( renderer.domElement );
+                    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+                    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+                    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+                    window.addEventListener( 'resize', onWindowResize, false );
+                }
+                function onWindowResize() {
+                    windowHalfX = window.innerWidth / 2;
+                    windowHalfY = window.innerHeight / 2;
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                }
+                function onDocumentMouseMove( event ) {
+                    mouseX = event.clientX - windowHalfX;
+                    mouseY = event.clientY - windowHalfY;
+                }
+                function onDocumentTouchStart( event ) {
+                    if ( event.touches.length === 1 ) {
+                        event.preventDefault();
+                        mouseX = event.touches[ 0 ].pageX - windowHalfX;
+                        mouseY = event.touches[ 0 ].pageY - windowHalfY;
+                    }
+                }
+                function onDocumentTouchMove( event ) {
+                    if ( event.touches.length === 1 ) {
+                        event.preventDefault();
+                        mouseX = event.touches[ 0 ].pageX - windowHalfX;
+                        mouseY = event.touches[ 0 ].pageY - windowHalfY;
+                    }
+                }
+                function animate() {
+                    requestAnimationFrame( animate );
+                    render();
+                }
+                function render() {
+                    camera.position.x += ( mouseX - camera.position.x ) * .05;
+                    camera.position.y += ( - mouseY - camera.position.y ) * .05;
+                    camera.lookAt( scene.position );
+                    var i = 0;
+                    for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+                        for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+                            particle = particles[ i++ ];
+                            particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 50 );
+                            particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 2 + ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 2;
+                        }
+                    }
+                    renderer.render( scene, camera );
+                    count += 0.1;
+                }
+            </script>
         </form>
+
     </div>
 </section>
 </body>

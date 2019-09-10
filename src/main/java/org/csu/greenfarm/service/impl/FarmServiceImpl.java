@@ -1,6 +1,7 @@
 package org.csu.greenfarm.service.impl;
 
 import org.csu.greenfarm.domain.Farm;
+import org.csu.greenfarm.domain.FarmLocation;
 import org.csu.greenfarm.persistence.FarmMapper;
 import org.csu.greenfarm.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public Farm getFarmByItem(String farm_item) {
         return mapper.getFarmByItem(farm_item);
+    }
+
+    @Override
+    public FarmLocation getLocation(String farmId) {
+        return mapper.getFarmLocationByFarmId(farmId);
     }
 
     @Override
