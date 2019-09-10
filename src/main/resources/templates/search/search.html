@@ -39,7 +39,7 @@
                     <div class="grid1_of_3">
                         <th:block th:if="${listItem.getClass().getName() == 'org.csu.greenfarm.domain.Product'}">
                             <a th:href="@{'/product/productItem?productId=' + ${listItem.getProductId()}}">
-                                <img th:src="@{'/images/' + ${listItem.getProduct_photo()}}" />
+                                <img th:src="@{'/images/small/' + ${listItem.getProduct_photo()}}" />
                                 <h3 th:text="${listItem.getProduct_name()}">product name</h3>
                                 <div class="price">
                                     <h4 th:unless="${listItem.getProduct_check() == null || listItem.getProduct_check() == ''}" th:utext="'$' + ${listItem.getProduct_price() + '<span>立即选购</span>'}">$299</h4>
@@ -50,7 +50,7 @@
                         </th:block>
                         <th:block th:if="${listItem.getClass().getName() == 'org.csu.greenfarm.domain.Farm'}">
                             <a th:href="@{'/farm/farmItem?farmId=' + ${listItem.getFarmId()}}">
-                                <img th:src="@{'/images/' + ${listItem.getFarm_photo()}}" />
+                                <img th:src="@{'/images/small/' + ${listItem.getFarm_photo()}}" />
                                 <h3 th:text="${listItem.getFarm_name()}">product name</h3>
                                 <div class="price">
                                     <h4 th:utext="${listItem.getFarm_price() + '<span>立即选购</span>'}">$299</h4>

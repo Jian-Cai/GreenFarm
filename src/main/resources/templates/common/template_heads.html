@@ -132,7 +132,7 @@
                         <li th:if="${status == 2}" class="active"><a href="/product/productList?index=0">农产品</a></li>
                         <li th:unless="${status == 2}" ><a href="/product/productList?index=0">农产品</a></li> |
                         <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
-                        <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
+                        <li th:if="${session.account == null}"><a href="/account/account" class="btn_login" id="btn_showlogin">登录</a></li>
                     </ul>
                 </div>
                 <div class="top-nav">
