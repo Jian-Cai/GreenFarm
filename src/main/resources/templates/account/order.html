@@ -131,8 +131,8 @@
                             </div>
                             <form action="/setComment">
                                 <th:block th:each="product:${buyorderItem.getProducts()}">
-                                    <input type="hidden" th:value="${product}">
                                     <div class="order" th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Product'}">
+                                        <input name="productId" type="hidden" th:value="${product.getProductId()}">
                                         <a th:href="'/product/productItem?productId=' + ${product.getProductId()}">
                                             <div class="order-img">
                                                 <img th:src="'/images/small/' + ${product.getProduct_photo()}">
@@ -141,7 +141,11 @@
                                                 <p th:text="${product.getProduct_name()}"></p>
                                             </div>
                                         </a>
-                                        <!--<textarea class="textarea1"></textarea>-->
+                                        <textarea name="com" class="textarea1"></textarea>
+                                        <div class="input-div">
+                                            <input th:id="${product.getProductId()}" type="submit" value="提交">
+                                            <label class="sub-label" th:for="${product.getProductId()}">提交</label>
+                                        </div>
                                     </div>
                                     <div th:if="${product.getClass().getName() == 'org.csu.greenfarm.domain.Farm'}">
                                         <input name="farmId" type="hidden" th:value="${product.getFarmId()}">

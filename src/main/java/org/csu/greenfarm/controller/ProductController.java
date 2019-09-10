@@ -9,6 +9,7 @@ package org.csu.greenfarm.controller;
 
 import org.csu.greenfarm.domain.Farm;
 import org.csu.greenfarm.domain.Product;
+import org.csu.greenfarm.service.CommentService;
 import org.csu.greenfarm.service.FarmService;
 import org.csu.greenfarm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ public class ProductController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping("/product/productList")
     public String showProductList(@RequestParam("index")int index, Model model){
         request.getSession().setAttribute("status", 2);
@@ -66,6 +70,7 @@ public class ProductController {
         Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
         model.addAttribute("origin_farm", farm);
         model.addAttribute("product", product);
+        model.addAttribute("comment", commentService.getCommentByItemId(productId));
         return "product/productItem";
     }
 

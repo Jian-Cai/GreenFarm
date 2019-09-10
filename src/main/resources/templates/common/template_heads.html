@@ -65,25 +65,28 @@
 
     <!-- 弹出登录小窗口 -->
     <div class="mini_login" id="mini_login">
+        <img id="mini_login_img" src="/images/login-bg.png">
         <!-- 表单 -->
-        <form action="" method="post">
+        <form id="mini_login_form" action="" method="post">
             <div class="item firstLine" id="firstLine">
-                <span class="login_title">我要登录</span>
-                <span class="login_close" id="close_minilogin">X</span>
+                <span class="login_close" id="close_minilogin"><img src="/images/close_login.png"></span>
             </div>
             <div class="item">
                 <label>用户</label>
                 <input id="username" type="text" value="" name="uname" />
             </div>
+            <br>
             <div class="item">
                 <label>密码</label>
                 <input id="password" type="password" value="" name="upwd" />
             </div>
+            <br>
             <div class="item">
                 <p id="p"></p>
                 <a href="javascript:void(0)" class="btn_login" id="idlogin">登录</a>
             </div>
         </form>
+
     </div>
     <!-- 遮罩层 -->
     <div class="cover"></div>

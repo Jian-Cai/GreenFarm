@@ -130,15 +130,27 @@
 
                         <div class="content">
                             <div id="f1" class="content-1">
-                                <p class="para top"><span>网友评论</span> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-                                <ul>
-                                    <li>Research</li>
-                                    <li>Design and Development</li>
-                                    <li>Porting and Optimization</li>
-                                    <li>System integration</li>
-                                    <li>Verification, Validation and Testing</li>
-                                    <li>Maintenance and Support</li>
-                                </ul>
+                                <th:block th:each="commentItem:${comment}">
+                                    <div class="comment">
+                                        <div class="user-comment">
+                                            <div class="comment-img">
+                                                <img th:src="'/images/' + ${commentItem.getProductcom_photo()}"/>
+                                            </div>
+                                            <div class="comment-name">
+                                                <p th:text="${commentItem.getProductcom_account()}"></p>
+                                            </div>
+                                            <div class="comment-time">
+                                                <p th:text="${#dates.format(commentItem.getProductcom_time(), 'yyyy-MM-dd')}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="text-comment">
+                                            <div class="comment-p">
+                                                <p th:text="${commentItem.getProductcom_comment()}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </th:block>
                                 <div class="clear"></div>
                             </div>
                             <div id="f2" class="content-2">
