@@ -6,9 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 */
 /* reset */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {
-	display: block;
-	margin-top: 15px;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0;padding:0;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
@@ -1143,6 +1141,9 @@ a.tabs {
 	position: relative;
 	margin: 40px auto;
 }
+.tabs{
+	margin-top:20px;
+}
 .tabs input {
 	position: absolute;
 	z-index: 1000;
@@ -1250,7 +1251,7 @@ a.tabs {
 	-moz-border-radius: 0 3px 3px 3px;
 	-o-border-radius: 0 3px 3px 3px;
 }
-.content div {
+.content .content-1 {
 	width:98%;
 	position: absolute;
 	top: 0;
@@ -1258,7 +1259,20 @@ a.tabs {
 	padding: 10px;
 	z-index: 1;
 	opacity: 0;
-    text-align: center;
+	-webkit-transition: opacity linear 0.1s;
+	-moz-transition: opacity linear 0.1s;
+	-o-transition: opacity linear 0.1s;
+	-ms-transition: opacity linear 0.1s;
+	transition: opacity linear 0.1s;
+}
+.content .content-2{
+	width:98%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	z-index: 1;
+	opacity: 0;
 	-webkit-transition: opacity linear 0.1s;
 	-moz-transition: opacity linear 0.1s;
 	-o-transition: opacity linear 0.1s;
@@ -1765,12 +1779,11 @@ a{
 }
 /* 登录按钮 */
 .mini_login .item a.btn_login{
-	display:block;
-	margin:10px 10% 0;
+	display:inline-block;
 	height:35px;
 	line-height:30px;
-	width:70%;
-	margin-left: 15%;
+	width:30%;
+	margin-left: 13%;
 	background:#63CBA7;
 	border-radius:5px;
 	font-weight:bold;
@@ -1801,14 +1814,18 @@ a{
 }
 .comment-img{
 	float: left;
-	width: 10%;
-	height:10%;
+	border: 2px solid black;
 	overflow: hidden;
 	border-radius: 50%;
 	margin-top: 2%;
-	margin-left: 5%
+	margin-left: 5%;
+
 }
-.comment-name, .comment-time{
+.comment-img img{
+	width: 36px;
+	height:36px;
+}
+.comment-name{
 	float: left;
 	margin-left: 1%;
 	margin-top: 2.5%;
@@ -1818,7 +1835,10 @@ a{
 	color: #111;
 }
 .comment-time {
-	padding-left: 20%;
+	display: block ;
+	margin-left: 200px;
+	margin-top: 10px;
+	width: 100px;
 }
 
 
