@@ -68,7 +68,7 @@
 
             <li>
                 <a href="/pullProduct">
-                    <i class="icon iconfont-xiajia"></i>
+                    <i class="icon iconfont icon-xiajia"></i>
                     产品下架
                 </a>
             </li>
@@ -86,13 +86,15 @@
             <span>用户列表</span>
         </div>
         <div class="content-11">
-            <th:block th:each="user:${session.accountList}">
-                <li><p th:text="'用户名: ' + ${user.getUsername()}"></p>
-                    <p th:text="'账户：' + ${user.getAccount()}"></p>
-                    <p th:text="'邮箱：'+ ${user.getMail()}"></p>
-                    <p th:text="'收货地址：' + ${user.getRecadd()}"></li>
-                <hr/>
-            </th:block>>
+            <ul>
+                <th:block th:each="user:${session.accountList}">
+                    <li><p th:text="'用户名: ' + ${user.getUsername()}"></p>
+                        <p th:text="'账户：' + ${user.getAccount()}"></p>
+                        <p th:text="'邮箱：'+ ${user.getMail()}"></p>
+                        <p th:text="'收货地址：' + ${user.getRecadd()}"></li>
+                    <hr/>
+                </th:block>
+            </ul>
         </div>
     </div>
 </div>

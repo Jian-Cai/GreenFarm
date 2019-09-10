@@ -86,7 +86,7 @@
 
             <li>
                 <a href="/pullProduct">
-                    <i class="icon iconfont-xiajia"></i>
+                    <i class="icon iconfont icon-xiajia"></i>
                     产品下架
                 </a>
             </li>
@@ -109,16 +109,19 @@
             <div class="content-11">
                 <th:block th:each="pushItem,index:${session.manageProduct}">
                     <th:block th:if="${pushItem.getProduct_check()==null}">
-                        <li>
-                            <a th:href="'/product/productItem?productId=' + ${pushItem.getProductId()}">
-                                <div class="order-img">
-                                    <img th:src="'/images/small/' + ${pushItem.getProduct_photo()}">
-                                </div>
-                                <div class="order-p" >
-                                    <p th:text="${pushItem.getProduct_name()}"></p>
-                                </div>
-                            </a><button th:class="'push'+${index.count} " style="outline: none;background: none;" th:name="${pushItem.getProductId()}" th:id="'push'+${index.count}">上架</button>
-                        </li>
+                       <ul>
+                           <li>
+                               <a th:href="'/product/productItem?productId=' + ${pushItem.getProductId()}">
+                                   <div class="order-img">
+                                       <img th:src="'/images/small/' + ${pushItem.getProduct_photo()}">
+                                   </div>
+                                   <div class="order-p" >
+                                       <p th:text="${pushItem.getProduct_name()}"></p>
+                                   </div>
+                               </a>
+                               <button class="pull_push_btn" th:name="${pushItem.getProductId()}" th:id="'push'+${index.count}">上架</button>
+                           </li>
+                       </ul>
                         <hr/>
                     </th:block>
                 </th:block>

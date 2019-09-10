@@ -1795,6 +1795,7 @@ a{
 /*评论样式*/
 .comment{
 	display: block;
+	position: relative;
 }
 .user-comment{
 	display: inline-block ;
@@ -1972,4 +1973,24 @@ a{
 	z-index:100000000;
 	background-color:#000;
 	opacity:0.3;
+}
+
+.pull_push_btn{
+	padding: auto;
+	background:#63CBA7;
+	border-radius:25px;
+	color:#FFFFFF;
+	position: relative;
+	align-content: center;
+	font-size: 12px;
+	margin-top:2.5%;
+	left: 60%;
+}
+.pull_push_btn:hover{
+	background:#c0ecdd;
+	color: #63CBA7;
+}
+.content-11{
+	position: relative;
+	align-content: center;
 }

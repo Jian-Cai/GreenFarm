@@ -123,37 +123,39 @@
                     <div class="clear"></div>
                     <!-- start tabs -->
                     <section class="tabs">
-                        <input onclick="f1()" id="tab-1" type="radio" name="radio-set" class="tab-selector-1">
+                        <input onclick="f1" id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
                         <label for="tab-1" class="tab-label-1" >网友评论</label>
 
-                        <input onclick="f2()" id="tab-2" type="radio" name="radio-set" class="tab-selector-2" checked="checked">
+                        <input onclick="f2()" id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
                         <label for="tab-2" class="tab-label-2">农产品详情</label>
-
                         <div class="clear-shadow"></div>
-
                         <div class="content">
                             <div id="f1" class="content-1">
-                                <th:block th:each="commentItem:${session.comment}">
-                                    <div class="comment">
-                                        <div class="user-comment">
-                                            <div class="comment-img">
-                                                <img th:src="'/images/' + ${commentItem.getProductcom_photo()}"/>
-                                            </div>
-                                            <div class="comment-name">
-                                                <p th:text="${commentItem.getProductcom_account()}"></p>
-                                            </div>
-                                            <div class="comment-time">
-                                                <p th:text="${#dates.format(commentItem.getProductcom_time(), 'yyyy-MM-dd')}"></p>
-                                            </div>
-                                        </div>
-                                        <div class="text-comment">
-                                            <div class="comment-p">
-                                                <p th:text="${commentItem.getProductcom_comment()}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                </th:block>
+                               <ul>
+                                   <th:block th:each="commentItem:${session.comment}">
+                                   <li>
+                                       <div class="comment">
+                                           <div class="user-comment">
+                                               <div class="comment-img">
+                                                   <img th:src="'/images/' + ${commentItem.getProductcom_photo()}"/>
+                                               </div>
+                                               <div class="comment-name">
+                                                   <p th:text="${commentItem.getProductcom_account()}"></p>
+                                               </div>
+                                               <div class="comment-time">
+                                                   <p th:text="${#dates.format(commentItem.getProductcom_time(), 'yyyy-MM-dd')}"></p>
+                                               </div>
+                                           </div>
+                                           <div class="text-comment">
+                                               <div class="comment-p">
+                                                   <p th:text="${commentItem.getProductcom_comment()}"></p>
+                                               </div>
+                                           </div>
+                                       </div>
+<!--                                       <hr/>-->
+                                   </li>
+                                   </th:block>
+                               </ul>
                                 <div class="clear"></div>
                             </div>
                             <div id="f2" class="content-2">

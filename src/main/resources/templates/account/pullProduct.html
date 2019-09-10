@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/account.css">
     <link rel="stylesheet" type="text/css" href="/css/iconfont.css">
+<!--    <link rel="stylesheet" type="text/css" href="/css/iconfont1.css">-->
     <script src="/js/jquery.min.js"></script>
     <!-- start top_js_button -->
     <script type="text/javascript" src="js/move-top.js"></script>
@@ -64,7 +65,7 @@
 
             <li>
                 <a href="/pullProduct">
-                    <i class="icon iconfont-xiajia"></i>
+                    <i class="icon icon-xiajia"></i>
                     产品下架
                 </a>
             </li>
@@ -86,22 +87,27 @@
             <div class="clear-shadow"></div>
 
             <div class="content-11">
-                <div id="pullIndex" style="display: none" th:name="${session.manageProduct.size()}" ></div>
+<!--                <div id="pullIndex" th:name="${session.manageProduct.size()}" ></div>-->
                 <th:block th:each="pullItem,index:${session.manageProduct}" >
+                    <ul>
                     <th:block th:if="${pullItem.getProduct_check()!=null}">
-                    <li>
-                        <a th:href="'/product/productItem?productId=' + ${pullItem.getProductId()}">
-                            <div class="order-img">
-                                <img th:src="'/images/small/' + ${pullItem.getProduct_photo()}">
-                            </div>
-                            <div class="order-p">
-                                <p th:text="${pullItem.getProduct_name()}"></p>
-                            </div>
-                        </a>
-                        <button th:class="'push'+${index.count}" th:id="'push'+${index.count} " style="outline: none;background: none;" th:name="${pullItem.getProductId()}">下架</button>
-                    </li>
+
+                        <li style="align-content: center">
+                            <a th:href="'/product/productItem?productId=' + ${pullItem.getProductId()}" style="align-content: center">
+                                <div class="order-img">
+                                    <img th:src="'/images/small/' + ${pullItem.getProduct_photo()}">
+                                </div>
+                                <div class="order-p">
+                                    <p th:text="${pullItem.getProduct_name()}"></p>
+                                </div>
+                            </a>
+<!--                            <input class="input_3" type="button" th:class="'push'+${index.count}" th:id="'push'+${index.count} " th:name="${pullItem.getProductId()}" value="下架">-->
+                            <button class="pull_push_btn" th:id="'push'+${index.count} " th:name="${pullItem.getProductId()}">下架</button>
+                        </li>
+
                     <hr/>
                     </th:block>
+                    </ul>
                 </th:block>
             </div>
         </section>
