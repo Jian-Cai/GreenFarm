@@ -2017,3 +2017,15 @@ a{
 	position: relative;
 	align-content: center;
 }
+#app_link1{
+	position: absolute;
+	margin-right: 0%;
+}
+#app_link2{
+	position: absolute;
+	margin-right: 0%;
+	color: white;
+}
+#app_div{
+	text-align: center;
+}

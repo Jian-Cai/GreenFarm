@@ -55,4 +55,8 @@ public class IndexController {
         request.getSession().setAttribute("status", 0);
         return "index";
     }
+    @GetMapping("/app/app") //展示主页面 index.html
+    public String viewAPP() {
+        return "/app/app";
+    }
 }

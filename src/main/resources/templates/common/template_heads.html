@@ -134,6 +134,7 @@
                         <li th:unless="${status == 2}" ><a href="/product/productList?index=0">农产品</a></li> |
                         <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
                         <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
+                        <li id="app_link1"><a href="/app/app">移动端</a></li>
                     </ul>
                 </div>
                 <div class="top-nav">
@@ -148,6 +149,7 @@
                             <li class="nav-item"><a th:unless="${status == 2}" href="/product/productList?index=0">农产品</a></li>
                             <li th:if="${session.account != null}"><a href="/account/account">个人中心</a></li>
                             <li th:if="${session.account == null}"><a href="javascript:void(0)" class="btn_login" id="btn_showlogin">登录</a></li>
+                            <li id="app_link2"><a href="/app/app">移动端</a></li>
                         </ul>
                     </nav>
                     <div class="search_box">
@@ -159,6 +161,7 @@
                     <script src="/js/responsive.menu.js"></script>
                 </div>
                 <div class="clear"></div>
+
             </div>
         </div>
     </div>
