@@ -1250,7 +1250,7 @@ a.tabs {
     -moz-border-radius: 0 3px 3px 3px;
     -o-border-radius: 0 3px 3px 3px;
 }
-.content .content-1 {
+.content div {
 	width:98%;
 	position: absolute;
 	top: 0;
@@ -1258,21 +1258,7 @@ a.tabs {
 	padding: 10px;
 	z-index: 1;
 	opacity: 0;
-	-webkit-transition: opacity linear 0.1s;
-	-moz-transition: opacity linear 0.1s;
-	-o-transition: opacity linear 0.1s;
-	-ms-transition: opacity linear 0.1s;
-	transition: opacity linear 0.1s;
-}
-.content .content-2{
-	width:98%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 10px;
-	z-index: 1;
-	opacity: 0;text-align: center;
-	overflow: hidden;
+    text-align: center;
 	-webkit-transition: opacity linear 0.1s;
 	-moz-transition: opacity linear 0.1s;
 	-o-transition: opacity linear 0.1s;
@@ -1280,8 +1266,6 @@ a.tabs {
 	transition: opacity linear 0.1s;
 }
 .content_img{
-	overflow-x: hidden;
-	overflow-y: scroll;
 width: 850px;
 }
 .tabs input.tab-selector-1:checked ~ .content .content-1,
