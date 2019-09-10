@@ -1617,27 +1617,25 @@ a{
 	display:none;
 	position:absolute;
 	z-index:100000001;
-	background:white;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: -11%;
 }
 .mini_login .item{
-	width:320px;
+	width:420px;
 	margin:0 auto;
 	height:48px;
 	line-height:48px;
 	padding:0 20px;
 }
 /* 登录窗第一行*/
-.mini_login .firstLine{
-	color:#666;
-	background:#f7f7f7;
-	font-size:18px;
-	font-weight:bold;
-	cursor:move;
-}
+
 .mini_login .item .login_close{
 	display:inline-block;
 	float:right;
 	cursor:pointer;
+	margin-top: -12%;
+	margin-right: -12%;
 }
 
 .mini_login .item label{
@@ -1646,21 +1644,30 @@ a{
 }
 .mini_login .item input{
 	display:inline-block;
-	height:60%;
+	height:70%;
 	width:70%;
+	margin-left: 15px;
+	border:1;
+	border-color: #83c5af;
+	border-radius: 18px;
 }
 /* 登录按钮 */
 .mini_login .item a.btn_login{
 	display:block;
 	margin:10px 10% 0;
-	height:30px;
+	height:35px;
 	line-height:30px;
-	width:80%;
-	background:#4490F7;
-	color:white;
-	font-size:16px;
+	width:70%;
+	margin-left: 15%;
+	background:#63CBA7;
+	border-radius:5px;
 	font-weight:bold;
 	text-align:center;
+	padding-top: 10px;
+}
+.mini_login .item a.btn_login:hover{
+	background:#c0ecdd;
+	color: #63CBA7;
 }
 /* 遮罩层样式 */
 .cover{
@@ -1732,4 +1739,64 @@ a{
 	padding-bottom: 2px;
 	padding-left: 4px;
 	padding-right: 4px;
+}
+#login_img{
+	position: absolute;
+	width: 70%;
+	margin-left: 15%;
+}
+#login_div{
+	position: absolute;
+	width: 80%;
+	margin-left: 10%;
+	text-align: center;
+}
+#login_form{
+	position:absolute;
+	margin-top:13%;
+	width:84%;
+	margin-left: 8%;
+	height:300px;
+	border-radius:25px;
+	color: rgb(0, 0, 0);
+	text-align:center;
+
+}
+.input_1{
+	outline:none;
+	margin-top:40px;
+	border:1;
+	border-color: #83c5af;
+	width:300px;
+	height:50px;
+	border-radius:25px;
+	padding-left:15px;
+	font-size:18px;
+	color: rgba(171, 171, 171, 0.84);
+}
+
+.input_3{
+	outline: none;
+	width:100px;
+	height:45px;
+	border:0;
+	padding:5px 7px;
+	background:#63CBA7;
+	border-radius:25px;
+	margin:0px 30px;
+	font-size:18px;
+	color:#FFFFFF;
+}
+.input_3:hover{
+	background:#c0ecdd;
+	color: #63CBA7;
+}
+#mini_login_img{
+	position: absolute;
+	width: 80%;
+}
+#mini_login_form{
+	position: absolute;
+	width: 80%;
+	margin-top: 11%
 }
