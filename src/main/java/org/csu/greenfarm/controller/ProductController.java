@@ -70,7 +70,8 @@ public class ProductController {
         Farm farm = farmService.getFarmByFarmId(product.getProduct_origin());
         model.addAttribute("origin_farm", farm);
         model.addAttribute("product", product);
-        model.addAttribute("comment", commentService.getCommentByItemId(productId));
+        request.getSession().setAttribute("comment", commentService.getCommentByItemId(productId));
+
         return "product/productItem";
     }
 

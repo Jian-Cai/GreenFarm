@@ -68,7 +68,7 @@ public class FarmController {
         Farm farm = service.getFarmByFarmId(farmId);
         model.addAttribute("farm", farm);
         model.addAttribute("farm_product", productService.getProductByProductOrigin(farmId));
-        model.addAttribute("comment", commentService.getCommentByItemId(farmId));
+        request.getSession().setAttribute("comment", commentService.getCommentByItemId(farmId));
         return "farm/farmItem";
     }
 
