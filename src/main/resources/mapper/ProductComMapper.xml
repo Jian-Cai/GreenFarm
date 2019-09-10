@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.csu.greenfarm.persistence.ProductComMapper">
+    <cache />
+
+
+    <select id="getAllProductComment"  resultType="org.csu.greenfarm.domain.ProductCom">
+        SELECT * FROM productcom
+    </select>
+
+    <select id="getProductCommentByUsername"  parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.ProductCom">
+        SELECT * FROM productcom WHERE productcom_account=#{productcom_account}
+    </select>
+
+
+    <select id="getProductCommentByProductId" parameterType="java.lang.String" resultType="org.csu.greenfarm.domain.ProductCom">
+        SELECT * FROM productcom WHERE productcom_product=#{productcom_product}
+    </select>
+
+    <insert id="insertProductComment" parameterType="org.csu.greenfarm.domain.ProductCom">
+        insert productcom(productcomId, productcom_account, productcom_product, productcom_time, productcom_comment, productcom_photo) values (#{productcomId}, #{productcom_account}, #{productcom_product}, #{productcom_time}, #{productcom_comment}, #{productcom_photo})
+    </insert>
+
+</mapper>

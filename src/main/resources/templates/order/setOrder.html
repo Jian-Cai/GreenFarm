@@ -36,12 +36,12 @@
 <header th:replace="common/template_heads::header(${session.status})"></header>
 <section id="section1" class="main w12">
 <div id="aboutOrder">
-    <form class="form">
+    <form class="form" name="form1">
         <ul>
             <li>
                 <label  class="fl mr2">订单编号:</label>
                 &nbsp;
-                <input name="preorderId" th:value="${session.orderId}" disabled="true">
+                <input name="preorderId" th:value="${session.orderId}">
             </li>
             &nbsp;
             <li>
