@@ -35,7 +35,7 @@
 <div class="user-info">
     <div class="w1200">
         <div class="user-headface">
-            <img th:src="'/images/' + ${session.account.getHead()}">
+            <img th:src="'/images/' + ${session.account?.getHead()}">
         </div>
         <div class="user-account">
             <p th:text="'您好, '+ ${session.account.getUsername()}" class="tip">huann，Tom</p>

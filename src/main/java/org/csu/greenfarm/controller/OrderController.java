@@ -48,7 +48,6 @@ public class OrderController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
         Account account = (Account)request.getSession().getAttribute("account");
         List<PreOrder> preOrder = orderService.getPreOrderByAccount(account.getAccount());

@@ -39,6 +39,7 @@
     <form class="form" name="form1">
         <ul>
             <li>
+                <input name="isSet" type="hidden" value="true">
                 <label  class="fl mr2">订单编号:</label>
                 &nbsp;<input name="preorderId" th:value="${session.orderId}" type="hidden">
                 <input th:value="${session.orderId}" disabled="true">

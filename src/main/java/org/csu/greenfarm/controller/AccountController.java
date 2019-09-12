@@ -52,7 +52,9 @@ public class AccountController {
         HttpSession session = request.getSession();
         //header、footer信息
         session.setAttribute("status", 3);
-        return session.getAttribute("account") == null ? "login/login" : "account/account";
+
+        Account account  = (Account)session.getAttribute("account");
+        return account.getAccount().equals("666") ? "account/admin" : "account/account";
     }
 
 
@@ -98,8 +100,22 @@ public class AccountController {
     }
 
     @GetMapping("signon")
-    public String signOn(Account account){
-        service.signOn(account);
+    public String signOn(){
+        if(request.getParameter("checkbox1") != null){
+            try {
+                Account account1 = new Account();
+                account1.setAccount(request.getParameter("account"));
+                account1.setMail(request.getParameter("mail"));
+                account1.setUsername(request.getParameter("username"));
+                account1.setPassword(request.getParameter("password"));
+                account1.setRecadd(request.getParameter("recadd"));
+                request.getSession().setAttribute("account", account1);
+                service.signOn(account1);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         return "account/account";
     }
 
